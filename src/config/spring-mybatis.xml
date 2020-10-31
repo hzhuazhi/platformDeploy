@@ -24,7 +24,7 @@
 			<value>false</value>
 		</property>
 		<property name="jndiName">
-			<value>java:comp/env/jdbc/hz-pay</value>
+			<value>java:comp/env/jdbc/platform</value>
 			<!--<value>java:comp/env/jdbc/adCore_dev</value>-->
 			<!--<value>java:comp/env/jdbc/adCore_production</value>-->
 			<!--<value>java:comp/env/jdbc/tvsdk_xjp</value>-->
