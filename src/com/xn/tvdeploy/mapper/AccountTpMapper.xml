@@ -17,6 +17,7 @@
         <result property="balance" column="balance" />
         <result property="secretKey" column="secret_key" />
         <result property="lowerUrl" column="lower_url" />
+        <result property="lockMoney" column="lock_money" />
         <result property="lowerSuc" column="lower_suc" />
         <result property="isSynchro" column="is_synchro" />
         <result property="withdrawType" column="withdraw_type" />
@@ -29,7 +30,7 @@
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
         a.id,a.account_num,a.pass_wd,a.channel_name,a.channel,a.company_name,a.contacts,a.phone_num,a.pay_type,a.total_money,a.balance,a.secret_key,
-        a.lower_url,a.lower_suc,a.is_synchro,a.withdraw_type,a.role_id,a.is_enable,
+        a.lower_url,a.lower_suc,a.is_synchro,a.withdraw_type,a.role_id,a.is_enable,a.lock_money,
         a.create_time,a.update_time,a.yn,
         b.role_name
     </sql>

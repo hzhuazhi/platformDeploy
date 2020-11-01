@@ -13,6 +13,7 @@ var account = {
         {"data":"channel",},
         {"data":"totalMoney",},
         {"data":"balance",},
+        {"data":"lockMoney",},
         {"data":"secretKey",},
 
         {"data":"id",

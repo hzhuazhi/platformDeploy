@@ -22,6 +22,7 @@ var account = {
         {"data":"phoneNum",},
         {"data":"totalMoney",},
         {"data":"balance",},
+        {"data":"lockMoney",},
         {"data":"secretKey",},
         {"data":"lowerUrl",},
         {"data":"lowerSuc",},

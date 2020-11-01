@@ -20,6 +20,7 @@
             <th width="150">商铺号</th>
             <th width="150">总额</th>
             <th width="150">余额</th>
+            <th width="150">锁定金额</th>
             <th width="350">秘钥</th>
             <th width="150">提现</th>
         </tr>

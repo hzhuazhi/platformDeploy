@@ -69,6 +69,10 @@ public class AccountTpModel extends BasePage {
      * 秘钥key
      */
     private String secretKey;
+    /**
+     * 锁定金额
+     */
+    private String lockMoney;
 
     /**
      * 同步的接口地址
@@ -296,5 +300,13 @@ public class AccountTpModel extends BasePage {
 
     public void setWithdrawType(int withdrawType) {
         this.withdrawType = withdrawType;
+    }
+
+    public String getLockMoney() {
+        return lockMoney;
+    }
+
+    public void setLockMoney(String lockMoney) {
+        this.lockMoney = lockMoney;
     }
 }
