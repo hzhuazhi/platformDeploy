@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xn.tvdeploy.dao.ChannelOutDao">
+    <!-- 属性映射 -->
+    <resultMap type="com.xn.tvdeploy.model.ChannelOutModel" id="dataMap">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="my_trade_no" property="myTradeNo" jdbcType="VARCHAR" />
+        <result column="channel_id" property="channelId" jdbcType="BIGINT" />
+        <result column="geway_id" property="gewayId" jdbcType="BIGINT" />
+        <result column="channel" property="channel" jdbcType="VARCHAR" />
+        <result column="trade_type" property="tradeType" jdbcType="VARCHAR" />
+        <result column="total_amount" property="totalAmount" jdbcType="VARCHAR" />
+        <result column="service_charge" property="serviceCharge" jdbcType="VARCHAR" />
+        <result column="actual_money" property="actualMoney" jdbcType="VARCHAR" />
+        <result column="order_status" property="orderStatus" jdbcType="BIT" />
+        <result column="out_trade_no" property="outTradeNo" jdbcType="VARCHAR" />
+        <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+        <result column="bank_card" property="bankCard" jdbcType="VARCHAR" />
+        <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+        <result column="picture_ads" property="pictureAds" jdbcType="VARCHAR" />
+        <result column="fail_info" property="failInfo" jdbcType="VARCHAR" />
+        <result column="notify_url" property="notifyUrl" jdbcType="VARCHAR" />
+        <result column="my_notify_url" property="myNotifyUrl" jdbcType="VARCHAR" />
+        <result column="interface_ver" property="interfaceVer" jdbcType="VARCHAR" />
+        <result column="return_url" property="returnUrl" jdbcType="VARCHAR" />
+        <result column="extra_return_param" property="extraReturnParam" jdbcType="VARCHAR" />
+        <result column="client_ip" property="clientIp" jdbcType="VARCHAR" />
+        <result column="sign" property="sign" jdbcType="VARCHAR" />
+        <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
+        <result column="product_name" property="productName" jdbcType="VARCHAR" />
+        <result column="product_code" property="productCode" jdbcType="VARCHAR" />
+        <result column="channel_geway_id" property="channelGewayId" jdbcType="BIGINT" />
+        <result column="profit_type" property="profitType" jdbcType="BIT" />
+        <result column="send_ok" property="sendOk" jdbcType="BIT" />
+        <result column="check_status" property="checkStatus" jdbcType="BIT" />
+        <result column="check_info" property="checkInfo" jdbcType="VARCHAR" />
+        <result column="curday" property="curday" jdbcType="INTEGER" />
+        <result column="curhour" property="curhour" jdbcType="BIT" />
+        <result column="curminute" property="curminute" jdbcType="BIT" />
+        <result column="run_num" property="runNum" jdbcType="BIT" />
+        <result column="run_status" property="runStatus" jdbcType="BIT" />
+        <result column="send_num" property="sendNum" jdbcType="BIT" />
+        <result column="send_status" property="sendStatus" jdbcType="BIT" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="ts_time" property="tsTime" jdbcType="TIMESTAMP" />
+        <result column="yn" property="yn" jdbcType="BIT" />
+        <result column="count_total_money" property="countTotalMoney"  />
+        <result column="count_actual_money" property="countActualMoney"  />
+        <result column="success_count_money" property="successCountMoney"  />
+        <result column="success_service_charge_money" property="successServiceChargeMoney"  />
+        <result column="success_rate" property="successRate"  />
+
+
+    </resultMap>
+    <!-- 定义数据库基本列,只适用代替单表的*-->
+    <sql id="Base_Column_List">
+        a.id, a.my_trade_no, a.channel_id, a.geway_id, a.channel, a.trade_type, a.total_amount, a.service_charge,
+        a.actual_money, a.order_status, a.out_trade_no, a.bank_name, a.bank_card, a.account_name, a.picture_ads,
+        a.fail_info, a.notify_url, a.my_notify_url, a.interface_ver, a.return_url, a.extra_return_param,
+        a.client_ip, a.sign, a.sub_time, a.product_name, a.product_code, a.channel_geway_id, a.profit_type,
+        a.send_ok, a.check_status, a.check_info, a.curday, a.curhour, a.curminute, a.run_num, a.run_status,
+        a.send_num, a.send_status, a.create_time, a.update_time, a.ts_time, a.yn,b.channel_name
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id="Example_Where_Clause">
+        where 1=1
+        <trim  suffixOverrides="," >
+            <if test="id != 0 and id >0 " >
+                and a.id = #{id}
+            </if>
+            <if test="myTradeNo != null and myTradeNo != '' " >
+                and a.my_trade_no = #{myTradeNo}
+            </if>
+            <if test="outTradeNo != null and outTradeNo != '' " >
+                and a.out_trade_no = #{outTradeNo}
+            </if>
+            <if test="outTradeNo != null and outTradeNo != '' " >
+                and a.out_trade_no = #{outTradeNo}
+            </if>
+            <if test="channelName != null and channelName != '' " >
+                and b.channel_name = #{channelName}
+            </if>
+            <if test="beginTime != null and beginTime != '' " >
+                and a.curday &gt;= #{beginTime}
+            </if>
+            <if test="endTime != null and endTime != '' " >
+                and a.curday &lt;= #{endTime}
+            </if>
+
+            and a.yn = 0
+        </trim>
+    </sql>
+
+    <!-- 查询条件_id -->
+    <sql id="Example_Where_Clause_id">
+        where 1=1
+        <trim  suffixOverrides="," >
+            <if test="id != 0 and id >0 " >
+                and a.id = #{id}
+            </if>
+            and a.yn = 0
+        </trim>
+    </sql>
+
+    <!-- 查询总数-->
+    <select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+        select count(1)
+        from tb_hz_channel_out a left join tb_hz_channel  b
+        on   a.channel_id =b.id
+        <include refid="Example_Where_Clause"/>
+    </select>
+
+    <!-- 查询分页列表 -->
+    <select id="queryByList" resultMap="dataMap"  parameterType="Object">
+        select
+        <include refid="Base_Column_List" />
+        from tb_hz_channel_out a left join tb_hz_channel  b
+        on   a.channel_id =b.id
+        <include refid="Example_Where_Clause"/>
+        order by a.create_time desc
+        limit #{startIndex},#{pageSize}
+    </select>
+
+    <!-- 查询列表-无分页-有条件/有条件 -->
+    <select id="queryAllList" resultMap="dataMap"  parameterType="Object">
+        select
+        <include refid="Base_Column_List" />
+        from tb_hz_channel_out a
+        <include refid="Example_Where_Clause"/>
+        order by a.create_time desc
+    </select>
+
+
+
+    <select id="getTotalData"  resultMap="dataMap" parameterType="Object">
+
+
+        select  c.count_total_money,c.count_actual_money,d.success_count_money,d.success_service_charge_money from (select  ifnull(sum(convert(a.total_amount,decimal(19,4))), '0.0000') as count_total_money,
+        ifnull(sum(convert(a.actual_money,decimal(19,4))), '0.0000') as count_actual_money
+        from tb_hz_channel_out a left join tb_hz_channel  b
+        on   a.channel_id =b.id
+        <include refid="Example_Where_Clause"/>) c, ( select
+        ifnull(sum(convert(a.total_amount,decimal(19,4))), '0.0000') as success_count_money,
+        ifnull(sum(convert(a.service_charge,decimal(19,4))), '0.0000') as success_service_charge_money
+        from tb_hz_channel_out a left join tb_hz_channel  b
+        on   a.channel_id =b.id
+        <include refid="Example_Where_Clause"/>
+        and  a.order_status=4  )  d
+    </select>
+
+
+    <!-- 根据id查询记录 -->
+    <select id="queryById"  resultMap="dataMap" parameterType="Object">
+        select
+        <include refid="Base_Column_List" />
+        from tb_hz_channel_out a
+        <include refid="Example_Where_Clause_id"/>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="queryByCondition"  resultMap="dataMap" parameterType="Object">
+        select
+        <include refid="Base_Column_List" />
+        from tb_hz_channel_out a
+        <include refid="Example_Where_Clause"/>
+        limit 1
+    </select>
+
+
+
+</mapper>
