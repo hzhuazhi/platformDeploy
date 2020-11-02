@@ -169,5 +169,14 @@
     </select>
 
 
+    <update id="manyOperation" parameterType="Object">
+        update tb_hz_channel_out a
+        set
+            a.send_num=#{sendNum},
+            a.send_status=#{sendStatus},
+            a.update_time=NOW()
+         where  id=#{id}
+    </update>
+
 
 </mapper>

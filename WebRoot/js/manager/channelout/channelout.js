@@ -37,7 +37,7 @@ var account = {
                 if(oData.orderStatus==1){
                     html+="<span >初始化</span>"
                 }else if(oData.orderStatus==2){
-                    html+="<span >锁定</span>"
+                    html+="<span >失败</span>"
                 }else if(oData.orderStatus==3){
                     html+="<span >失败</span>"
                 }else if(oData.orderStatus==4){
@@ -51,14 +51,24 @@ var account = {
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html = '';
                 if(oData.sendStatus==1){
-                    html+="<span >初始化</span>"
+                    html+="<span >成功</span>";
                 }else if(oData.sendStatus==2){
-                    html+="<span >锁定</span>"
+                    html+="<span style='color: #bb0000'>失败</span>";
                 }else if(oData.sendStatus==3){
-                    html+="<span >失败</span>"
+                    html+="<span style='color: #bb0000'>失败</span>";
                 }else if(oData.sendStatus==4){
-                    html+="<span style='color: #bb0000'>成功</span>"
+                    html+="<span style='color: #4aff1a'>成功</span>";
                 }
+                $(nTd).html(html);
+            }
+        },
+        {"data":"id",
+            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                var html = '';
+                if(oData.sendStatus==2){
+                    html = '<a class = "dataTableBtn dataTableDeleteBtn " onclick="repeat('+oData.id+')"> 重发 </a>';
+                }
+
                 $(nTd).html(html);
             }
         }
@@ -176,7 +186,30 @@ var account = {
 
 }
 
+function  repeat(id){
+    let  data={
+        "id":id
+    }
 
+    $.ajax({
+        url : ctx+ "/channelOut/manyOperation.do",
+        type : 'post',
+        dataType : 'json',
+        data :data,
+        success : function(data) {
+            if (data.success) {
+                alert("修改成功！");
+                window.location.href = ctx + "/channelOut/list.do";
+            } else {
+                alert(data.msg);
+            }
+        },
+        error : function(data) {
+            alert(data.info);
+        }
+    });
+
+}
 
 $(function(){
     account.queryTotal();

@@ -73,6 +73,8 @@
             <th width="250">交易时间</th>
             <%--<th width="250">补单类型</th>--%>
             <th width="250">同步状态</th>
+            <th width="250">操作</th>
+
         </tr>
         </thead>
         <tbody>

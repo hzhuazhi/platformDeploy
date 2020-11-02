@@ -54,7 +54,7 @@ public class ChannelOutController extends BaseController {
      */
     @RequestMapping("/list")
     public String list() {
-        return "manager/channelOut/channelOutIndex";
+        return "manager/channelout/channeloutIndex";
     }
 
 
@@ -145,6 +145,23 @@ public class ChannelOutController extends BaseController {
             sendFailureMessage(response,"登录超时,请重新登录在操作!");
         }
         return "manager/channelOut/channelOutAdd";
+    }
+
+
+    /**
+     * 启用/禁用
+     */
+    @RequestMapping("/manyOperation")
+    public void manyOperation(HttpServletRequest request, HttpServletResponse response, ChannelOutModel bean) throws Exception {
+        Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
+        if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
+            bean.setSendNum(0);
+            bean.setSendStatus(0);
+            channelOutService.manyOperation(bean);
+            sendSuccessMessage(response, "状态更新成功");
+        }else{
+            sendFailureMessage(response, "登录超时,请重新登录在操作!");
+        }
     }
 
 
