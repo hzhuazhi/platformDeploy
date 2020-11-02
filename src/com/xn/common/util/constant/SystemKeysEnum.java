@@ -8,7 +8,7 @@ package com.xn.common.util.constant;
  */
 public enum SystemKeysEnum {
 
-    KEY_PAY("pay", "支付"),
+    KEY_PLATFORM("platform", "平台"),
 
 
     ;
