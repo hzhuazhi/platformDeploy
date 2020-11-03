@@ -50,6 +50,7 @@
         <result column="success_count_money" property="successCountMoney"  />
         <result column="success_service_charge_money" property="successServiceChargeMoney"  />
         <result column="success_rate" property="successRate"  />
+        <result column="channel_name" property="channelName"  />
 
 
     </resultMap>
