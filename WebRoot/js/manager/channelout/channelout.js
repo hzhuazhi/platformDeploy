@@ -99,6 +99,9 @@ var account = {
             account.condJsonData['totalAmount'] = $("#totalAmount").val();
             account.condJsonData['beginTime'] = $("#beginTime").val();
             account.condJsonData['endTime'] = $("#endTime").val();
+            account.condJsonData['sendOk'] = $("#sendOk").val();
+            account.condJsonData['orderStatus'] = $("#orderStatus").val();
+            account.condJsonData['sendStatus'] = $("#sendStatus").val();
             account.queryTotal();
             common.showDatas(account.condJsonData,account.list);
 
@@ -112,12 +115,18 @@ var account = {
             account.condJsonData['totalAmount'] = "";
             account.condJsonData['beginTime'] = "";
             account.condJsonData['endTime'] = "";
+            account.condJsonData['sendOk'] = "";
+            account.condJsonData['orderStatus'] = "";
+            account.condJsonData['sendStatus'] = "";
             $("#myTradeNo").val("");
             $("#outTradeNo").val("");
             $("#channelName").val("");
             $("#totalAmount").val("");
             $("#beginTime").val("0");
             $("#endTime").val("0");
+            $("#sendOk").val("0");
+            $("#orderStatus").val("0");
+            $("#sendStatus").val("0");
             this.queryTotal();
             common.showDatas(account.condJsonData,account.list);
         });
@@ -142,6 +151,9 @@ var account = {
         var totalAmount= $("#totalAmount").val();
         var beginTime= $("#beginTime").val();
         var endTime= $("#endTime").val();
+        var sendOk= $("#sendOk").val();
+        var orderStatus= $("#orderStatus").val();
+        var sendStatus= $("#sendStatus").val();
 
 
 
@@ -151,6 +163,9 @@ var account = {
             "channelName":channelName,
             "totalAmount":totalAmount,
             "beginTime":beginTime,
+            "sendOk":sendOk,
+            "orderStatus":orderStatus,
+            "sendStatus":sendStatus,
             "endTime":endTime
         };
         common.ajax(url,data,function(data){

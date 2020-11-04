@@ -74,8 +74,8 @@
             <if test="myTradeNo != null and myTradeNo != '' " >
                 and a.my_trade_no = #{myTradeNo}
             </if>
-            <if test="outTradeNo != null and outTradeNo != '' " >
-                and a.out_trade_no = #{outTradeNo}
+            <if test="totalAmount != null and totalAmount != '' " >
+                and a.total_amount = #{totalAmount}
             </if>
             <if test="outTradeNo != null and outTradeNo != '' " >
                 and a.out_trade_no = #{outTradeNo}
@@ -89,7 +89,15 @@
             <if test="endTime != null and endTime != '' " >
                 and a.curday &lt;= #{endTime}
             </if>
-
+            <if test="sendOk != 0 and sendOk >0 " >
+                and a.send_ok = #{sendOk}
+            </if>
+            <if test="orderStatus != 0 and orderStatus >0 " >
+                and a.order_status = #{orderStatus}
+            </if>
+            <if test="sendStatus != 0 and sendStatus >0 " >
+                and a.send_status = #{sendStatus}
+            </if>
             and a.yn = 0
         </trim>
     </sql>

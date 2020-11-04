@@ -10,7 +10,7 @@
 <div class="col_main">
     <div class = "condQueryDiv">
         <form id = "condForm">
-            <div class = "condQueryCtrl">
+            <div class = "condQueryCtrl" style="width: 100%">
                 <div class = "condQueryLabelDiv">平台订单：</div>
                 <div class="formCtrlDiv">
                     <input type ="text" class ="inputCommonSty" id="myTradeNo" name ="myTradeNo">
@@ -36,6 +36,37 @@
                 <div class = "condQueryLabelDiv">结束时间：</div>
                 <div class="formCtrlDiv" >
                     <input type="text" class ="inputCommonSty" name="endTime" id="endTime" size="10" readonly="readonly" onClick="WdatePicker({dateFmt:'yyyyMMdd'})" value="${model.curdayStart}"/>
+                </div>
+
+            </div>
+            <div class = "condQueryCtrl" style="width: 100%">
+
+                <div class = "condQueryLabelDiv">请求状态：</div>
+                <div class="formCtrlDiv" >
+                    <select id="sendOk" name="sendOk">
+                            <option value="0">==请选择==</option>
+                            <option value="1">成功</option>
+                            <option value="2">失败</option>
+                    </select>
+                </div>
+                <div class = "condQueryLabelDiv">交易状态：</div>
+                <div class="formCtrlDiv" >
+                    <select id="orderStatus" name="orderStatus">
+                        <option value="0">==请选择==</option>
+                        <option value="1">初始化</option>
+                        <option value="2">失败</option>
+                        <option value="4">成功</option>
+                    </select>
+                </div>
+
+                <div class = "condQueryLabelDiv">同步状态：</div>
+                <div class="formCtrlDiv" >
+                    <select id="sendStatus"  name="sendStatus">
+                        <option value="0">==请选择==</option>
+                        <option value="1">初始化</option>
+                        <option value="2">失败</option>
+                        <option value="4">成功</option>
+                    </select>
                 </div>
                 <div class="searchdiv">
                     <input type = "button" id = "btnQuery" class = "buttonClass imginput" value = "搜索" />
