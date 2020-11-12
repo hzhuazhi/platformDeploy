@@ -6,10 +6,7 @@ import com.xn.common.util.BeanUtils;
 import com.xn.common.util.DateUtil;
 import com.xn.common.util.MD5;
 import com.xn.common.util.StringUtil;
-import com.xn.tvdeploy.model.ChannelModel;
-import com.xn.tvdeploy.model.OfferDModel;
-import com.xn.tvdeploy.model.OfferMModel;
-import com.xn.tvdeploy.model.TpDataInfoModel;
+import com.xn.tvdeploy.model.*;
 import com.xn.tvdeploy.util.call.model.ts.res.AdsModel;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -237,6 +234,167 @@ public class PublicMethod{
         double accuracy_num = num / total * 100;
         return df.format(accuracy_num)+"%";
     }
+
+    /**
+     * @Description: 组装扣减渠道余额
+     * @param id - 主键ID
+     * @param orderMoney - 订单金额
+     * @param serviceCharge - 手续费
+     * @return com.hz.platform.master.core.model.channel.ChannelModel
+     * @author yoko
+     * @date 2020/10/31 19:40
+     */
+    public static AccountTpModel assembleChannelBalance(long id, String orderMoney, String serviceCharge){
+        AccountTpModel resBean = new AccountTpModel();
+        resBean.setId(id);
+        // 计算要扣的金额
+        String resMoney = StringUtil.getMultiply(orderMoney, serviceCharge);
+        String money = StringUtil.getBigDecimalAdd(resMoney, orderMoney);
+        resBean.setSubtractBalance("1");
+        resBean.setOrderMoney(money);
+        return resBean;
+    }
+
+
+    /**
+     * @Description: 组装添加流水或查询流水的方法
+     * @param id - 主键ID
+     * @param channelId - 渠道ID
+     * @param orderNo - 订单号
+     * @param orderType - 订单类型：1代收，2代付
+     * @param money - 订单金额
+     * @param orderStatus - 订单状态：1初始化，2超时/失败，3有质疑，4成功，5表示订单超时且操作状态属于初始化的
+     * @param delayTime - 延迟运行时间：当订单属于超时状态：则系统时间需要大于此时间才能进行逻辑操作
+     * @param lockTime - 锁定时间
+     * @param type - 操作类型：1查询，2添加数据
+     * @return com.hz.cake.master.core.model.merchant.MerchantBalanceDeductModel
+     * @author yoko
+     * @date 2020/10/30 20:21
+     */
+    public static ChannelBalanceDeductModel assembleChannelBalanceDeduct(long id, long channelId, String orderNo, int orderType, String money, int orderStatus,
+                                                                         String delayTime, String lockTime, int type){
+        ChannelBalanceDeductModel resBean = new ChannelBalanceDeductModel();
+        if (id > 0){
+            resBean.setId(id);
+        }
+        if (channelId > 0){
+            resBean.setChannelId(channelId);
+        }
+        if (!StringUtils.isBlank(orderNo)){
+            resBean.setOrderNo(orderNo);
+        }
+        if (orderType > 0){
+            resBean.setOrderType(orderType);
+        }
+        if (!StringUtils.isBlank(money)){
+            resBean.setMoney(money);
+        }
+        if (orderStatus > 0){
+            resBean.setOrderStatus(orderStatus);
+        }
+        if (!StringUtils.isBlank(delayTime)){
+            resBean.setDelayTime(delayTime);
+        }else {
+            String delayTimeStr = DateUtil.addDateMinute(30);
+            resBean.setDelayTime(delayTimeStr);
+        }
+        if (!StringUtils.isBlank(lockTime)){
+            resBean.setLockTime(lockTime);
+        }
+        if (type > 0){
+            if (type == 2){
+                resBean.setCurday(DateUtil.getDayNumber(new Date()));
+                resBean.setCurhour(DateUtil.getHour(new Date()));
+                resBean.setCurminute(DateUtil.getCurminute(new Date()));
+            }
+        }
+        return resBean;
+    }
+
+
+
+
+    /**
+     * @Description: 组装渠道代付订单数据
+     * @param requestData - 请求的基础数据
+     * @param myTradeNo - 我方订单号
+     * @param channelId - 渠道主键ID
+     * @param gewayId - 通道主键ID
+     * @param channelGewayId - 渠道与通道的关联关系的ID：对应表tb_hz_channel_geway的主键ID
+     * @param profitType - 收益类型：1普通收益类型，2多人分配收益类型
+     * @param nowTime - 现在时间
+     * @param serviceCharge - 手续费
+     * @param sendFlag - false表示请求失败，true表示请求成功
+     * @return ChannelDataModel
+     * @author yoko
+     * @date 2020/3/24 21:41
+     */
+    public static ChannelOutModel assembleChannelOutData(ChannelOutModel requestData, String myTradeNo, AccountTpModel channelModel, long channelId, long gewayId,
+                                                         long channelGewayId, int profitType, String nowTime, String my_notify_url, String serviceCharge, String actualMoney, boolean sendFlag) throws Exception{
+        ChannelOutModel resBean = new ChannelOutModel();
+        resBean.setMyTradeNo(myTradeNo);
+        resBean.setChannelId(channelId);
+        resBean.setGewayId(gewayId);
+        resBean.setChannel(channelModel.getChannel());
+        resBean.setChannelGewayId(channelGewayId);
+        resBean.setProfitType(profitType);
+        resBean.setTradeType(requestData.getTradeType());
+        resBean.setTotalAmount(requestData.getTotalAmount());
+        resBean.setServiceCharge(serviceCharge);
+        if (!StringUtils.isBlank(actualMoney)){
+            resBean.setActualMoney(actualMoney);
+        }
+        resBean.setOutTradeNo(requestData.getOutTradeNo());
+        resBean.setBankName(requestData.getBankName());
+        resBean.setBankCard(requestData.getBankCard());
+        resBean.setAccountName(requestData.getAccountName());
+        if (!StringUtils.isBlank(requestData.getBankSubbranch())){
+            resBean.setBankSubbranch(requestData.getBankSubbranch());
+        }
+//        if (!StringUtils.isBlank(requestData.bank_province)){
+//            resBean.setBankProvince(requestData.bank_province);
+//        }
+//        if (!StringUtils.isBlank(requestData.bank_city)){
+//            resBean.setBankCity(requestData.bank_city);
+//        }
+        if (!StringUtils.isBlank(requestData.getNotifyUrl())){
+            resBean.setNotifyUrl(requestData.getNotifyUrl());
+        }
+        resBean.setMyNotifyUrl(my_notify_url);
+        if (!StringUtils.isBlank(requestData.getInterfaceVer())){
+            resBean.setInterfaceVer(requestData.getInterfaceVer());
+        }
+        if (!StringUtils.isBlank(requestData.getReturnUrl())){
+            resBean.setReturnUrl(requestData.getReturnUrl());
+        }
+        if (!StringUtils.isBlank(requestData.getExtraReturnParam())){
+            resBean.setExtraReturnParam(requestData.getExtraReturnParam());
+        }
+        if (!StringUtils.isBlank(requestData.getClientIp())){
+            resBean.setClientIp(requestData.getClientIp());
+        }
+//        resBean.setSign(requestData.sign);
+        resBean.setSubTime(DateUtil.fromStringToDate(new Date()));
+        if (!StringUtils.isBlank(requestData.getProductName())){
+            resBean.setProductName(requestData.getProductName());
+        }
+        if (!StringUtils.isBlank(requestData.getProductCode())){
+            resBean.setProductCode(requestData.getProductCode());
+        }
+        if (sendFlag){
+            resBean.setSendOk(1);
+        }else {
+            resBean.setSendOk(2);
+        }
+        resBean.setCurday(DateUtil.getDayNumber(new Date()));
+        resBean.setCurhour(DateUtil.getHour(new Date()));
+        resBean.setCurminute(DateUtil.getCurminute(new Date()));
+        return resBean;
+
+    }
+
+
+
 
     public static void main(String[] args) throws Exception {
         String str = assembleAppKey(3);

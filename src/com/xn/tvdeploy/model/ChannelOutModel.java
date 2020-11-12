@@ -104,6 +104,11 @@ public class ChannelOutModel extends BasePage {
     private String accountName;
 
     /**
+     * 银行开户支行
+     */
+    private String bankSubbranch;
+
+    /**
      * 银行卡转账图片凭证
      *
      * @mbggenerated
@@ -755,5 +760,13 @@ public class ChannelOutModel extends BasePage {
 
     public void setSuccessRate(String successRate) {
         this.successRate = successRate;
+    }
+
+    public String getBankSubbranch() {
+        return bankSubbranch;
+    }
+
+    public void setBankSubbranch(String bankSubbranch) {
+        this.bankSubbranch = bankSubbranch;
     }
 }

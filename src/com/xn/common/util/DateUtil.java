@@ -2739,6 +2739,34 @@ public class DateUtil {
 		return num;
 	}
 
+
+	/**
+	 * @Description: TODO(当前日期加多少分钟之后的日期)
+	 * @author df
+	 * @param minute-分钟
+	 * @create 21:51 2018/12/6
+	 **/
+	public static String addDateMinute(int minute){
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = null;
+		try {
+			date = format.parse(format.format(new Date()));
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		if (date == null)
+			return "";
+//		System.out.println("front:" + format.format(date)); //显示输入的日期
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.MINUTE, minute);
+		date = cal.getTime();
+//		System.out.println("after:" + format.format(date));  //显示更新后的日期
+		cal = null;
+		return format.format(date);
+
+	}
+
 	public static void main(String[] args) {
 		int num = getTomorrowMinute();
 		System.out.println(num);

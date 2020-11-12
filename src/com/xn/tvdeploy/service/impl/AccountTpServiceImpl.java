@@ -3,6 +3,7 @@ package com.xn.tvdeploy.service.impl;
 import com.xn.common.dao.BaseDao;
 import com.xn.common.service.impl.BaseServiceImpl;
 import com.xn.tvdeploy.dao.AccountTpDao;
+import com.xn.tvdeploy.model.AccountTpModel;
 import com.xn.tvdeploy.service.AccountTpService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,10 @@ public class AccountTpServiceImpl <T> extends BaseServiceImpl<T> implements Acco
     public BaseDao<T> getDao() {
         // TODO Auto-generated method stub
         return accountTpDao;
+    }
+
+    @Override
+    public int updateBalance(AccountTpModel model) {
+        return accountTpDao.updateBalance(model);
     }
 }

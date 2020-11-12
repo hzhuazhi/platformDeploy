@@ -117,6 +117,22 @@ public class AccountTpModel extends BasePage {
      */
     private long agentId;
 
+
+    /**
+     * 余额加
+     */
+    private String addBalance;
+
+    /**
+     * 余额减
+     */
+    private String subtractBalance;
+
+    /**
+     * 要进行更改的金额
+     */
+    private String orderMoney;
+
     public long getId() {
         return id;
     }
@@ -308,5 +324,29 @@ public class AccountTpModel extends BasePage {
 
     public void setLockMoney(String lockMoney) {
         this.lockMoney = lockMoney;
+    }
+
+    public String getAddBalance() {
+        return addBalance;
+    }
+
+    public void setAddBalance(String addBalance) {
+        this.addBalance = addBalance;
+    }
+
+    public String getSubtractBalance() {
+        return subtractBalance;
+    }
+
+    public void setSubtractBalance(String subtractBalance) {
+        this.subtractBalance = subtractBalance;
+    }
+
+    public String getOrderMoney() {
+        return orderMoney;
+    }
+
+    public void setOrderMoney(String orderMoney) {
+        this.orderMoney = orderMoney;
     }
 }
