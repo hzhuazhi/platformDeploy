@@ -46,7 +46,7 @@
                         <span class="require"><font color="red">*</font>银行名称</span>
                     </div>
                     <div class="formCtrlDiv">
-                        <input type="text" class="formInput" id="bankBame" name="bankBame"	maxlength="240" />
+                        <input type="text" class="formInput" id="bankName" name="bankName"	maxlength="240" />
                     </div>
                 </li>
                 <li style="border-top: none;">

@@ -188,4 +188,262 @@
     </update>
 
 
+
+
+    <!-- 添加基本信息 -->
+    <insert id="add" parameterType="Object" >
+        <!--<selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">-->
+        <!--SELECT LAST_INSERT_ID() as id-->
+        <!--</selectKey>-->
+        insert into tb_hz_channel_out
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="myTradeNo != null and myTradeNo != '' " >
+                my_trade_no,
+            </if>
+            <if test="channelId != null and channelId != '' " >
+                channel_id,
+            </if>
+            <if test="gewayId != null and gewayId != '' " >
+                geway_id,
+            </if>
+            <if test="channel != null and channel != '' " >
+                channel,
+            </if>
+            <if test="tradeType != null and tradeType != '' " >
+                trade_type,
+            </if>
+            <if test="totalAmount != null and totalAmount != '' " >
+                total_amount,
+            </if>
+            <if test="serviceCharge != null and serviceCharge != '' " >
+                service_charge,
+            </if>
+            <if test="actualMoney != null and actualMoney != '' " >
+                actual_money,
+            </if>
+            <if test="orderStatus != null and orderStatus != '' " >
+                order_status,
+            </if>
+            <if test="outTradeNo != null and outTradeNo != '' " >
+                out_trade_no,
+            </if>
+            <if test="bankName != null and bankName != '' " >
+                bank_name,
+            </if>
+            <if test="bankCard != null and bankCard != '' " >
+                bank_card,
+            </if>
+            <if test="accountName != null and accountName != '' " >
+                account_name,
+            </if>
+            <if test="bankSubbranch != null and bankSubbranch != '' " >
+                bank_subbranch,
+            </if>
+            <if test="bankProvince != null and bankProvince != '' " >
+                bank_province,
+            </if>
+            <if test="bankCity != null and bankCity != '' " >
+                bank_city,
+            </if>
+            <if test="pictureAds != null and pictureAds != '' " >
+                picture_ads,
+            </if>
+            <if test="failInfo != null and failInfo != '' " >
+                fail_info,
+            </if>
+            <if test="notifyUrl != null and notifyUrl != '' " >
+                notify_url,
+            </if>
+            <if test="myNotifyUrl != null and myNotifyUrl != '' " >
+                my_notify_url,
+            </if>
+            <if test="interfaceVer != null and interfaceVer != '' " >
+                interface_ver,
+            </if>
+            <if test="returnUrl != null and returnUrl != '' " >
+                return_url,
+            </if>
+            <if test="extraReturnParam != null and extraReturnParam != '' " >
+                extra_return_param,
+            </if>
+            <if test="clientIp != null and clientIp != '' " >
+                client_ip,
+            </if>
+            <if test="sign != null and sign != '' " >
+                `sign`,
+            </if>
+            <if test="subTime != null and subTime != '' " >
+                `sub_time`,
+            </if>
+            <if test="productName != null and productName != '' " >
+                product_name,
+            </if>
+            <if test="productCode != null and productCode != '' " >
+                product_code,
+            </if>
+            <if test="channelGewayId != null and channelGewayId != '' " >
+                channel_geway_id,
+            </if>
+            <if test="profitType != null and profitType != '' " >
+                profit_type,
+            </if>
+            <if test="sendOk != null and sendOk != '' " >
+                send_ok,
+            </if>
+            <if test="checkStatus != null and checkStatus != '' " >
+                check_status,
+            </if>
+            <if test="checkInfo != null and checkInfo != '' " >
+                check_info,
+            </if>
+            <if test="curday != null and curday != '' " >
+                curday,
+            </if>
+            <if test="curhour != null and curhour != '' " >
+                curhour,
+            </if>
+            <if test="curminute != null and curminute != '' " >
+                curminute,
+            </if>
+            <if test="runNum != null and runNum != '' " >
+                run_num,
+            </if>
+            <if test="runStatus != null and runStatus != '' " >
+                run_status,
+            </if>
+            <if test="sendNum != null and sendNum != '' " >
+                send_num,
+            </if>
+            <if test="sendStatus != null and sendStatus != '' " >
+                send_status,
+            </if>
+            create_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="myTradeNo != null and myTradeNo != '' " >
+                <![CDATA[  #{myTradeNo}, ]]>
+            </if>
+            <if test="channelId != null and channelId != '' " >
+                <![CDATA[  #{channelId}, ]]>
+            </if>
+            <if test="gewayId != null and gewayId != '' " >
+                <![CDATA[  #{gewayId}, ]]>
+            </if>
+            <if test="channel != null and channel != '' " >
+                <![CDATA[  #{channel}, ]]>
+            </if>
+            <if test="tradeType != null and tradeType != '' " >
+                <![CDATA[  #{tradeType}, ]]>
+            </if>
+            <if test="totalAmount != null and totalAmount != '' " >
+                <![CDATA[  #{totalAmount}, ]]>
+            </if>
+            <if test="serviceCharge != null and serviceCharge != '' " >
+                <![CDATA[  #{serviceCharge}, ]]>
+            </if>
+            <if test="actualMoney != null and actualMoney != '' " >
+                <![CDATA[  #{actualMoney}, ]]>
+            </if>
+            <if test="orderStatus != null and orderStatus != '' " >
+                <![CDATA[  #{orderStatus}, ]]>
+            </if>
+            <if test="outTradeNo != null and outTradeNo != '' " >
+                <![CDATA[  #{outTradeNo}, ]]>
+            </if>
+            <if test="bankName != null and bankName != '' " >
+                <![CDATA[  #{bankName}, ]]>
+            </if>
+            <if test="bankCard != null and bankCard != '' " >
+                <![CDATA[  #{bankCard}, ]]>
+            </if>
+            <if test="accountName != null and accountName != '' " >
+                <![CDATA[  #{accountName}, ]]>
+            </if>
+            <if test="bankSubbranch != null and bankSubbranch != '' " >
+                <![CDATA[  #{bankSubbranch}, ]]>
+            </if>
+            <if test="bankProvince != null and bankProvince != '' " >
+                <![CDATA[  #{bankProvince}, ]]>
+            </if>
+            <if test="bankCity != null and bankCity != '' " >
+                <![CDATA[  #{bankCity}, ]]>
+            </if>
+            <if test="pictureAds != null and pictureAds != '' " >
+                <![CDATA[  #{pictureAds}, ]]>
+            </if>
+            <if test="failInfo != null and failInfo != '' " >
+                <![CDATA[  #{failInfo}, ]]>
+            </if>
+            <if test="notifyUrl != null and notifyUrl != '' " >
+                <![CDATA[  #{notifyUrl}, ]]>
+            </if>
+            <if test="myNotifyUrl != null and myNotifyUrl != '' " >
+                <![CDATA[  #{myNotifyUrl}, ]]>
+            </if>
+            <if test="interfaceVer != null and interfaceVer != '' " >
+                <![CDATA[  #{interfaceVer}, ]]>
+            </if>
+            <if test="returnUrl != null and returnUrl != '' " >
+                <![CDATA[  #{returnUrl}, ]]>
+            </if>
+            <if test="extraReturnParam != null and extraReturnParam != '' " >
+                <![CDATA[  #{extraReturnParam}, ]]>
+            </if>
+            <if test="clientIp != null and clientIp != '' " >
+                <![CDATA[  #{clientIp}, ]]>
+            </if>
+            <if test="sign != null and sign != '' " >
+                <![CDATA[  #{sign}, ]]>
+            </if>
+            <if test="subTime != null and subTime != '' " >
+                <![CDATA[  #{subTime}, ]]>
+            </if>
+            <if test="productName != null and productName != '' " >
+                <![CDATA[  #{productName}, ]]>
+            </if>
+            <if test="productCode != null and productCode != '' " >
+                <![CDATA[  #{productCode}, ]]>
+            </if>
+            <if test="channelGewayId != null and channelGewayId != '' " >
+                <![CDATA[  #{channelGewayId}, ]]>
+            </if>
+            <if test="profitType != null and profitType != '' " >
+                <![CDATA[  #{profitType}, ]]>
+            </if>
+            <if test="sendOk != null and sendOk != '' " >
+                <![CDATA[  #{sendOk}, ]]>
+            </if>
+            <if test="checkStatus != null and checkStatus != '' " >
+                <![CDATA[  #{checkStatus}, ]]>
+            </if>
+            <if test="checkInfo != null and checkInfo != '' " >
+                <![CDATA[  #{checkInfo}, ]]>
+            </if>
+            <if test="curday != null and curday != '' " >
+                <![CDATA[  #{curday}, ]]>
+            </if>
+            <if test="curhour != null and curhour != '' " >
+                <![CDATA[  #{curhour}, ]]>
+            </if>
+            <if test="curminute != null and curminute != '' " >
+                <![CDATA[  #{curminute}, ]]>
+            </if>
+            <if test="runNum != null and runNum != '' " >
+                <![CDATA[  #{runNum}, ]]>
+            </if>
+            <if test="runStatus != null and runStatus != '' " >
+                <![CDATA[  #{runStatus}, ]]>
+            </if>
+            <if test="sendNum != null and sendNum != '' " >
+                <![CDATA[  #{sendNum}, ]]>
+            </if>
+            <if test="sendStatus != null and sendStatus != '' " >
+                <![CDATA[  #{sendStatus}, ]]>
+            </if>
+            NOW(),
+        </trim>
+    </insert>
+
+
 </mapper>

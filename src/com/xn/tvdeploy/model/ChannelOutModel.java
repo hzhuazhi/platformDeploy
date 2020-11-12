@@ -109,6 +109,16 @@ public class ChannelOutModel extends BasePage {
     private String bankSubbranch;
 
     /**
+     * 银行开户省份
+     */
+    private String bankProvince;
+
+    /**
+     * 银行开户城市
+     */
+    private String bankCity;
+
+    /**
      * 银行卡转账图片凭证
      *
      * @mbggenerated
@@ -768,5 +778,21 @@ public class ChannelOutModel extends BasePage {
 
     public void setBankSubbranch(String bankSubbranch) {
         this.bankSubbranch = bankSubbranch;
+    }
+
+    public String getBankProvince() {
+        return bankProvince;
+    }
+
+    public void setBankProvince(String bankProvince) {
+        this.bankProvince = bankProvince;
+    }
+
+    public String getBankCity() {
+        return bankCity;
+    }
+
+    public void setBankCity(String bankCity) {
+        this.bankCity = bankCity;
     }
 }

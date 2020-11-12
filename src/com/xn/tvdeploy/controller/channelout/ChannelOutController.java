@@ -243,7 +243,9 @@ public class ChannelOutController extends BaseController {
             }
 
             // 查询通道信息
-            GewayModel gewayModel = gewayService.queryById(gewaytradetypeModel.getGewayId());
+            GewayModel gewayQuery = new GewayModel();
+            gewayQuery.setId(gewaytradetypeModel.getGewayId());
+            GewayModel gewayModel = gewayService.queryByCondition(gewayQuery);
             if (gewayModel == null || gewayModel.getId() <= 0){
                 sendFailureMessage(response,"请联系运营人员!");
                 return;
