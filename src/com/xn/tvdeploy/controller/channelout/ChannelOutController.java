@@ -84,7 +84,7 @@ public class ChannelOutController extends BaseController {
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
             if (account.getRoleId() != ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE){
                 //不是管理员，不能操作
-                HtmlUtil.writerJson(response, model.getPage(), dataList);
+                model.setChannelId(account.getId());
             }
             dataList = channelOutService.queryByList(model);
         }
@@ -107,6 +107,10 @@ public class ChannelOutController extends BaseController {
 
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
+            if (account.getRoleId() != ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE){
+                //不是管理员，不能操作
+                model.setChannelId(account.getId());
+            }
             channelOutModel = channelOutService.getTotalData(model);
             if(channelOutModel!=null){
                 String   successRate= PublicMethod.accuracy(Double.parseDouble(channelOutModel.getSuccessCountMoney()),Double.parseDouble(channelOutModel.getCountTotalMoney()),2);
