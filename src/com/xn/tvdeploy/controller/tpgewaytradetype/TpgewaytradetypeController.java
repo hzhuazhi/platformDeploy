@@ -67,22 +67,33 @@ public class TpgewaytradetypeController extends BaseController {
                 //不是管理员，只能查看自己的数据
                 ChannelgewayModel channelgewayModel = new ChannelgewayModel();
                 channelgewayModel.setChannelId(account.getId());
-                ChannelgewayModel channelgewayData = channelgewayService.queryByCondition(channelgewayModel);
-                if (channelgewayData == null){
+                List<ChannelgewayModel> channelgewayList = channelgewayService.queryAllList(channelgewayModel);
+                channelgewayService.queryAllList(channelgewayModel);
+                if (channelgewayList == null || channelgewayList.size() <= 0){
                     sendFailureMessage(response,"错误,请重试!");
+                    return;
                 }
-                if (!StringUtils.isBlank(channelgewayData.getServiceCharge())){
-                    serviceCharge = channelgewayData.getServiceCharge();
-                }
-                model.setGewayId(channelgewayData.getGewayId());
-                List<GewaytradetypeModel> list = new ArrayList<>();
-                list = gewaytradetypeService.queryByList(model);
-                if (list != null && !StringUtils.isBlank(serviceCharge)){
-                    for (GewaytradetypeModel dataModel : list){
-                        dataModel.setMyServiceCharge(serviceCharge);
-                        dataList.add(dataModel);
+                for (ChannelgewayModel data : channelgewayList){
+                    GewaytradetypeModel gewaytradetypeQuery = new GewaytradetypeModel();
+                    gewaytradetypeQuery.setGewayId(data.getGewayId());
+                    GewaytradetypeModel gewaytradetypeModel = gewaytradetypeService.queryByCondition(gewaytradetypeQuery);
+                    if (gewaytradetypeModel != null && gewaytradetypeModel.getId() > 0){
+                        if (!StringUtils.isBlank(data.getServiceCharge())){
+                            gewaytradetypeModel.setMyServiceCharge(data.getServiceCharge());
+                        }
                     }
+                    dataList.add(gewaytradetypeModel);
                 }
+
+//                model.setGewayId(channelgewayData.getGewayId());
+//                List<GewaytradetypeModel> list = new ArrayList<>();
+//                list = gewaytradetypeService.queryByList(model);
+//                if (list != null && !StringUtils.isBlank(serviceCharge)){
+//                    for (GewaytradetypeModel dataModel : list){
+//                        dataModel.setMyServiceCharge(serviceCharge);
+//                        dataList.add(dataModel);
+//                    }
+//                }
             }
 
         }
