@@ -101,6 +101,24 @@
                             <input type="text" class="formInput" id="channel" name="channel" value="${dl.channel}" disabled maxlength="240" />
                         </div>
                     </li>
+
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
+                            <span class="require" ><font color="red">*</font>开通google密钥</span>
+                        </div>
+                        <div class="formCtrlDiv">
+                            <select id="isGoogle"  name ="isGoogle">
+                                <c:if test="${dl.isGoogle == 1}">
+                                    <option value="1" selected="selected">不需要</option>
+                                    <option value="2">需要</option>
+                                </c:if>
+                                <c:if test="${dl.isGoogle == 2}">
+                                    <option value="1" >不需要</option>
+                                    <option value="2" selected="selected">需要</option>
+                                </c:if>
+                            </select>
+                        </div>
+                    </li>
                     <li style="border-top: none;">
                         <div class="formTextDiv">
                             <span class="require">公司名称</span>
@@ -164,9 +182,9 @@
                     </li>
                     <li>
                         <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:200px;">
-                            <input type="submit" class="formBtn" value="修 改" /> <span>
-						</span> <input type="reset" class="formBtn" value="重  置" />
-                            <input type="button" onClick="javascript :history.back(-1);" class="formBtn" value=" 返 回 " />
+                            <input type="submit" style="background-color: #1094fa" class="formBtn" value="修 改" /> <span>
+						</span> <input type="reset" style="background-color: #1094fa" class="formBtn" value="重  置" />
+                            <input type="button" style="background-color: #1094fa" onClick="javascript :history.back(-1);" class="formBtn" value=" 返 回 " />
                         </div>
                     </li>
                 </ul>

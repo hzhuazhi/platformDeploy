@@ -44,6 +44,7 @@
             <th width="150">余额</th>
             <th width="150">锁定金额</th>
             <th width="150">秘钥</th>
+            <th width="150">google密钥</th>
             <th width="150">同步地址</th>
             <th width="150">同步标识</th>
             <th width="150">是否同步</th>

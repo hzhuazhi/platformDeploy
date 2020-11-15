@@ -24,6 +24,17 @@ var account = {
         {"data":"balance",},
         {"data":"lockMoney",},
         {"data":"secretKey",},
+        {"data":"googleKey",
+            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                var html="";
+                if(oData.isGoogle==1){
+                    html='<span></span>';
+                }else if(oData.isGoogle==2){
+                    html=oData.googleKey;
+                }
+                $(nTd).html(html);
+            }
+        },
         {"data":"lowerUrl",},
         {"data":"lowerSuc",},
         {"data":"isSynchro",
@@ -37,7 +48,6 @@ var account = {
                 $(nTd).html(html);
             }
         },
-
 
         {"data":"id",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {

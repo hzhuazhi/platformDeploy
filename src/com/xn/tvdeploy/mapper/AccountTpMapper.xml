@@ -177,6 +177,12 @@
             <if test="isEnable != 0 and isEnable >0 " >
                 is_enable,
             </if>
+            <if test="isGoogle != 0 and isGoogle >0 " >
+                is_google,
+            </if>
+            <if test="googleKey != null and googleKey != '' " >
+                google_key,
+            </if>
             create_time,
         </trim>
         values
@@ -225,6 +231,12 @@
             </if>
             <if test="isEnable != 0 and isEnable >0 " >
                 <![CDATA[  #{isEnable}, ]]>
+            </if>
+            <if test="isGoogle != 0 and isGoogle >0 " >
+                <![CDATA[  #{isGoogle}, ]]>
+            </if>
+            <if test="googleKey != null and googleKey != '' " >
+                <![CDATA[  #{googleKey}, ]]>
             </if>
             <![CDATA[  NOW(), ]]>
         </trim>
@@ -276,6 +288,9 @@
             </if>
             <if test="isEnable != 0  and isEnable >0 " >
                 a.is_enable = #{isEnable},
+            </if>
+            <if test="isGoogle != 0  and isGoogle >0 " >
+                a.is_google = #{isGoogle},
             </if>
             a.update_time = NOW(),
         </trim>

@@ -92,6 +92,17 @@
                 </li>
                 <li style="border-top: none;">
                     <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>开通google密钥</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                         <select id="isGoogle"  name ="isGoogle">
+                             <option value="1" selected>不需要</option>
+                             <option value="2">需要</option>
+                         </select>
+                    </div>
+                </li>
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
                         <span class="require">公司名称</span>
                     </div>
                     <div class="formCtrlDiv">

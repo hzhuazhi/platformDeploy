@@ -3,6 +3,7 @@ package com.xn.tvdeploy.controller.accounttp;
 import com.xn.common.constant.ManagerConstant;
 import com.xn.common.controller.BaseController;
 import com.xn.common.enums.ManagerEnum;
+import com.xn.common.util.GoogleAuthenticator;
 import com.xn.common.util.HtmlUtil;
 import com.xn.common.util.MD5;
 import com.xn.system.entity.Account;
@@ -127,6 +128,7 @@ public class AccountTpController extends BaseController {
                 bean.setPassWd(MD5.parseMD5(bean.getPassWd()));
                 bean.setRoleId(ManagerEnum.RoleTypeEnum.TP.getRoleType());
                 bean.setSecretKey(MD5.parseMD5(bean.getAccountNum()));
+                bean.setGoogleKey(GoogleAuthenticator.generateSecretKey());
                 accountTpService.add(bean);
 //                if (bean.getAgentId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
 //                    AgentChannelModel agentChannelModel = new AgentChannelModel();
