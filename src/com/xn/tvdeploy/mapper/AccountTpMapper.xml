@@ -321,4 +321,22 @@
         and a.yn = 0
     </update>
 
+
+    <!-- 更新用户的密码 -->
+    <update id="updatePassWd" parameterType="Object">
+        UPDATE tb_hz_channel a
+        <trim prefix="set" suffixOverrides=",">
+            <if test="resetPassWd != null and resetPassWd != '' " >
+                a.pass_wd = #{resetPassWd}
+            </if>
+            <if test="resetWithdrawPassWd != null and resetWithdrawPassWd != '' " >
+                a.withdraw_pass_wd = #{resetWithdrawPassWd},
+            </if>
+            a.update_time = NOW(),
+        </trim>
+        where 1=1
+        and a.id = #{id}
+        and a.yn = 0
+    </update>
+
 </mapper>

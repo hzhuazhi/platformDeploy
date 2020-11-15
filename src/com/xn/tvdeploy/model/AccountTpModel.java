@@ -138,6 +138,19 @@ public class AccountTpModel extends BasePage {
      */
     private String orderMoney;
 
+
+    /**
+     * 密码-重置密码-新
+     */
+    private String resetPassWd;
+
+    /**
+     * 提现密码-重置提现密码-新
+     */
+    private String resetWithdrawPassWd;
+
+
+
     public long getId() {
         return id;
     }
@@ -361,5 +374,21 @@ public class AccountTpModel extends BasePage {
 
     public void setWithdrawPassWd(String withdrawPassWd) {
         this.withdrawPassWd = withdrawPassWd;
+    }
+
+    public String getResetPassWd() {
+        return resetPassWd;
+    }
+
+    public void setResetPassWd(String resetPassWd) {
+        this.resetPassWd = resetPassWd;
+    }
+
+    public String getResetWithdrawPassWd() {
+        return resetWithdrawPassWd;
+    }
+
+    public void setResetWithdrawPassWd(String resetWithdrawPassWd) {
+        this.resetWithdrawPassWd = resetWithdrawPassWd;
     }
 }

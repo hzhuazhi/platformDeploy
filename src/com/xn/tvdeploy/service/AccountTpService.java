@@ -23,4 +23,16 @@ public interface AccountTpService <T> extends BaseService<T> {
      * @date 2020/10/30 17:04
      */
     public int updateBalance(AccountTpModel model);
+
+    /**
+     * @Description: 更新用户的密码
+     * <p>
+     *     更新登录密码，提现密码
+     * </p>
+     * @param model
+     * @return
+     * @author yoko
+     * @date 2020/11/15 17:53
+     */
+    public int updatePassWd(AccountTpModel model);
 }

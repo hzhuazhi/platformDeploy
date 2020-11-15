@@ -31,4 +31,9 @@ public class AccountTpServiceImpl <T> extends BaseServiceImpl<T> implements Acco
     public int updateBalance(AccountTpModel model) {
         return accountTpDao.updateBalance(model);
     }
+
+    @Override
+    public int updatePassWd(AccountTpModel model) {
+        return accountTpDao.updatePassWd(model);
+    }
 }
