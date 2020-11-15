@@ -105,6 +105,11 @@ public class WithdrawModel extends BasePage {
      */
     private String agentName;
 
+    /**
+     * 谷歌验证码
+     */
+    private String googleCode;
+
     public long getId() {
         return id;
     }
@@ -257,5 +262,13 @@ public class WithdrawModel extends BasePage {
 
     public void setWithdrawPassWd(String withdrawPassWd) {
         this.withdrawPassWd = withdrawPassWd;
+    }
+
+    public String getGoogleCode() {
+        return googleCode;
+    }
+
+    public void setGoogleCode(String googleCode) {
+        this.googleCode = googleCode;
     }
 }

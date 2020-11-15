@@ -81,7 +81,17 @@
                         <span class="require" ><font color="red">*</font>提现密码</span>
                     </div>
                     <div class="formCtrlDiv">
-                        <input type="password" class="formInput" id="withdrawPassWd" name="withdrawPassWd" maxlength="240" onblur="countServiceCharge()"/>
+                        <input type="password" class="formInput" id="withdrawPassWd" name="withdrawPassWd" maxlength="240"/>
+                    </div>
+                </li>
+
+                <h4><font color="red">在开户时，您要求需要谷歌验证进行开户，则《谷歌验证码》必填.</font></h4>
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" >谷歌验证码</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="password" class="formInput" id="googleCode" name="googleCode" maxlength="240"/>
                     </div>
                 </li>
 

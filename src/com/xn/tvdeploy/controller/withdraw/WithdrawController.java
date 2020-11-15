@@ -4,10 +4,7 @@ import com.xn.common.constant.ManagerConstant;
 import com.xn.common.controller.BaseController;
 import com.xn.common.redis.RedisAtomicClient;
 import com.xn.common.redis.RedisLock;
-import com.xn.common.util.HtmlUtil;
-import com.xn.common.util.SendEmail;
-import com.xn.common.util.SendSms;
-import com.xn.common.util.StringUtil;
+import com.xn.common.util.*;
 import com.xn.common.util.constant.CacheKey;
 import com.xn.common.util.constant.CachedKeyUtils;
 import com.xn.system.entity.Account;
@@ -199,6 +196,24 @@ public class WithdrawController extends BaseController {
                             redisIdService.delLock(lockKey);
                             sendFailureMessage(response,"提现密码错误,请您重新输入!");
                             return;
+                        }
+                    }
+
+                    // 判断是否需要进行谷歌校验
+                    if (accountTpModel.getIsGoogle() == 2){
+                        if (StringUtils.isBlank(bean.getGoogleCode())){
+                            redisIdService.delLock(lockKey);
+                            sendFailureMessage(response,"请您填写谷歌验证码!");
+                            return;
+                        }else {
+                            if (!StringUtils.isBlank(accountTpModel.getGoogleKey())){
+                                boolean check_google = GoogleAuthenticator.authGooleCode(accountTpModel.getGoogleKey(), bean.getGoogleCode());
+                                if (!check_google){
+                                    redisIdService.delLock(lockKey);
+                                    sendFailureMessage(response,"请您的谷歌验证码填写有误,请重新填写!");
+                                    return;
+                                }
+                            }
                         }
                     }
                     String totalMoney = StringUtil.getBigDecimalAdd(bean.getMoney(), bean.getServiceCharge());
