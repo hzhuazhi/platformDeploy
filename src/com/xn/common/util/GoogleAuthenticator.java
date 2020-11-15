@@ -12,7 +12,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Base64;
 /**
- * @Description TODO
+ * @Description 谷歌验证工具类
  * @Date 2020/11/15 20:08
  * @Version 1.0
  */
@@ -159,19 +159,38 @@ public class GoogleAuthenticator {
         return (int) truncatedHash;
     }
 
+    /**
+     * @Description: 生成谷歌唯一标识码
+     * @author yoko
+     * @date 2020/11/15 21:59
+    */
+    public static String gooleSecretKey(){
+        return GoogleAuthenticator.generateSecretKey();
+    }
 
 
-//    public static void main(String [] args){
-//        String  secret = GoogleAuthenticator.generateSecretKey();
-////        String qrCode = GoogleAuthenticatorUtil.getQRBarcodeURL("haha","http://10.10.10.124:8092",secret);
-//        String qrCode = GoogleAuthenticator.getQRBarcode("haha",secret);
-//        System.out.println("secret "+secret + " qrCode " + qrCode );//qrcode这个我们可以最为二维码的值，我这个是在前端用qrcode.min.js生成的一个二维码（需要用户扫码用的），将值加进去就可以了。
-//
-//    }
+    /**
+     * @Description: 校验谷歌生成码
+     * <p>
+     *     返回true标识谷歌吗正确
+     * </p>
+     * @param gooleSecretKey - 谷歌唯一标识
+     * @param code - 谷歌动态码
+     * @return boolean
+     * @author yoko
+     * @date 2020/11/15 22:04
+     */
+    public static boolean authGooleCode(String gooleSecretKey, String code){
+        long time = System.currentTimeMillis ();
+        GoogleAuthenticator g = new GoogleAuthenticator();
+        return g.check_code (gooleSecretKey, code, time);
+    }
+
 
 
     public static void main(String [] args){
-        String  secret ="OIOWL4MRVCW7YHA4";
+        String  secret = GoogleAuthenticator.generateSecretKey();
+
         String code = "037052";//这个值是你再Google APP中拿到的动态验证码
         long time = System.currentTimeMillis ();
         GoogleAuthenticator g = new GoogleAuthenticator();
@@ -179,6 +198,8 @@ public class GoogleAuthenticator {
         boolean result = g.check_code (secret,code,time);
         System.out.println ( result );
     }
-    //true就是表示验证码成功，否则失败
+
+
+
 
 }
