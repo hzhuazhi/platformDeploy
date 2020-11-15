@@ -327,7 +327,7 @@
         UPDATE tb_hz_channel a
         <trim prefix="set" suffixOverrides=",">
             <if test="resetPassWd != null and resetPassWd != '' " >
-                a.pass_wd = #{resetPassWd}
+                a.pass_wd = #{resetPassWd},
             </if>
             <if test="resetWithdrawPassWd != null and resetWithdrawPassWd != '' " >
                 a.withdraw_pass_wd = #{resetWithdrawPassWd},
