@@ -91,7 +91,7 @@
                         <span class="require" >谷歌验证码</span>
                     </div>
                     <div class="formCtrlDiv">
-                        <input type="password" class="formInput" id="googleCode" name="googleCode" maxlength="240"/>
+                        <input type="text" class="formInput" id="googleCode" name="googleCode" maxlength="240"/>
                     </div>
                 </li>
 
