@@ -166,6 +166,7 @@ public class ChannelOutController extends BaseController {
     public void add(HttpServletRequest request, HttpServletResponse response, ChannelOutModel bean) throws Exception {
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
+            bean.setTradeType("200001");
             // 判断交易类型是否为空
             if (StringUtils.isBlank(bean.getTradeType())){
                 sendFailureMessage(response,"请填写交易类型!");

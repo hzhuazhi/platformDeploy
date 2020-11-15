@@ -19,19 +19,24 @@
 <body>
 <div class="col_main">
     <div class="formHeadDiv">
-        <h2>新增代付订单</h2>
+        <h2>新增代收订单</h2>
     </div>
     <div class="formContentDiv">
         <form id="addSupplierForm">
             <ul>
-                <%--<li style="border-top: none;">--%>
-                    <%--<div class="formTextDiv">--%>
-                        <%--<span class="require" ><font color="red">*</font>交易类型</span>--%>
-                    <%--</div>--%>
-                    <%--<div class="formCtrlDiv">--%>
-                        <%--<input type="text" class="formInput" id="tradeType" name="tradeType"	maxlength="240" />--%>
-                    <%--</div>--%>
-                <%--</li>--%>
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>交易类型</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="payType" name="payType" >
+                            <%--<option value="">===请选择===</option>--%>
+                            <option value="2">===银行卡转卡===</option>
+                            <option value="1">===支付宝转卡===</option>
+
+                        </select>
+                    </div>
+                </li>
                 <li style="border-top: none;">
                     <div class="formTextDiv">
                         <span class="require" ><font color="red">*</font>订单金额</span>
@@ -41,50 +46,10 @@
                     </div>
                 </li>
 
-                <li style="border-top: none;">
-                    <div class="formTextDiv">
-                        <span class="require"><font color="red">*</font>银行名称</span>
-                    </div>
-                    <div class="formCtrlDiv">
-                        <input type="text" class="formInput" id="bankName" name="bankName"	maxlength="240" />
-                    </div>
-                </li>
-                <li style="border-top: none;">
-                    <div class="formTextDiv">
-                        <span class="require"><font color="red">*</font>银行卡卡号</span>
-                    </div>
-                    <div class="formCtrlDiv">
-                        <input type="text" class="formInput" id="bankCard" name="bankCard"	maxlength="240" />
-                    </div>
-                </li>
-                <li style="border-top: none;">
-                    <div class="formTextDiv">
-                        <span class="require"><font color="red">*</font>开户人姓名</span>
-                    </div>
-                    <div class="formCtrlDiv">
-                        <input type="text" class="formInput" id="accountName" name="accountName"	maxlength="240" />
-                    </div>
-                </li>
-                <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <font color="red">单笔金额大于5万，《开户支行》必填</font></h3>
-                <li style="border-top: none;">
-                    <div class="formTextDiv">
-                        <span class="require">开户支行</span>
-                    </div>
-                    <div class="formCtrlDiv">
-                        <input type="text" class="formInput" id="bankSubbranch" name="bankSubbranch"	maxlength="240" />
-                    </div>
-                </li>
-
                 <li>
                     <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:200px;">
                         <input type="submit" class="formBtn" value="添  加" style="background-color: #54D8FE;"/> <span>
 						</span> <input type="reset" class="formBtn" value="重  置" style="background-color: #54D8FE;" />
-                        <input type="button" onClick="javascript :history.back(-1);" class="formBtn" value=" 返 回 " style="background-color: #54D8FE;"/>
                     </div>
                 </li>
             </ul>
@@ -97,61 +62,41 @@
         // 在键盘按下并释放及提交后验证提交表单
         $("#addSupplierForm").validate({
             rules:{
-                // tradeType:{
-                //     required:true,
-                //     maxlength:80
-                // },
+                payType:{
+                    required:true,
+                    maxlength:80
+                },
                 totalAmount:{
-                    required:true,
-                    maxlength:80
-                },
-                bankBame:{
-                    required:true,
-                    maxlength:80
-                },
-                bankCard:{
-                    required:true,
-                    maxlength:80
-                },
-                accountName:{
                     required:true,
                     maxlength:80
                 }
             },
             messages: {
-                // tradeType:{
-                //     required : "交易类型不能为空!",
-                //     maxlength : "交易类型长度最多是80个字符!"
-                // },
+                payType:{
+                    required : "交易类型不能为空!",
+                    maxlength : "交易类型长度最多是80个字符!"
+                },
                 totalAmount:{
                     required:"订单金额不能为空!",
                     number:"订单金额长度最多是80个字符!"
-                },
-                bankBame:{
-                    required:"银行名称不能为空!",
-                    number:"银行名称长度最多是80个字符!"
-                },
-                bankCard:{
-                    required:"银行卡卡号不能为空!",
-                    number:"银行卡卡号长度最多是80个字符!"
-                },
-                accountName:{
-                    required:"开户人姓名不能为空!",
-                    number:"开户人姓名长度最多是80个字符!"
                 }
             },
 
             submitHandler : function() {
                 var formData = $("#addSupplierForm").serialize();
                 $.ajax({
-                    url : ctx+ "/channelOut/add.do",
+                    url : ctx+ "/manual/add.do",
                     type : 'post',
                     dataType : 'json',
                     data :formData,
                     success : function(data) {
+                        // alert("data:" + data);
+                        // alert("data.data:" + data.data);
                         if (data.success) {
                             alert("添加成功！！！");
-                            window.location.href = ctx + "/channelOut/list.do";
+                            // window.location.href = ctx + "/geway/list.do";
+                            // window.location.href = ctx + "/geway/list.do";
+                            window.open(data.data);
                         } else {
                             art.alert(data.msg);
                         }
