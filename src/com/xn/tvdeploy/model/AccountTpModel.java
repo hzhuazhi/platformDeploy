@@ -74,6 +74,17 @@ public class AccountTpModel extends BasePage {
      * 秘钥key
      */
     private String secretKey;
+
+    /**
+     * 是否需要谷歌验证：1不需要，2需要
+     */
+    private int isGoogle;
+
+    /**
+     * 谷歌唯一码
+     */
+    private String googleKey;
+
     /**
      * 锁定金额
      */
@@ -390,5 +401,21 @@ public class AccountTpModel extends BasePage {
 
     public void setResetWithdrawPassWd(String resetWithdrawPassWd) {
         this.resetWithdrawPassWd = resetWithdrawPassWd;
+    }
+
+    public int getIsGoogle() {
+        return isGoogle;
+    }
+
+    public void setIsGoogle(int isGoogle) {
+        this.isGoogle = isGoogle;
+    }
+
+    public String getGoogleKey() {
+        return googleKey;
+    }
+
+    public void setGoogleKey(String googleKey) {
+        this.googleKey = googleKey;
     }
 }
