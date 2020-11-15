@@ -78,6 +78,16 @@
 
                 <li style="border-top: none;">
                     <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>提现密码</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="password" class="formInput" id="withdrawPassWd" name="withdrawPassWd" maxlength="240" onblur="countServiceCharge()"/>
+                    </div>
+                </li>
+
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
                         <span class="require">备注</span>
                     </div>
                     <div class="formCtrlDiv">
@@ -113,6 +123,11 @@
                     required:true,
                     maxlength:80
                 },
+                withdrawPassWd:{
+                    required:true,
+                    maxlength:80
+                }
+
             },
             messages: {
                 money:{
@@ -121,6 +136,10 @@
                 },
                 bankId:{
                     required:"提现到的银行卡不能为空!"
+                },
+                withdrawPassWd:{
+                    required : "提现密码不能为空!",
+                    maxlength : "提现密码长度最多是20个字符!"
                 }
             },
 

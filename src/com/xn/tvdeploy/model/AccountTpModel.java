@@ -23,6 +23,11 @@ public class AccountTpModel extends BasePage {
      */
     private String passWd;
 
+    /**
+     * 提现密码
+     */
+    private String withdrawPassWd;
+
     private long roleId; //所属角色ID
 
     /**
@@ -348,5 +353,13 @@ public class AccountTpModel extends BasePage {
 
     public void setOrderMoney(String orderMoney) {
         this.orderMoney = orderMoney;
+    }
+
+    public String getWithdrawPassWd() {
+        return withdrawPassWd;
+    }
+
+    public void setWithdrawPassWd(String withdrawPassWd) {
+        this.withdrawPassWd = withdrawPassWd;
     }
 }

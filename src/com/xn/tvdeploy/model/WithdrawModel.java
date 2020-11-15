@@ -35,6 +35,11 @@ public class WithdrawModel extends BasePage {
     private long bankId;
 
     /**
+     * 提现密码
+     */
+    private String withdrawPassWd;
+
+    /**
      * 开户名
      */
     private String accountName;
@@ -243,5 +248,14 @@ public class WithdrawModel extends BasePage {
 
     public void setServiceCharge(String serviceCharge) {
         this.serviceCharge = serviceCharge;
+    }
+
+
+    public String getWithdrawPassWd() {
+        return withdrawPassWd;
+    }
+
+    public void setWithdrawPassWd(String withdrawPassWd) {
+        this.withdrawPassWd = withdrawPassWd;
     }
 }

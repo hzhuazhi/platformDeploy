@@ -6,6 +6,7 @@
         <id property="id" column="id" />
         <result property="accountNum" column="account_num" />
         <result property="passWd" column="pass_wd" />
+        <result property="withdrawPassWd" column="withdraw_pass_wd" />
         <result property="roleId" column="role_id" />
         <result property="channelName" column="channel_name" />
         <result property="channel" column="channel" />
@@ -29,7 +30,7 @@
     </resultMap>
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
-        a.id,a.account_num,a.pass_wd,a.channel_name,a.channel,a.company_name,a.contacts,a.phone_num,a.pay_type,a.total_money,a.balance,a.secret_key,
+        a.id,a.account_num,a.pass_wd,a.withdraw_pass_wd,a.channel_name,a.channel,a.company_name,a.contacts,a.phone_num,a.pay_type,a.total_money,a.balance,a.secret_key,
         a.lower_url,a.lower_suc,a.is_synchro,a.withdraw_type,a.role_id,a.is_enable,a.lock_money,
         a.create_time,a.update_time,a.yn,
         b.role_name
@@ -47,6 +48,9 @@
             </if>
             <if test="passWd != null and passWd != '' " >
                 and a.pass_wd = #{passWd}
+            </if>
+            <if test="withdrawPassWd != null and withdrawPassWd != '' " >
+                and a.withdraw_pass_wd = #{withdrawPassWd}
             </if>
             <if test="roleId != 0 and roleId >0 " >
                 and a.role_id = #{roleId}
@@ -132,6 +136,9 @@
             <if test="passWd != null and passWd != '' " >
                 pass_wd,
             </if>
+            <if test="withdrawPassWd != null and withdrawPassWd != '' " >
+                withdraw_pass_wd,
+            </if>
             <if test="roleId != 0 and roleId >0 " >
                 role_id,
             </if>
@@ -177,6 +184,9 @@
             </if>
             <if test="passWd != null and passWd != '' " >
                 <![CDATA[  #{passWd}, ]]>
+            </if>
+            <if test="withdrawPassWd != null and withdrawPassWd != '' " >
+                <![CDATA[  #{withdrawPassWd}, ]]>
             </if>
             <if test="roleId != 0 and roleId >0 " >
                 <![CDATA[  #{roleId}, ]]>
@@ -228,6 +238,9 @@
             </if>
             <if test="passWd != null and passWd != '' " >
                 a.pass_wd = #{passWd},
+            </if>
+            <if test="withdrawPassWd != null and withdrawPassWd != '' " >
+                a.withdraw_pass_wd = #{withdrawPassWd},
             </if>
             <if test="roleId != 0 and roleId >0 " >
                 a.role_id = #{roleId},

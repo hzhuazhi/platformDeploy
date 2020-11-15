@@ -181,6 +181,10 @@ public class WithdrawController extends BaseController {
                 sendFailureMessage(response,"错误,请重试!");
                 return;
             }
+            if (StringUtils.isBlank(bean.getWithdrawPassWd())){
+                sendFailureMessage(response,"请输入提现密码!");
+                return;
+            }
             boolean flag = false;
             if (account.getRoleId() == ManagerConstant.PUBLIC_CONSTANT.ROLE_TP){
                 // redis锁住此渠道的主键ID
@@ -190,6 +194,13 @@ public class WithdrawController extends BaseController {
                     AccountTpModel accountTpModel = new AccountTpModel();
                     accountTpModel.setId(account.getId());
                     accountTpModel = accountTpService.queryById(accountTpModel);
+                    if (!StringUtils.isBlank(accountTpModel.getWithdrawPassWd())){
+                        if (!accountTpModel.getWithdrawPassWd().equals(bean.getWithdrawPassWd())){
+                            redisIdService.delLock(lockKey);
+                            sendFailureMessage(response,"提现密码错误,请您重新输入!");
+                            return;
+                        }
+                    }
                     String totalMoney = StringUtil.getBigDecimalAdd(bean.getMoney(), bean.getServiceCharge());
                     flag = StringUtil.getBigDecimalSubtract(accountTpModel.getBalance(), totalMoney);
 
