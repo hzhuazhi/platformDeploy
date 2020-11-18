@@ -15,6 +15,11 @@ public class WithdrawModel extends BasePage {
     private long id;
 
     /**
+     * 提现订单号：PTX+yyyymmdd
+     */
+    private String orderNo;
+
+    /**
      * 关联的主键ID:根据角色类型来确定，如果角色是渠道，则这个是渠道的主键ID
      */
     private long linkId;
@@ -79,6 +84,20 @@ public class WithdrawModel extends BasePage {
      * 运行计算状态：：0初始化，1锁定，2计算失败，3计算成功
      */
     private int runStatus;
+
+    /**
+     * 发送次数
+     *
+     * @mbggenerated
+     */
+    private Integer sendNum;
+
+    /**
+     * 发送状态：0初始化，1锁定，2计算失败，3计算成功
+     *
+     * @mbggenerated
+     */
+    private Integer sendStatus;
 
     /**
      * 创建时间
@@ -270,5 +289,29 @@ public class WithdrawModel extends BasePage {
 
     public void setGoogleCode(String googleCode) {
         this.googleCode = googleCode;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
+    }
+
+    public Integer getSendNum() {
+        return sendNum;
+    }
+
+    public void setSendNum(Integer sendNum) {
+        this.sendNum = sendNum;
+    }
+
+    public Integer getSendStatus() {
+        return sendStatus;
+    }
+
+    public void setSendStatus(Integer sendStatus) {
+        this.sendStatus = sendStatus;
     }
 }

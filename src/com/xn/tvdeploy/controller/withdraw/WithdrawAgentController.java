@@ -2,6 +2,7 @@ package com.xn.tvdeploy.controller.withdraw;
 
 import com.xn.common.constant.ManagerConstant;
 import com.xn.common.controller.BaseController;
+import com.xn.common.util.DateUtil;
 import com.xn.common.util.HtmlUtil;
 import com.xn.common.util.SendEmail;
 import com.xn.common.util.StringUtil;
@@ -182,6 +183,8 @@ public class WithdrawAgentController extends BaseController {
                     if (flag){
                         bean.setRoleId(account.getRoleId());
                         bean.setLinkId(account.getId());
+                        String orderNo = "PDLTX" + DateUtil.getNowPlusTimeMill();
+                        bean.setOrderNo(orderNo);
                         withdrawAgentService.add(bean);
 //                SendSms.aliSendSms("15967171415", "8888");
 //                        String content = "代理：" + account.getAccountNum() + "，嘿嘿：" +  bean.getMoney();

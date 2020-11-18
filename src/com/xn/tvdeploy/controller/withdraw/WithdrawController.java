@@ -222,6 +222,8 @@ public class WithdrawController extends BaseController {
                     if (flag){
                         bean.setLinkId(account.getId());
                         bean.setRoleId(account.getRoleId());
+                        String orderNo = "PQDTX" + DateUtil.getNowPlusTimeMill();
+                        bean.setOrderNo(orderNo);
                         withdrawService.add(bean);
 //                SendSms.aliSendSms("15967171415", "8888");
 //                String  random = UUID.randomUUID().toString().replaceAll("\\-", "");

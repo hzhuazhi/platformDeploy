@@ -4,6 +4,7 @@
     <!-- 属性映射 -->
     <resultMap type="com.xn.tvdeploy.model.WithdrawModel" id="dataMap">
         <id property="id" column="id" />
+        <result property="orderNo" column="order_no" />
         <result property="linkId" column="link_id" />
         <result property="money" column="money" />
         <result property="serviceCharge" column="service_charge" />
@@ -12,6 +13,8 @@
         <result property="withdrawExplain" column="withdraw_explain" />
         <result property="runNum" column="run_num" />
         <result property="runStatus" column="run_status" />
+        <result property="sendNum" column="send_num" />
+        <result property="sendStatus" column="send_status" />
         <result property="roleId" column="role_id" />
         <result property="remark" column="remark" />
         <result property="createTime" column="create_time" />
@@ -23,7 +26,7 @@
     </resultMap>
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
-        a.id,a.link_id,a.money,a.service_charge,a.bank_id,a.withdraw_status,a.withdraw_explain,a.role_id,a.remark,a.run_num,a.run_status,
+        a.id,a.order_no,a.link_id,a.money,a.service_charge,a.bank_id,a.withdraw_status,a.withdraw_explain,a.role_id,a.remark,a.run_num,a.run_status,a.send_num,a.send_status,
         a.create_time,a.update_time,a.yn,
         b.account_name,b.bank_card,c.channel_name
     </sql>
@@ -34,6 +37,9 @@
         <trim  suffixOverrides="," >
             <if test="id != 0 and id >0 " >
                 and a.id = #{id}
+            </if>
+            <if test="orderNo != null and orderNo != '' " >
+                and a.order_no = #{orderNo}
             </if>
             <if test="linkId != 0 and linkId >0 " >
                 and a.link_id = #{linkId}
@@ -129,6 +135,9 @@
         </selectKey>
         insert into tb_hz_withdraw
         <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="orderNo != null and orderNo != '' " >
+                order_no,
+            </if>
             <if test="linkId != 0 and linkId >0 " >
                 link_id,
             </if>
@@ -157,6 +166,9 @@
         </trim>
         values
         <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="orderNo != null and orderNo != '' " >
+                <![CDATA[  #{orderNo}, ]]>
+            </if>
             <if test="linkId != 0 and linkId >0 " >
                 <![CDATA[  #{linkId}, ]]>
             </if>
