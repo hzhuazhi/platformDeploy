@@ -3,10 +3,7 @@ package com.xn.tvdeploy.controller.channelout;
 import com.alibaba.fastjson.JSON;
 import com.xn.common.constant.ManagerConstant;
 import com.xn.common.controller.BaseController;
-import com.xn.common.util.DateUtil;
-import com.xn.common.util.HtmlUtil;
-import com.xn.common.util.HttpSendUtils;
-import com.xn.common.util.StringUtil;
+import com.xn.common.util.*;
 import com.xn.common.util.constant.CacheKey;
 import com.xn.common.util.constant.CachedKeyUtils;
 import com.xn.system.entity.Account;
@@ -166,7 +163,7 @@ public class ChannelOutController extends BaseController {
     public void add(HttpServletRequest request, HttpServletResponse response, ChannelOutModel bean) throws Exception {
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
-            bean.setTradeType("200001");
+//            bean.setTradeType("200001");
             // 判断交易类型是否为空
             if (StringUtils.isBlank(bean.getTradeType())){
                 sendFailureMessage(response,"请填写交易类型!");
@@ -274,37 +271,62 @@ public class ChannelOutController extends BaseController {
             String myTradeNo = "SDDF" + DateUtil.getNowPlusTimeMill();
             String my_notify_url = gewayModel.getNotifyUrl();
             String nowTime = DateUtil.getNowPlusTime();
+            //组装拼接
+            if (gewayModel.getContacts().equals("CK")){
 
-            // 组装请求蛋糕平台
-            // 蛋糕
-            Map<String ,Object> sendDataMap = new HashMap<>();
-            sendDataMap.put("money", bean.getTotalAmount());
-            sendDataMap.put("payType", payCode);
-            sendDataMap.put("outTradeNo", myTradeNo);
-            sendDataMap.put("secretKey", channelModel.getSecretKey());
-            sendDataMap.put("notifyUrl", my_notify_url);
-            sendDataMap.put("inBankCard", bean.getBankCard());
-            sendDataMap.put("inBankName", bean.getBankName());
-            sendDataMap.put("inAccountName", bean.getAccountName());
-            sendDataMap.put("inBankSubbranch", bean.getBankSubbranch());
-            sendDataMap.put("inBankProvince", "");
-            sendDataMap.put("inBankCity", "");
-            String parameter = JSON.toJSONString(sendDataMap);
-            parameter = StringUtil.mergeCodeBase64(parameter);
-            Map<String, String> sendMap = new HashMap<>();
-            sendMap.put("jsonData", parameter);
-            String sendData = JSON.toJSONString(sendMap);
-            String fineData = HttpSendUtils.sendPostAppJson(gewayModel.getInterfaceAds(), sendData);
-            Map<String, Object> resMap = new HashMap<>();
-            Map<String, Object> dataMap = new HashMap<>();
-            if (!StringUtils.isBlank(fineData)) {
-                resMap = JSON.parseObject(fineData, Map.class);
-                if (resMap.get("resultCode").equals("0")) {
-                    sendFlag = true;
+
+                // 组装请求蛋糕平台
+                // 蛋糕
+                Map<String ,Object> sendDataMap = new HashMap<>();
+                sendDataMap.put("money", bean.getTotalAmount());
+                sendDataMap.put("payType", payCode);
+                sendDataMap.put("outTradeNo", myTradeNo);
+                sendDataMap.put("secretKey", channelModel.getSecretKey());
+                sendDataMap.put("notifyUrl", my_notify_url);
+                sendDataMap.put("inBankCard", bean.getBankCard());
+                sendDataMap.put("inBankName", bean.getBankName());
+                sendDataMap.put("inAccountName", bean.getAccountName());
+                sendDataMap.put("inBankSubbranch", bean.getBankSubbranch());
+                sendDataMap.put("inBankProvince", "");
+                sendDataMap.put("inBankCity", "");
+                String parameter = JSON.toJSONString(sendDataMap);
+                parameter = StringUtil.mergeCodeBase64(parameter);
+                Map<String, String> sendMap = new HashMap<>();
+                sendMap.put("jsonData", parameter);
+                String sendData = JSON.toJSONString(sendMap);
+                String fineData = HttpSendUtils.sendPostAppJson(gewayModel.getInterfaceAds(), sendData);
+                Map<String, Object> resMap = new HashMap<>();
+                Map<String, Object> dataMap = new HashMap<>();
+                if (!StringUtils.isBlank(fineData)) {
+                    resMap = JSON.parseObject(fineData, Map.class);
+                    if (resMap.get("resultCode").equals("0")) {
+                        sendFlag = true;
+                    }
+                }
+                log.info("--------------fineData:" + fineData);
+            }else if(gewayModel.getContacts().equals("HF")){
+                Map<String ,Object> sendDataMap = new HashMap<>();
+                sendDataMap.put("uid", gewayModel.getPayId());
+                sendDataMap.put("addtime", String.valueOf(System.currentTimeMillis()));
+                sendDataMap.put("out_trade_id", myTradeNo);
+                sendDataMap.put("amount", bean.getTotalAmount());
+                sendDataMap.put("bankcode", "unionpay");
+                sendDataMap.put("bankuser", bean.getAccountName());
+                sendDataMap.put("bankname", bean.getBankName());
+                sendDataMap.put("bankno", bean.getBankCard());
+                sendDataMap.put("notifyurl", my_notify_url);
+                String sb = ASCIISort.getSign(sendDataMap, gewayModel.getSecretKey());
+                sendDataMap.put("sign", sb);
+                String sendData = JSON.toJSONString(sendDataMap);
+                String resultData = HttpSendUtils.sendPostAppJson(gewayModel.getInterfaceAds(), sendData);
+                Map<String, Object> resMap = new HashMap<>();
+                if (!StringUtils.isBlank(resultData)) {
+                    resMap = JSON.parseObject(resultData, Map.class);
+                    if (Integer.parseInt(resMap.get("code").toString()) == 1) {
+                        sendFlag = true;
+                    }
                 }
             }
-            log.info("--------------fineData:" + fineData);
-
             // start
             bean.setOutTradeNo(DateUtil.getNowPlusTimeMill());
             boolean flag = false;// 是否执行成功
