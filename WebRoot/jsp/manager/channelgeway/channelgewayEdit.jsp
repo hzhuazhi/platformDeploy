@@ -114,6 +114,66 @@
                     </div>
                 </li>
 
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>代码类型：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="gewayCodeType" name="gewayCodeType">
+                            <option value="">===请选择===</option>
+                            <c:if test="${dl.gewayCodeType == 2}">
+                                <option value="2" selected="selected">代收</option>
+                                <option value="3">代付</option>
+                            </c:if>
+                            <c:if test="${dl.gewayCodeType == 3}">
+                                <option value="2" >代收</option>
+                                <option value="3" selected="selected">代付</option>
+                            </c:if>
+                        </select>
+                    </div>
+                </li>
+
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>当日限量是否达到上限：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="dayLimit" name="dayLimit">
+                            <option value="">===请选择===</option>
+                            <c:if test="${dl.dayLimit == 1}">
+                                <option value="1" selected="selected">未达到</option>
+                                <option value="2">已达到</option>
+                            </c:if>
+                            <c:if test="${dl.dayLimit == 2}">
+                                <option value="1" >未达到</option>
+                                <option value="2" selected="selected">已达到</option>
+                            </c:if>
+                        </select>
+                    </div>
+                </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" >当日上限金额：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="dayMoney" name="dayMoney" value="${dl.dayMoney}" maxlength="240" />
+                    </div>
+                </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" >筛选比例值：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="ratio" name="ratio" value="${dl.ratio}" maxlength="240" />
+                    </div>
+                </li>
+
+
+
                 <li style="border-top: none;">
                     <div class="formTextDiv">
                         <span class="require">备注</span>

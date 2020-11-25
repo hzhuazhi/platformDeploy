@@ -30,6 +30,30 @@ var account = {
                 $(nTd).html(html);
             }
         },
+        {"data":"gewayCodeType",
+            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                var html="";
+                if(oData.gewayCodeType==2){
+                    html='<span>代收</span>';
+                }else if(oData.gewayCodeType==3){
+                    html='<span><font color="red">代付</font></span>';
+                }
+                $(nTd).html(html);
+            }
+        },
+        {"data":"dayLimit",
+            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                var html="";
+                if(oData.dayLimit==1){
+                    html='<span>未到达</span>';
+                }else if(oData.dayLimit==2){
+                    html='<span><font color="red">已到达</font></span>';
+                }
+                $(nTd).html(html);
+            }
+        },
+        {"data":"dayMoney",},
+        {"data":"ratio",},
         {"data":"remark",},
         {"data":"id",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {

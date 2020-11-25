@@ -72,10 +72,10 @@ public class ManualController extends BaseController {
     public void add(HttpServletRequest request, HttpServletResponse response, ManualModel bean) throws Exception {
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
-            if (bean == null || bean.getPayType() == 0){
-                sendFailureMessage(response,"请填写交易类型，跟订单金额!");
-                return;
-            }
+//            if (bean == null || bean.getPayType() == 0){
+//                sendFailureMessage(response,"请填写交易类型，跟订单金额!");
+//                return;
+//            }
             String channel = "";
             String trade_type = "";
             String total_amount = "";
@@ -85,11 +85,11 @@ public class ManualController extends BaseController {
             String interface_ver = "V5.0";
             String return_url = "http://www.qidian.com";
             String noredirect = "1";
-            if (bean.getPayType() == 1){
-                trade_type = "100001";
-            }else if (bean.getPayType() == 2){
-                trade_type = "100002";
-            }
+//            if (bean.getPayType() == 1){
+//                trade_type = "100001";
+//            }else if (bean.getPayType() == 2){
+//                trade_type = "100002";
+//            }
             // 判断订单金额是否为空
             if (StringUtils.isBlank(bean.getTotalAmount())){
                 sendFailureMessage(response,"请填写订单金额!");
@@ -135,7 +135,7 @@ public class ManualController extends BaseController {
 
             Map<String ,Object> sendDataMap = new HashMap<>();
             sendDataMap.put("channel", channel);
-            sendDataMap.put("trade_type", trade_type);
+//            sendDataMap.put("trade_type", trade_type);
             sendDataMap.put("total_amount", total_amount);
             sendDataMap.put("sign", sign);
             sendDataMap.put("out_trade_no", out_trade_no);
@@ -167,8 +167,14 @@ public class ManualController extends BaseController {
 
 
     public static String getQrCodeSign(String channel, String trade_type, String total_amount, String out_trade_no, String notify_url, String secretKey){
-        String checkSign = "channel=" + channel + "&" + "trade_type=" + trade_type + "&" + "total_amount=" + total_amount
-                + "&" + "out_trade_no=" + out_trade_no + "&" + "notify_url=" + notify_url + "&" + "key=" + secretKey ;
+        String checkSign = "";
+        if (!StringUtils.isBlank(trade_type)){
+            checkSign = "channel=" + channel + "&" + "trade_type=" + trade_type + "&" + "total_amount=" + total_amount
+                    + "&" + "out_trade_no=" + out_trade_no + "&" + "notify_url=" + notify_url + "&" + "key=" + secretKey ;
+        }else {
+            checkSign = "channel=" + channel + "&" + "total_amount=" + total_amount
+                    + "&" + "out_trade_no=" + out_trade_no + "&" + "notify_url=" + notify_url + "&" + "key=" + secretKey ;
+        }
         String str = MD5Util.encryption(checkSign);
         return str;
     }

@@ -95,6 +95,50 @@
 
                 <li style="border-top: none;">
                     <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>代码类型：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="gewayCodeType" name="gewayCodeType" class='text-input medium-input'>
+                            <option value="0" selected="selected">===请选择===</option>
+                            <option value="2">代收</option>
+                            <option value="3">代付</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>当日限量是否达到上限：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="dayLimit" name="dayLimit" class='text-input medium-input'>
+                            <option value="0" selected="selected">===请选择===</option>
+                            <option value="1">未达到</option>
+                            <option value="2">已达到</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" >当日上限金额：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="dayMoney" name="dayMoney"	maxlength="240" />
+                    </div>
+                </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" >筛选比例值：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="ratio" name="ratio"	maxlength="240" />
+                    </div>
+                </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
                         <span class="require">备注</span>
                     </div>
                     <div class="formCtrlDiv">
@@ -130,7 +174,16 @@
                 },
                 gewayId:{
                     required:true
+                },
+                gewayCodeType:{
+                    required:true
+                },
+                ratio:{
+                    required:true,
+                    maxlength:8
                 }
+
+
 
             },
             messages: {
@@ -143,6 +196,13 @@
                 },
                 gewayId:{
                     required : "通道不能为空!"
+                },
+                gewayCodeType:{
+                    required : "代码类型不能为空!"
+                },
+                ratio:{
+                    required:"筛选比例值不能为空!",
+                    maxlength : "筛选比例值长度最多是8个字符!"
                 }
             },
 

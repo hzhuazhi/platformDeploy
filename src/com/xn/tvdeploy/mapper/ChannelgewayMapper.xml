@@ -10,6 +10,10 @@
         <result property="serviceCharge" column="service_charge" />
         <result property="deductRatio" column="deduct_ratio" />
         <result property="profitType" column="profit_type" />
+        <result property="gewayCodeType" column="geway_code_type" />
+        <result property="dayLimit" column="day_limit" />
+        <result property="dayMoney" column="day_money" />
+        <result property="ratio" column="ratio" />
         <result property="remark" column="remark" />
         <result property="createTime" column="create_time" />
         <result property="updateTime" column="update_time" />
@@ -19,7 +23,8 @@
     </resultMap>
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
-        a.id,a.channel_id,a.geway_id,a.link_name,a.service_charge,a.deduct_ratio,a.profit_type,a.remark,
+        a.id,a.channel_id,a.geway_id,a.link_name,a.service_charge,a.deduct_ratio,a.profit_type,a.geway_code_type,a.day_limit,a.day_money,a.ratio,
+        a.remark,
         a.create_time,a.update_time,a.yn,
         b.channel_name,c.geway_name
     </sql>
@@ -39,6 +44,12 @@
             </if>
             <if test="profitType != 0 and profitType >0 " >
                 and a.profit_type = #{profitType}
+            </if>
+            <if test="gewayCodeType != 0 and gewayCodeType >0 " >
+                and a.geway_code_type = #{gewayCodeType}
+            </if>
+            <if test="dayLimit != 0 and dayLimit >0 " >
+                and a.day_limit = #{dayLimit}
             </if>
             <if test="linkName != null and linkName != '' " >
                 and a.link_name = #{linkName}
@@ -129,6 +140,18 @@
             <if test="profitType != 0 and profitType >0 " >
                 profit_type,
             </if>
+            <if test="gewayCodeType != 0 and gewayCodeType >0 " >
+                geway_code_type,
+            </if>
+            <if test="dayLimit != 0 and dayLimit >0 " >
+                day_limit,
+            </if>
+            <if test="dayMoney != null and dayMoney != '' " >
+                day_money,
+            </if>
+            <if test="ratio != 0 and ratio >0 " >
+                ratio,
+            </if>
             <if test="remark != null and remark != '' " >
                 remark,
             </if>
@@ -151,6 +174,18 @@
             <![CDATA[  #{deductRatio}, ]]>
             <if test="profitType != 0 and profitType >0 " >
                 <![CDATA[  #{profitType}, ]]>
+            </if>
+            <if test="gewayCodeType != 0 and gewayCodeType >0 " >
+                <![CDATA[  #{gewayCodeType}, ]]>
+            </if>
+            <if test="dayLimit != 0 and dayLimit >0 " >
+                <![CDATA[  #{dayLimit}, ]]>
+            </if>
+            <if test="dayMoney != null and dayMoney != '' " >
+                <![CDATA[  #{dayMoney}, ]]>
+            </if>
+            <if test="ratio != 0 and ratio >0 " >
+                <![CDATA[  #{ratio}, ]]>
             </if>
             <if test="remark != null and remark != '' " >
                 <![CDATA[  #{remark}, ]]>
@@ -176,6 +211,18 @@
             a.service_charge = #{serviceCharge},
             a.deduct_ratio = #{deductRatio},
             a.profit_type = #{profitType},
+            <if test="gewayCodeType != 0 and gewayCodeType >0 " >
+                a.geway_code_type = #{gewayCodeType},
+            </if>
+            <if test="dayLimit != 0 and dayLimit >0 " >
+                a.day_limit = #{dayLimit},
+            </if>
+            <if test="dayMoney != null and dayMoney != '' " >
+                a.day_money = #{dayMoney},
+            </if>
+            <if test="ratio != 0 and ratio >0 " >
+                a.ratio = #{ratio},
+            </if>
             a.remark = #{remark},
             a.update_time = NOW(),
         </trim>

@@ -211,6 +211,10 @@ public class ChannelOutController extends BaseController {
                 return;
             }
 
+            String trade_type = "";
+            if (!StringUtils.isBlank(bean.getTradeType())){
+                trade_type = bean.getTradeType();
+            }
 
             // 获取渠道的信息
             AccountTpModel channelModel = new AccountTpModel();
@@ -235,33 +239,64 @@ public class ChannelOutController extends BaseController {
                 }
             }
 
+            // 渠道与通道的关联关系
+            ChannelgewayModel channelGewayModel = null;
+
+            // 通道信息
+            GewayModel gewayModel = null;
+
             // 根据交易类型查询通道
-            GewaytradetypeModel gewaytradetypeQuery = new GewaytradetypeModel();
-            gewaytradetypeQuery.setMyTradeType(bean.getTradeType());
-            GewaytradetypeModel gewaytradetypeModel = gewaytradetypeService.queryByCondition(gewaytradetypeQuery);
-            if (gewaytradetypeModel == null || gewaytradetypeModel.getId() <= 0){
-                sendFailureMessage(response,"请填写正确的支付类型!");
-                return;
+            GewaytradetypeModel gewaytradetypeModel = null;
+            if (!StringUtils.isBlank(trade_type)){
+                // 根据交易类型查询通道
+                GewaytradetypeModel gewaytradetypeQuery = new GewaytradetypeModel();
+                gewaytradetypeQuery.setMyTradeType(bean.getTradeType());
+                gewaytradetypeModel = gewaytradetypeService.queryByCondition(gewaytradetypeQuery);
+                if (gewaytradetypeModel == null || gewaytradetypeModel.getId() <= 0){
+                    sendFailureMessage(response,"请填写正确的支付类型!");
+                    return;
+                }
+
+                // 查询通道信息
+                GewayModel gewayQuery = new GewayModel();
+                gewayQuery.setId(gewaytradetypeModel.getGewayId());
+                gewayModel = gewayService.queryByCondition(gewayQuery);
+                if (gewayModel == null || gewayModel.getId() <= 0){
+                    sendFailureMessage(response,"请联系运营人员!");
+                    return;
+                }
+
+                // 根据渠道ID加通道ID查询渠道与通道的关联关系
+                ChannelgewayModel channelGewayQuery = new ChannelgewayModel();
+                channelGewayQuery.setChannelId(channelModel.getId());
+                channelGewayQuery.setGewayId(gewayModel.getId());
+                channelGewayModel = channelgewayService.queryByCondition(channelGewayQuery);
+                if (channelGewayModel == null || channelGewayModel.getId() <= 0){
+                    sendFailureMessage(response,"请联系运营人员!");
+                    return;
+                }
+
+            }else{
+                // 查询此渠道下代收的通道集合
+                ChannelgewayModel channelGewayQuery = PublicMethod.assembleChannelGewayQuery(0, channelModel.getId(), 0, 3, 1);
+                List<ChannelgewayModel> channelGewayList = channelgewayService.queryAllList(channelGewayQuery);
+                if (channelGewayList == null || channelGewayList.size() <= 0){
+                    sendFailureMessage(response,"请联系运营人员!");
+                    return;
+                }
+                // 从集合中按照比例筛选一个
+                channelGewayModel = PublicMethod.ratioChannelGeway(channelGewayList);
+                if (channelGewayModel == null || channelGewayModel.getId() <= 0){
+                    sendFailureMessage(response,"请联系运营人员!");
+                    return;
+                }
             }
 
-            // 查询通道信息
-            GewayModel gewayQuery = new GewayModel();
-            gewayQuery.setId(gewaytradetypeModel.getGewayId());
-            GewayModel gewayModel = gewayService.queryByCondition(gewayQuery);
-            if (gewayModel == null || gewayModel.getId() <= 0){
-                sendFailureMessage(response,"请联系运营人员!");
-                return;
-            }
 
-            // 根据渠道ID加通道ID查询渠道与通道的关联关系
-            ChannelgewayModel channelGewayModel = new ChannelgewayModel();
-            channelGewayModel.setChannelId(channelModel.getId());
-            channelGewayModel.setGewayId(gewayModel.getId());
-            channelGewayModel = channelgewayService.queryByCondition(channelGewayModel);
-            if (channelGewayModel == null || channelGewayModel.getId() <= 0){
-                sendFailureMessage(response,"请联系运营人员!");
-                return;
-            }
+
+
+
+
 
             boolean sendFlag = false;// 请求结果：false表示请求失败，true表示请求成功
             // 计算手续费

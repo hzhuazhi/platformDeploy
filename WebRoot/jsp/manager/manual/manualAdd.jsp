@@ -24,19 +24,19 @@
     <div class="formContentDiv">
         <form id="addSupplierForm">
             <ul>
-                <li style="border-top: none;">
-                    <div class="formTextDiv">
-                        <span class="require" ><font color="red">*</font>交易类型</span>
-                    </div>
-                    <div class="formCtrlDiv">
-                        <select id="payType" name="payType" >
-                            <%--<option value="">===请选择===</option>--%>
-                            <option value="2">===银行卡转卡===</option>
-                            <option value="1">===支付宝转卡===</option>
+                <%--<li style="border-top: none;">--%>
+                    <%--<div class="formTextDiv">--%>
+                        <%--<span class="require" ><font color="red">*</font>交易类型</span>--%>
+                    <%--</div>--%>
+                    <%--<div class="formCtrlDiv">--%>
+                        <%--<select id="payType" name="payType" >--%>
+                            <%--&lt;%&ndash;<option value="">===请选择===</option>&ndash;%&gt;--%>
+                            <%--<option value="2">===银行卡转卡===</option>--%>
+                            <%--<option value="1">===支付宝转卡===</option>--%>
 
-                        </select>
-                    </div>
-                </li>
+                        <%--</select>--%>
+                    <%--</div>--%>
+                <%--</li>--%>
                 <li style="border-top: none;">
                     <div class="formTextDiv">
                         <span class="require" ><font color="red">*</font>订单金额</span>
@@ -62,20 +62,20 @@
         // 在键盘按下并释放及提交后验证提交表单
         $("#addSupplierForm").validate({
             rules:{
-                payType:{
-                    required:true,
-                    maxlength:80
-                },
+                // payType:{
+                //     required:true,
+                //     maxlength:80
+                // },
                 totalAmount:{
                     required:true,
                     maxlength:80
                 }
             },
             messages: {
-                payType:{
-                    required : "交易类型不能为空!",
-                    maxlength : "交易类型长度最多是80个字符!"
-                },
+                // payType:{
+                //     required : "交易类型不能为空!",
+                //     maxlength : "交易类型长度最多是80个字符!"
+                // },
                 totalAmount:{
                     required:"订单金额不能为空!",
                     number:"订单金额长度最多是80个字符!"
