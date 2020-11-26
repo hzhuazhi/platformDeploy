@@ -165,10 +165,10 @@ public class ChannelOutController extends BaseController {
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
 //            bean.setTradeType("200001");
             // 判断交易类型是否为空
-            if (StringUtils.isBlank(bean.getTradeType())){
-                sendFailureMessage(response,"请填写交易类型!");
-                return;
-            }
+//            if (StringUtils.isBlank(bean.getTradeType())){
+//                sendFailureMessage(response,"请填写交易类型!");
+//                return;
+//            }
             // 判断订单金额是否为空
             if (StringUtils.isBlank(bean.getTotalAmount())){
                 sendFailureMessage(response,"请填写订单金额!");
@@ -290,6 +290,26 @@ public class ChannelOutController extends BaseController {
                     sendFailureMessage(response,"请联系运营人员!");
                     return;
                 }
+
+                GewaytradetypeModel gewaytradetypeQuery = new GewaytradetypeModel();
+                gewaytradetypeQuery.setGewayId(channelGewayModel.getGewayId());
+                gewaytradetypeModel = gewaytradetypeService.queryByCondition(gewaytradetypeQuery);
+                if (gewaytradetypeModel == null || gewaytradetypeModel.getId() <= 0){
+                    sendFailureMessage(response,"请填写正确的支付类型!");
+                    return;
+                }
+
+                // 查询通道信息
+                GewayModel gewayQuery = new GewayModel();
+                gewayQuery.setId(gewaytradetypeModel.getGewayId());
+                gewayModel = gewayService.queryByCondition(gewayQuery);
+                if (gewayModel == null || gewayModel.getId() <= 0){
+                    sendFailureMessage(response,"请联系运营人员!");
+                    return;
+                }
+            }
+            if (StringUtils.isBlank(bean.getTradeType())){
+                bean.setTradeType(gewaytradetypeModel.getMyTradeType());
             }
 
 

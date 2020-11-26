@@ -24,14 +24,14 @@
     <div class="formContentDiv">
         <form id="addSupplierForm">
             <ul>
-                <li style="border-top: none;">
-                    <div class="formTextDiv">
-                        <span class="require" ><font color="red">*</font>交易类型</span>
-                    </div>
-                    <div class="formCtrlDiv">
-                        <input type="text" class="formInput" id="tradeType" name="tradeType" value="200001"	maxlength="240" />
-                    </div>
-                </li>
+                <%--<li style="border-top: none;">--%>
+                    <%--<div class="formTextDiv">--%>
+                        <%--<span class="require" ><font color="red">*</font>交易类型</span>--%>
+                    <%--</div>--%>
+                    <%--<div class="formCtrlDiv">--%>
+                        <%--<input type="text" class="formInput" id="tradeType" name="tradeType" value="200001"	maxlength="240" />--%>
+                    <%--</div>--%>
+                <%--</li>--%>
                 <li style="border-top: none;">
                     <div class="formTextDiv">
                         <span class="require" ><font color="red">*</font>订单金额</span>
