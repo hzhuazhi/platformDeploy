@@ -40,7 +40,7 @@ import java.util.List;
 public class ChannelReplenishController extends BaseController {
     private static Logger log = Logger.getLogger(ChannelReplenishController.class);
 
-    public static String fruitUrl = "http://localhost:8002/fruitDeploy/merchantreplenish/actionAdd.do?";
+    public static String fruitUrl = "http://localhost:8002/cakeDeploy/merchantreplenish/actionAdd.do?";
 //public static String fruitUrl = "http://192.168.1.205:8080/merchantreplenish/actionAdd.do?";
 
     @Autowired
