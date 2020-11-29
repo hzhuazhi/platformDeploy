@@ -83,7 +83,8 @@
 	
 	<!-- 设置Session时长:以分钟为单位;如果是零或负数,那么会话就永远不会超时。 -->
 	<session-config>
-	    <session-timeout>30</session-timeout>
+	    <!--<session-timeout>30</session-timeout>-->
+		<session-timeout>240</session-timeout>
 	</session-config>
 	
 	 <!-- 错误响应页面 -->

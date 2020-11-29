@@ -123,10 +123,14 @@ public class ChannelChangeController extends BaseController {
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
             if(account.getRoleId()!=1){
-                sendSuccessMessage(response, "只允许~");
+                sendFailureMessage(response, "只允许管理员操作~");
+                return;
             }
             bean.setCreateRoleId(account.getRoleId());
             bean.setCreateUserId(account.getId());
+            bean.setCurday(DateUtil.getDayNumber(new Date()));
+            bean.setCurhour(DateUtil.getHour(new Date()));
+            bean.setCurminute(DateUtil.getCurminute(new Date()));
             channelChangeService.add(bean);
             sendSuccessMessage(response, "保存成功~");
         }else {
