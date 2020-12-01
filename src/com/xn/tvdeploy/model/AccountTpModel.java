@@ -110,6 +110,11 @@ public class AccountTpModel extends BasePage {
      */
     private int withdrawType;
 
+    /**
+     * 渠道类型：1代收，2大包，3代付
+     */
+    private int channelType;
+
     private int isEnable;
 
     /**
@@ -417,5 +422,13 @@ public class AccountTpModel extends BasePage {
 
     public void setGoogleKey(String googleKey) {
         this.googleKey = googleKey;
+    }
+
+    public int getChannelType() {
+        return channelType;
+    }
+
+    public void setChannelType(int channelType) {
+        this.channelType = channelType;
     }
 }

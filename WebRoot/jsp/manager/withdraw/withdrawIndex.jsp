@@ -46,13 +46,14 @@
         <thead>
         <tr>
             <th width="150">渠道名称</th>
-            <th width="150">开户名</th>
-            <th width="200">提现金额</th>
-            <th width="150">手续费</th>
+            <th width="120">开户名</th>
+            <th width="120">提现金额</th>
+            <th width="120">手续费</th>
             <th width="250">银行卡号</th>
             <th width="150">备注</th>
             <th width="150">提现状态</th>
             <th width="200">说明</th>
+            <th width="200">转账凭证</th>
             <th width="200">创建时间</th>
         </tr>
         </thead>

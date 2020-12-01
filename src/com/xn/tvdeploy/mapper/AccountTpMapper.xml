@@ -24,6 +24,7 @@
         <result property="lowerSuc" column="lower_suc" />
         <result property="isSynchro" column="is_synchro" />
         <result property="withdrawType" column="withdraw_type" />
+        <result property="channelType" column="channel_type" />
         <result property="isEnable" column="is_enable" />
         <result property="createTime" column="create_time" />
         <result property="updateTime" column="update_time" />
@@ -33,7 +34,7 @@
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
         a.id,a.account_num,a.pass_wd,a.withdraw_pass_wd,a.channel_name,a.channel,a.company_name,a.contacts,a.phone_num,a.pay_type,a.total_money,a.balance,a.secret_key,a.is_google,a.google_key,
-        a.lower_url,a.lower_suc,a.is_synchro,a.withdraw_type,a.role_id,a.is_enable,a.lock_money,
+        a.lower_url,a.lower_suc,a.is_synchro,a.withdraw_type,a.channel_type,a.role_id,a.is_enable,a.lock_money,
         a.create_time,a.update_time,a.yn,
         b.role_name
     </sql>
@@ -59,6 +60,9 @@
             </if>
             <if test="withdrawType != 0 and withdrawType >0 " >
                 and a.withdraw_type = #{withdrawType}
+            </if>
+            <if test="channelType != 0 and channelType >0 " >
+                and a.channel_type = #{channelType}
             </if>
             <if test="channelName != null and channelName != '' " >
                 and a.channel_name = #{channelName}
@@ -183,6 +187,9 @@
             <if test="googleKey != null and googleKey != '' " >
                 google_key,
             </if>
+            <if test="channelType != 0 and channelType >0 " >
+                channel_type,
+            </if>
             create_time,
         </trim>
         values
@@ -238,6 +245,9 @@
             <if test="googleKey != null and googleKey != '' " >
                 <![CDATA[  #{googleKey}, ]]>
             </if>
+            <if test="channelType != 0 and channelType >0 " >
+                <![CDATA[  #{channelType}, ]]>
+            </if>
             <![CDATA[  NOW(), ]]>
         </trim>
     </insert>
@@ -291,6 +301,9 @@
             </if>
             <if test="isGoogle != 0  and isGoogle >0 " >
                 a.is_google = #{isGoogle},
+            </if>
+            <if test="channelType != 0 and channelType >0 " >
+                a.channel_type = #{channelType},
             </if>
             a.update_time = NOW(),
         </trim>

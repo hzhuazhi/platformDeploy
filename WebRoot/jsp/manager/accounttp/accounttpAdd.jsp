@@ -156,6 +156,20 @@
                     </div>
                 </li>
 
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>渠道类型</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="channelType"  name ="channelType">
+                            <option value="0" selected="selected">=请选择=</option>
+                            <option value="1">代收</option>
+                            <option value="2">大包</option>
+                            <option value="3">代付</option>
+                        </select>
+                    </div>
+                </li>
+
                 <li>
                     <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:200px;">
                         <input type="submit" class="formBtn" value="添  加" style="background-color: #54D8FE;"/> <span>
@@ -184,6 +198,9 @@
                 withdrawPassWd:{
                     required:true,
                     maxlength:20
+                },
+                channelType:{
+                    required:true
                 }
             },
             messages: {
@@ -198,6 +215,9 @@
                 withdrawPassWd:{
                     required:"提现密码不能为空!",
                     number:"提现密码长度最多是20个字符!"
+                },
+                channelType:{
+                    required:"渠道类型不能为空!"
                 }
             },
 

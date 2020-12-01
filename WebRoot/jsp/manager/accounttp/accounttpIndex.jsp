@@ -15,6 +15,15 @@
                 <div class="formCtrlDiv">
                     <input type ="text" class ="inputCommonSty" id="accountNum" name ="accountNum">
                 </div>
+                <div class = "condQueryLabelDiv">渠道类型：</div>
+                <div class="formCtrlDiv" id = "moduleTypeDiv">
+                    <select id="channelType" name="channelType" class='text-input medium-input'>
+                        <option value="" selected="selected">=请选择=</option>
+                        <option value="1">代收</option>
+                        <option value="2">大包</option>
+                        <option value="3">代付</option>
+                    </select>
+                </div>
                 <div class="searchdiv">
                     <input type = "button" id = "btnQuery" class = "buttonClass imginput" value = "搜索" />
                 </div>
@@ -48,6 +57,7 @@
             <th width="150">同步地址</th>
             <th width="150">同步标识</th>
             <th width="150">是否同步</th>
+            <th width="150">渠道类型</th>
             <th width="380">操作</th>
         </tr>
         </thead>

@@ -48,6 +48,19 @@ var account = {
                 $(nTd).html(html);
             }
         },
+        {"data":"channelType",
+            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                var html="";
+                if(oData.channelType==1){
+                    html='<span>代收</span>';
+                }else if(oData.channelType==2){
+                    html='<span>大包</span>';
+                }else if(oData.channelType==3){
+                    html='<span>代付</span>';
+                }
+                $(nTd).html(html);
+            }
+        },
 
         {"data":"id",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
@@ -79,6 +92,7 @@ var account = {
         // 条件查询按钮事件
         $('#btnQuery').click(function() {
             account.condJsonData['accountNum'] = $("#accountNum").val();
+            account.condJsonData['channelType'] = $("#channelType").val();
             common.showDatas(account.condJsonData,account.list);
         });
 
@@ -86,6 +100,8 @@ var account = {
         $("#butReset").click(function(){
             account.condJsonData['accountNum'] = "";
             $("#accountNum").val("");
+            account.condJsonData['channelType'] = "0";
+            $("#channelType").val("0");
             common.showDatas(account.condJsonData,account.list);
         });
         //删除

@@ -10,6 +10,7 @@
         <result property="serviceCharge" column="service_charge" />
         <result property="bankId" column="bank_id" />
         <result property="withdrawStatus" column="withdraw_status" />
+        <result property="pictureAds" column="picture_ads" />
         <result property="withdrawExplain" column="withdraw_explain" />
         <result property="runNum" column="run_num" />
         <result property="runStatus" column="run_status" />
@@ -26,7 +27,7 @@
     </resultMap>
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
-        a.id,a.order_no,a.link_id,a.money,a.service_charge,a.bank_id,a.withdraw_status,a.withdraw_explain,a.role_id,a.remark,a.run_num,a.run_status,a.send_num,a.send_status,
+        a.id,a.order_no,a.link_id,a.money,a.service_charge,a.bank_id,a.withdraw_status,a.picture_ads,a.withdraw_explain,a.role_id,a.remark,a.run_num,a.run_status,a.send_num,a.send_status,
         a.create_time,a.update_time,a.yn,
         b.account_name,b.bank_card,c.channel_name
     </sql>

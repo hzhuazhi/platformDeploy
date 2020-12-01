@@ -60,6 +60,11 @@ public class WithdrawModel extends BasePage {
     private int withdrawStatus;
 
     /**
+     * 充值记录银行卡转账图片凭证
+     */
+    private String pictureAds;
+
+    /**
      * 说明:提现失败的情况说明
      */
     private String withdrawExplain;
@@ -313,5 +318,13 @@ public class WithdrawModel extends BasePage {
 
     public void setSendStatus(Integer sendStatus) {
         this.sendStatus = sendStatus;
+    }
+
+    public String getPictureAds() {
+        return pictureAds;
+    }
+
+    public void setPictureAds(String pictureAds) {
+        this.pictureAds = pictureAds;
     }
 }
