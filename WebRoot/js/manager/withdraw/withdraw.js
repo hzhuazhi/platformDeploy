@@ -38,6 +38,7 @@ var account = {
                 var html = '';
                 if(oData.pictureAds!=""){
                     html='<img src="'+oData.pictureAds+'"  style="width: 100px;height: 100px">';
+                    // html='<img id="'+oData.id+'" class="zoomify'+oData.id+'" onclick="imgShow(\''+oData.id+'\')" src="'+oData.pictureAds+'" alt="">';
                 }
                 $(nTd).html(html);
             }

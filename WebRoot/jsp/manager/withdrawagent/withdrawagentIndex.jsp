@@ -53,6 +53,7 @@
             <th width="150">备注</th>
             <th width="150">提现状态</th>
             <th width="200">说明</th>
+            <th width="200">转账凭证</th>
             <th width="200">创建时间</th>
         </tr>
         </thead>

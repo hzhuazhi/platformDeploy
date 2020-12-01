@@ -37,17 +37,6 @@ var account = {
         },
         {"data":"lowerUrl",},
         {"data":"lowerSuc",},
-        {"data":"isSynchro",
-            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                var html="";
-                if(oData.isSynchro==1){
-                    html='<span>要同步</span>';
-                }else if(oData.isSynchro==2){
-                    html='<span>不同步</span>';
-                }
-                $(nTd).html(html);
-            }
-        },
         {"data":"channelType",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html="";
@@ -61,7 +50,17 @@ var account = {
                 $(nTd).html(html);
             }
         },
-
+        {"data":"isSynchro",
+            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                var html="";
+                if(oData.isSynchro==1){
+                    html='<span>要同步</span>';
+                }else if(oData.isSynchro==2){
+                    html='<span>不同步</span>';
+                }
+                $(nTd).html(html);
+            }
+        },
         {"data":"id",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html = '';

@@ -144,17 +144,6 @@
                         <input type="text" class="formInput" id="lowerSuc" name="lowerSuc"	maxlength="240" />
                     </div>
                 </li>
-                <li style="border-top: none;">
-                    <div class="formTextDiv">
-                        <span class="require" ><font color="red">*</font>是否同步</span>
-                    </div>
-                    <div class="formCtrlDiv">
-                        <select id="isSynchro" name="isSynchro">
-                            <option value="1" selected>需要同步</option>
-                            <option value="2" >无需同步</option>
-                        </select>
-                    </div>
-                </li>
 
                 <li style="border-top: none;">
                     <div class="formTextDiv">
@@ -169,6 +158,19 @@
                         </select>
                     </div>
                 </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>是否同步</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="isSynchro" name="isSynchro">
+                            <option value="1" selected>需要同步</option>
+                            <option value="2" >无需同步</option>
+                        </select>
+                    </div>
+                </li>
+
 
                 <li>
                     <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:200px;">

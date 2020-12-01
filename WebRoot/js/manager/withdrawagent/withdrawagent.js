@@ -33,6 +33,16 @@ var account = {
             }
         },
         {"data":"withdrawExplain",},
+        {"data":"pictureAds",
+            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                var html = '';
+                if(oData.pictureAds!=""){
+                    html='<img src="'+oData.pictureAds+'"  style="width: 100px;height: 100px">';
+                    // html='<img id="'+oData.id+'" class="zoomify'+oData.id+'" onclick="imgShow(\''+oData.id+'\')" src="'+oData.pictureAds+'" alt="">';
+                }
+                $(nTd).html(html);
+            }
+        },
         {"data":"createTime",}
     ],
     // 查询条件，aoData是必要的。其他的就是对应的实体类字段名，因为条件查询是把数据封装在实体类中的。
