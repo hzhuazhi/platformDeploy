@@ -156,7 +156,11 @@ public class ChannelReplenishController extends BaseController {
 
             // 发送给水果平台
             String sendUrl = fruitUrl;
-            String sendData = "linkId=" + bean.getId() + "&outTradeNo=" + bean.getMyTradeNo() + "&pictureAds=" + pictureAds;
+            String channelOrderNo = "";
+            if (!StringUtils.isBlank(tpDataInfoModel.getOutTradeNo())){
+                channelOrderNo = tpDataInfoModel.getOutTradeNo();
+            }
+            String sendData = "linkId=" + bean.getId() + "&outTradeNo=" + bean.getMyTradeNo() +"&channelOrderNo=" + channelOrderNo + "&pictureAds=" + pictureAds;
             String resp = HttpSendUtils.sendGet(sendUrl + sendData, null, null);
             sendSuccessMessage(response, "保存成功~");
         }else {
