@@ -64,6 +64,10 @@
             <if test="curdayStart != 0 and curdayStart >0 and curdayEnd != 0 and curdayEnd >0 " >
                 and a.curday >= #{curdayStart} and a.curday &lt;= #{curdayEnd}
             </if>
+            <if test="channelName != null and channelName != '' " >
+                and c.channel_name = #{channelName}
+            </if>
+
             and a.yn =  0
         </trim>
     </sql>

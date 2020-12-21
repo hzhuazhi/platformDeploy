@@ -22,7 +22,7 @@
             <th width="150">余额</th>
             <th width="150">锁定金额</th>
             <th width="350">秘钥</th>
-            <th width="350">google密钥</th>
+            <%--<th width="350">google密钥</th>--%>
             <th width="150">提现</th>
         </tr>
         </thead>

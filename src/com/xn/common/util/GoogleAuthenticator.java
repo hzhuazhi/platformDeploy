@@ -197,6 +197,9 @@ public class GoogleAuthenticator {
         System.out.println("secret "+secret);
         boolean result = g.check_code (secret,code,time);
         System.out.println ( result );
+
+        String create_secret = gooleSecretKey();
+        System.out.println("create_secret:" + create_secret);
     }
 
 

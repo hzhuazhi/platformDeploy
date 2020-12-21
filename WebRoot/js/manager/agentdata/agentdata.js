@@ -43,6 +43,7 @@ var account = {
         // 条件查询按钮事件
         $('#btnQuery').click(function() {
             account.condJsonData['agentId'] = $("#agentId").val();
+            account.condJsonData['channelName'] = $("#channelName").val();
             account.condJsonData['curdayStart'] = $("#curdayStart").val();
             account.condJsonData['curdayEnd'] = $("#curdayEnd").val();
             account.queryTotal();
@@ -53,6 +54,8 @@ var account = {
         $("#butReset").click(function(){
             account.condJsonData['agentId'] = "0";
             $("#agentId").val("0");
+            account.condJsonData['channelName'] = "";
+            $("#channelName").val("");
             account.condJsonData['curdayStart'] = "";
             $("#curdayStart").val("");
             account.condJsonData['curdayEnd'] = "";

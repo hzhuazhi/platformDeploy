@@ -20,6 +20,10 @@
                     <div class = "condQueryLabelDiv">代理：</div>
                     <div class="formCtrlDiv" id = "agentDiv">
                     </div>
+                    <div class = "condQueryLabelDiv">渠道：</div>
+                    <div class="formCtrlDiv">
+                        <input type ="text" class ="inputCommonSty" id="channelName" name ="channelName">
+                    </div>
 
                 <div class = "condQueryLabelDiv">开始日期：</div>
                 <div class="formCtrlDiv">
