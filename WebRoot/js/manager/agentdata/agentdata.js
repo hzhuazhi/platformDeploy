@@ -114,10 +114,12 @@ var account = {
     queryTotal:function(){
         var url = basePath + "agentdata/totalData.do";
         var agentId = $("#agentId").val();
+        var channelName = $("#channelName").val();
         var curdayStart = $("#curdayStart").val();
         var curdayEnd = $("#curdayEnd").val();
         var data = {
             "agentId":agentId,
+            "channelName":channelName,
             "curdayStart":curdayStart,
             "curdayEnd":curdayEnd
         };
