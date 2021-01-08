@@ -37,6 +37,20 @@
                         <%--</select>--%>
                     <%--</div>--%>
                 <%--</li>--%>
+
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
+                            <span class="require" ><font color="red">*</font>渠道</span>
+                        </div>
+                        <div class="formCtrlDiv">
+                            <select id="channelId" name="channelId">
+                                <c:forEach items="${tpList}" var="dataList">
+                                    <option value="${dataList.id}">${dataList.channelName}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </li>
+
                 <li style="border-top: none;">
                     <div class="formTextDiv">
                         <span class="require" ><font color="red">*</font>订单金额</span>

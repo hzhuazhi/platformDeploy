@@ -9,11 +9,13 @@ import com.xn.common.util.MD5Util;
 import com.xn.common.util.StringUtil;
 import com.xn.system.entity.Account;
 import com.xn.tvdeploy.model.AccountTpModel;
+import com.xn.tvdeploy.model.ChannelModel;
 import com.xn.tvdeploy.model.ManualModel;
 import com.xn.tvdeploy.service.AccountTpService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.apache.log4j.Logger;
@@ -21,7 +23,9 @@ import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -60,7 +64,29 @@ public class ManualController extends BaseController {
      */
     @RequestMapping("/list")
     public String list() {
-        return "manager/tpDataInfo/tpDataInfoIndex";
+        return "manager/manual/manualIndex";
+    }
+
+
+
+    /**
+     * 获取新增页面
+     */
+    @RequestMapping("/jumpAdd")
+    public String jumpAdd(HttpServletRequest request, HttpServletResponse response, Model model) {
+        List<AccountTpModel> tpList = new ArrayList<AccountTpModel>();
+        Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
+        if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
+            AccountTpModel queryTpModel = new AccountTpModel();
+            if (account.getRoleId() != ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE){
+                //不是管理员，只能查询自己的数据
+                queryTpModel.setId(account.getId());
+            }
+            tpList = accountTpService.queryAllList(queryTpModel);
+            ChannelModel dataModel = new ChannelModel();
+            model.addAttribute("tpList", tpList);
+        }
+        return "manager/manual/manualAdd";
     }
 
 
@@ -122,7 +148,7 @@ public class ManualController extends BaseController {
             total_amount = bean.getTotalAmount();
             // 获取渠道的信息
             AccountTpModel channelModel = new AccountTpModel();
-            channelModel.setId(account.getId());
+            channelModel.setId(bean.getChannelId());
             channelModel = accountTpService.queryByCondition(channelModel);
             if (channelModel == null || channelModel.getId() <= 0){
                 log.info("根据渠道ID查询渠道数据为空!");

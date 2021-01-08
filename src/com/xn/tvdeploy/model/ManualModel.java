@@ -20,6 +20,11 @@ public class ManualModel extends BasePage {
      */
     private String totalAmount;
 
+    /**
+     * 渠道ID
+     */
+    private long channelId;
+
     public int getPayType() {
         return payType;
     }
@@ -34,5 +39,13 @@ public class ManualModel extends BasePage {
 
     public void setTotalAmount(String totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public long getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(long channelId) {
+        this.channelId = channelId;
     }
 }
