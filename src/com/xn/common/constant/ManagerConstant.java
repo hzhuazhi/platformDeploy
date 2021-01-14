@@ -26,6 +26,10 @@ public class ManagerConstant {
          */
         public static final int ROLE_AGENT = 3;
 
+        /**
+         * 代理
+         */
+        public static final int ROLE_GEWAY = 4;
 
 
         /**

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description 通道的Controller层
+ * @Description 管理员-通道的Controller层
  * @Author yoko
  * @Date 2020/3/31 20:28
  * @Version 1.0
@@ -136,6 +136,7 @@ public class GewayController extends BaseController {
     public void update(HttpServletRequest request, HttpServletResponse response,GewayModel bean, String op) throws Exception {
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
+            log.info("");
             if ("2".equals(op)) {
                 bean.setPassWd(MD5.parseMD5(bean.getPassWd()));
             }

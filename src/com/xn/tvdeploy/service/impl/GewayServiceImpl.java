@@ -3,6 +3,8 @@ package com.xn.tvdeploy.service.impl;
 import com.xn.common.dao.BaseDao;
 import com.xn.common.service.impl.BaseServiceImpl;
 import com.xn.tvdeploy.dao.GewayDao;
+import com.xn.tvdeploy.model.AccountTpModel;
+import com.xn.tvdeploy.model.GewayModel;
 import com.xn.tvdeploy.service.GewayService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +27,10 @@ public class GewayServiceImpl <T> extends BaseServiceImpl<T> implements GewaySer
     public BaseDao<T> getDao() {
         // TODO Auto-generated method stub
         return gewayDao;
+    }
+
+    @Override
+    public int updatePassWd(GewayModel model) {
+        return gewayDao.updatePassWd(model);
     }
 }
