@@ -24,6 +24,35 @@
     <div class="formContentDiv">
         <form id="addSupplierForm">
             <ul>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>账号</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="accountNum" name="accountNum"	maxlength="240" />
+                    </div>
+                </li>
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>账号密码</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="passWd" name="passWd"	maxlength="240" />
+                    </div>
+                </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>角色</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="type" name="roleId">
+                            <option value="">通道</option>
+                        </select>
+                    </div>
+                </li>
+
                 <li style="border-top: none;">
                     <div class="formTextDiv">
                         <span class="require" ><font color="red">*</font>通道名称</span>
@@ -65,6 +94,16 @@
                         <input type="text" class="formInput" id="payId" name="payId"	maxlength="240" />
                     </div>
                 </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require"><font color="red">*</font>保底金额</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="leastMoney" name="leastMoney"	maxlength="240" />
+                    </div>
+                </li>
+
                 <li style="border-top: none;">
                     <div class="formTextDiv">
                         <span class="require"><font color="red">*</font>秘钥</span>
@@ -98,6 +137,18 @@
                     </div>
                 </li>
 
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>通道类型</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="gewayType"  name ="gewayType">
+                            <option value="0" selected="selected">=请选择=</option>
+                            <option value="1">普通通道</option>
+                            <option value="2">预付通道</option>
+                        </select>
+                    </div>
+                </li>
 
                 <li>
                     <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:200px;">

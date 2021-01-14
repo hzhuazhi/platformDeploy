@@ -7,14 +7,8 @@ import com.xn.common.constant.ManagerConstant;
 import com.xn.common.controller.BaseController;
 import com.xn.common.enums.ManagerEnum;
 import com.xn.common.util.BeanUtils;
-import com.xn.tvdeploy.model.AccountApModel;
-import com.xn.tvdeploy.model.AccountDpModel;
-import com.xn.tvdeploy.model.AccountTpModel;
-import com.xn.tvdeploy.model.AgentModel;
-import com.xn.tvdeploy.service.AccountApService;
-import com.xn.tvdeploy.service.AccountDpService;
-import com.xn.tvdeploy.service.AccountTpService;
-import com.xn.tvdeploy.service.AgentService;
+import com.xn.tvdeploy.model.*;
+import com.xn.tvdeploy.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +48,9 @@ public class AdminLoginController extends BaseController {
 
 	@Autowired
 	private AgentService<AgentModel> agentService;//代理账号
+
+	@Autowired
+	private GewayService<GewayModel> gewayService;//通道账号
 
 	@RequestMapping(value = "/login")
 	public String goLogina(Model model, HttpServletRequest request) {
@@ -115,6 +112,15 @@ public class AdminLoginController extends BaseController {
 		if(agentModel != null && agentModel.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
 			accountId = agentModel.getId();
 			adminAccount = BeanUtils.copy(agentModel, Account.class);
+		}
+
+
+		//通道账号
+		GewayModel gewayModel = BeanUtils.copy(model, GewayModel.class);
+		gewayModel = gewayService.queryByCondition(gewayModel);
+		if(gewayModel != null && gewayModel.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
+			accountId = gewayModel.getId();
+			adminAccount = BeanUtils.copy(gewayModel, Account.class);
 		}
 
 		if (accountId <= ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO) {

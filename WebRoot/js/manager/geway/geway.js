@@ -13,20 +13,28 @@ var account = {
     },
     //列表显示参数
     list:[
+        {"data":"accountNum",},
+        {"data":"roleName",},
         {"data":"gewayName",},
-        {"data":"companyName",},
-        {"data":"contacts",},
-        {"data":"phoneNum",},
-        {"data":"payId",},
-        {"data":"secretKey",},
-        {"data":"identify",},
-        {"data":"interfaceAds",},
-        {"data":"notifyUrl",},
-
+        {"data":"totalMoney",},
+        {"data":"leastMoney",},
+        {"data":"balance",},
+        {"data":"gewayType",
+            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                var html="";
+                if(oData.gewayType==1){
+                    html='<span>普通通道</span>';
+                }else if(oData.gewayType==2){
+                    html='<span><font color="red">预付通道</font></span>';
+                }
+                $(nTd).html(html);
+            }
+        },
         {"data":"id",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html = '';
-                html = html = '<a class = "dataTableBtn dataTableDeleteBtn " href="'+ctx+'/geway/jumpUpdate.do?id='+oData.id+'"> 编辑 </a>'
+                html = html = '<a class = "dataTableBtn dataTableDeleteBtn " href="'+ctx+'/geway/jumpUpdate.do?op=1&id='+oData.id+'"> 编辑 </a>'
+                    +'<a class = "dataTableBtn" href="'+ctx+'/geway/jumpUpdate.do?op=2&id='+oData.id+'">重置密码 </a>'
                     +' <a class = "dataTableBtn dataTableResetBtn"  directkey="' + oData.id + '" href = "javascript:void(0);">删除 </a>';
                 $(nTd).html(html);
             }
@@ -50,6 +58,7 @@ var account = {
         // 条件查询按钮事件
         $('#btnQuery').click(function() {
             account.condJsonData['gewayName'] = $("#gewayName").val();
+            account.condJsonData['gewayType'] = $("#gewayType").val();
             account.condJsonData['companyName'] = $("#companyName").val();
             common.showDatas(account.condJsonData,account.list);
         });
@@ -58,6 +67,8 @@ var account = {
         $("#butReset").click(function(){
             account.condJsonData['gewayName'] = "";
             $("#gewayName").val("");
+            account.condJsonData['gewayType'] = "";
+            $("#gewayType").val("");
             account.condJsonData['companyName'] = "";
             $("#companyName").val("");
             common.showDatas(account.condJsonData,account.list);

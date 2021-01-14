@@ -15,6 +15,16 @@ public class GewayModel extends BasePage {
     private long id;
 
     /**
+     *登录账号
+     */
+    private String accountNum;
+
+    /**
+     * 账号密码
+     */
+    private String passWd;
+
+    /**
      * 通道名称
      */
     private String gewayName;
@@ -50,14 +60,20 @@ public class GewayModel extends BasePage {
     private String payId;
 
     /**
-     * 备注
+     * 总账
      */
-    private String remark;
+    private String totalMoney;
+
+    /**
+     * 保底金额：预付款通道，如果余额少于保底金额，就不出码
+     */
+    private String leastMoney;
 
     /**
      * 余额
      */
     private String balance;
+
 
     /**
      * 秘钥key：分配给我方的秘钥
@@ -74,6 +90,26 @@ public class GewayModel extends BasePage {
      */
     private String notifyUrl;
 
+    /**
+     * 通道类型：1普通通道，2预付款通道
+     */
+    private int gewayType;
+
+    /**
+     * 所属角色ID
+     */
+    private long roleId;
+
+    /**
+     * 是否启用：0初始化属于暂停状态，1表示暂停使用，2正常状态
+     */
+    private int isEnable;
+
+    /**
+     * 备注
+     */
+    private String remark;
+
 
     /**
      * 创建时间
@@ -89,6 +125,16 @@ public class GewayModel extends BasePage {
      * 是否有效：0有效，1无效/删除
      */
     private int yn;
+
+    /**
+     * 角色名
+     */
+    private String roleName;
+
+    /**
+     * 充值密码
+     */
+    private String resetPassWd;
 
     public long getId() {
         return id;
@@ -216,5 +262,77 @@ public class GewayModel extends BasePage {
 
     public void setYn(int yn) {
         this.yn = yn;
+    }
+
+    public String getAccountNum() {
+        return accountNum;
+    }
+
+    public void setAccountNum(String accountNum) {
+        this.accountNum = accountNum;
+    }
+
+    public String getPassWd() {
+        return passWd;
+    }
+
+    public void setPassWd(String passWd) {
+        this.passWd = passWd;
+    }
+
+    public String getTotalMoney() {
+        return totalMoney;
+    }
+
+    public void setTotalMoney(String totalMoney) {
+        this.totalMoney = totalMoney;
+    }
+
+    public String getLeastMoney() {
+        return leastMoney;
+    }
+
+    public void setLeastMoney(String leastMoney) {
+        this.leastMoney = leastMoney;
+    }
+
+    public int getGewayType() {
+        return gewayType;
+    }
+
+    public void setGewayType(int gewayType) {
+        this.gewayType = gewayType;
+    }
+
+    public long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(long roleId) {
+        this.roleId = roleId;
+    }
+
+    public int getIsEnable() {
+        return isEnable;
+    }
+
+    public void setIsEnable(int isEnable) {
+        this.isEnable = isEnable;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public String getResetPassWd() {
+        return resetPassWd;
+    }
+
+    public void setResetPassWd(String resetPassWd) {
+        this.resetPassWd = resetPassWd;
     }
 }

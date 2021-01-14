@@ -18,6 +18,54 @@
 </head>
 <body>
 <div class="col_main">
+
+
+    <c:if test="${op==2}">
+        <div class="formHeadDiv">
+            <h2>重置密码</h2>
+        </div>
+        <div class="formContentDiv">
+            <form id="addSupplierForm">
+                <ul>
+                    <c:set var="dl" value="${account}"/>
+                    <input type="hidden" id="id" name="id" value="${dl.id}">
+                    <input type="hidden" id="op" name="op" value="2">
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
+                            <span class="require" ><font color="red">*</font>新密码</span>
+                        </div>
+                        <div class="formCtrlDiv">
+                            <input type="text" class="formInput" id="passWd" name="passWd" value=""	maxlength="240" />
+                            <span id="msg"></span>
+                        </div>
+                    </li>
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
+                            <span class="require" ><font color="red">*</font>确认密码</span>
+                        </div>
+                        <div class="formCtrlDiv">
+                            <input type="text" class="formInput" id="passWd1" name="passWd1" value="" onkeyup="validate()"	maxlength="240" />
+                            <span id="msg1"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:100px;">
+                            <input type="submit" class="buttonClass imginput" value="修 改" /> <span>
+						</span> <input type="reset" class="buttonClass imginput" value="重  置" />
+                            <input type="button" onClick="javascript :history.back(-1);" class="buttonClass imginput" value=" 返 回 " />
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </c:if>
+
+
+
+
+
+    <c:if test="${op==1}">
+
         <div class="formHeadDiv">
             <h2>编辑通道</h2>
         </div>
@@ -26,6 +74,17 @@
                 <ul>
                     <c:set var="dl" value="${account}"/>
                     <input type="hidden" id="id" name="id" value="${dl.id}">
+                    <input type="hidden" id="op" name="op" value="1">
+
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
+                            <span class="require" ><font color="red">*</font>登录账号</span>
+                        </div>
+                        <div class="formCtrlDiv">
+                            <input type="text" class="formInput" id="accountNum" name="accountNum" value="${dl.accountNum}"	maxlength="240" disabled />
+                        </div>
+                    </li>
+
                     <li style="border-top: none;">
                         <div class="formTextDiv">
                             <span class="require" ><font color="red">*</font>通道名称</span>
@@ -66,6 +125,16 @@
                             <input type="text" class="formInput" id="payId" name="payId" value="${dl.payId}" 	maxlength="240" />
                         </div>
                     </li>
+
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
+                            <span class="require"><font color="red">*</font>保底金额</span>
+                        </div>
+                        <div class="formCtrlDiv">
+                            <input type="text" class="formInput" id="leastMoney" name="leastMoney" value="${dl.leastMoney}" 	maxlength="240" />
+                        </div>
+                    </li>
+
                     <li style="border-top: none;">
                         <div class="formTextDiv">
                             <span class="require"><font color="red">*</font>秘钥</span>
@@ -98,16 +167,36 @@
                             <input type="text" class="formInput" id="notifyUrl" name="notifyUrl" value="${dl.notifyUrl}" maxlength="240" />
                         </div>
                     </li>
+
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
+                            <span class="require" ><font color="red">*</font>通道类型</span>
+                        </div>
+                        <div class="formCtrlDiv">
+                            <select id="gewayType"  name ="gewayType">
+                                <c:if test="${dl.gewayType == 1}">
+                                    <option value="1" selected="selected">普通通道</option>
+                                    <option value="2">预付通道</option>
+                                </c:if>
+                                <c:if test="${dl.gewayType == 2}">
+                                    <option value="1" >普通通道</option>
+                                    <option value="2" selected="selected">预付通道</option>
+                                </c:if>
+                            </select>
+                        </div>
+                    </li>
+
                     <li>
-                        <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:200px;">
-                            <input type="submit" class="formBtn" value="修 改" /> <span>
-						</span> <input type="reset" class="formBtn" value="重  置" />
-                            <input type="button" onClick="javascript :history.back(-1);" class="formBtn" value=" 返 回 " />
+                        <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:100px;">
+                            <input type="submit" class="buttonClass imginput" value="修 改" /> <span>
+						</span> <input type="reset" class="buttonClass imginput" value="重  置" />
+                            <input type="button" onClick="javascript :history.back(-1);" class="buttonClass imginput" value=" 返 回 " />
                         </div>
                     </li>
                 </ul>
             </form>
         </div>
+    </c:if>
 </div>
 <script type='text/javascript' charset="utf-8" src='${ctxData}js/common/common2.js'></script>
 <script type="text/javascript">

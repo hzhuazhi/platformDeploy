@@ -16,6 +16,7 @@ public enum ManagerEnum {
         ADMIN(1,"管理员账号"),
         TP(2,"渠道账号"),
         AGENT(3,"代理账号"),
+        GEWAY(4,"通道账号"),
         ;
         /**
          * 角色ID

@@ -15,6 +15,10 @@
                 <div class="formCtrlDiv">
                     <input type ="text" class ="inputCommonSty" id="gewayName" name ="gewayName">
                 </div>
+                <div class = "condQueryLabelDiv">通道类型：</div>
+                <div class="formCtrlDiv">
+                    <input type ="text" class ="inputCommonSty" id="gewayType" name ="gewayType">
+                </div>
                 <div class = "condQueryLabelDiv">公司名称：</div>
                 <div class="formCtrlDiv">
                     <input type ="text" class ="inputCommonSty" id="companyName" name ="companyName">
@@ -26,7 +30,7 @@
                     <input type = "button" id = "butReset" class = "buttonClass imginput" value = "重置" />
                 </div>
                 <div class = "searchdiv">
-                    <input type="button" class = "buttonClass imginput addbtn" value="新增银行" style="margin-left: 30px;" >
+                    <input type="button" class = "buttonClass imginput addbtn" value="新增通道" style="margin-left: 30px;" >
                 </div>
             </div>
         </form>
@@ -35,16 +39,14 @@
     <table class="datatable tables">
         <thead>
         <tr>
+            <th width="130">账号</th>
+            <th width="100">角色</th>
             <th width="150">通道名称</th>
-            <th width="200">公司名称</th>
-            <th width="150">联系人</th>
-            <th width="150">联系电话</th>
-            <th width="150">商铺号</th>
-            <th width="150">秘钥</th>
-            <th width="150">回传标识</th>
-            <th width="250">接口地址</th>
-            <th width="250">同步地址</th>
-            <th width="200">操作</th>
+            <th width="120">总额</th>
+            <th width="120">保底金额</th>
+            <th width="90">余额</th>
+            <th width="120">通道类型</th>
+            <th width="250">操作</th>
         </tr>
         </thead>
         <tbody>

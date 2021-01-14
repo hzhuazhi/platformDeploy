@@ -2,7 +2,9 @@ package com.xn.tvdeploy.controller.geway;
 
 import com.xn.common.constant.ManagerConstant;
 import com.xn.common.controller.BaseController;
+import com.xn.common.enums.ManagerEnum;
 import com.xn.common.util.HtmlUtil;
+import com.xn.common.util.MD5;
 import com.xn.system.entity.Account;
 import com.xn.tvdeploy.model.GewayModel;
 import com.xn.tvdeploy.service.GewayService;
@@ -96,10 +98,22 @@ public class GewayController extends BaseController {
     public void add(HttpServletRequest request, HttpServletResponse response, GewayModel bean) throws Exception {
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
-            gewayService.add(bean);
-            sendSuccessMessage(response, "保存成功~");
+            //check是否有重复的账号
+            GewayModel queryBean = new GewayModel();
+            queryBean.setAccountNum(bean.getAccountNum());
+            queryBean = gewayService.queryByCondition(queryBean);
+            if (queryBean != null && queryBean.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
+                sendFailureMessage(response,"有重复的账号,请重新输入其它账号!");
+                return;
+            }else{
+                bean.setPassWd(MD5.parseMD5(bean.getPassWd()));
+                bean.setRoleId(ManagerEnum.RoleTypeEnum.GEWAY.getRoleType());
+                gewayService.add(bean);
+                sendSuccessMessage(response, "保存成功~");
+            }
         }else {
             sendFailureMessage(response,"登录超时,请重新登录在操作!");
+            return;
         }
     }
 
@@ -107,10 +121,11 @@ public class GewayController extends BaseController {
      * 获取修改页面
      */
     @RequestMapping("/jumpUpdate")
-    public String jumpUpdate(Model model, long id) {
+    public String jumpUpdate(Model model, long id, Integer op) {
         GewayModel atModel = new GewayModel();
         atModel.setId(id);
         model.addAttribute("account", gewayService.queryById(atModel));
+        model.addAttribute("op", op);
         return "manager/geway/gewayEdit";
     }
 
@@ -118,9 +133,12 @@ public class GewayController extends BaseController {
      * 修改数据
      */
     @RequestMapping("/update")
-    public void update(HttpServletRequest request, HttpServletResponse response,GewayModel bean) throws Exception {
+    public void update(HttpServletRequest request, HttpServletResponse response,GewayModel bean, String op) throws Exception {
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
+            if ("2".equals(op)) {
+                bean.setPassWd(MD5.parseMD5(bean.getPassWd()));
+            }
             gewayService.update(bean);
             sendSuccessMessage(response, "保存成功~");
         }else {
