@@ -2,28 +2,20 @@ package com.xn.tvdeploy.controller.gewaychange;
 
 import com.xn.common.constant.ManagerConstant;
 import com.xn.common.controller.BaseController;
-import com.xn.common.util.DateUtil;
 import com.xn.common.util.HtmlUtil;
 import com.xn.system.entity.Account;
 import com.xn.tvdeploy.controller.channelchange.ChannelChangeController;
-import com.xn.tvdeploy.model.AccountTpModel;
 import com.xn.tvdeploy.model.GewayChangeModel;
-import com.xn.tvdeploy.model.ChannelModel;
-import com.xn.tvdeploy.model.GewayChangeModel;
-import com.xn.tvdeploy.service.AccountTpService;
-import com.xn.tvdeploy.service.ChannelChangeService;
 import com.xn.tvdeploy.service.GewayChangeService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**

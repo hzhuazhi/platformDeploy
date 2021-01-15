@@ -21,7 +21,7 @@ var account = {
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html = '';
                 if(oData.changeType==1){
-                    html+="<span >提现</span>"
+                    html='<span><font color="red">提现</font></span>';
                 }else if(oData.changeType==2){
                     html+="<span >充值</span>"
                 }

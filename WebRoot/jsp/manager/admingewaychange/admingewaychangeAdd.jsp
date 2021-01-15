@@ -19,22 +19,13 @@
 <body>
 <div class="col_main">
     <div class="formHeadDiv">
-        <h2>新增渠道金额调整</h2>
+        <h2>新增通道金额调整</h2>
     </div>
     <div class="formContentDiv">
         <form id="addSupplierForm">
 
 
             <ul>
-                <li style="border-top: none;">
-                    <div class="formTextDiv">
-                        <span class="require" ><font color="red">*</font>关联订单号</span>
-                    </div>
-                    <div class="formCtrlDiv">
-                        <input type="text" class="formInput" id="myTradeNo" name="myTradeNo"	maxlength="240" />
-                    </div>
-                </li>
-
                 <li style="border-top: none;">
                     <div class="formTextDiv">
                         <span class="require" ><font color="red">*</font>名称/别名：</span>
@@ -46,20 +37,20 @@
 
                 <li style="border-top: none;">
                     <div class="formTextDiv">
-                        <span class="require" ><font color="red">*</font>渠道：</span>
+                        <span class="require" ><font color="red">*</font>通道：</span>
                     </div>
                     <div class="formCtrlDiv">
-                        <select id="channelId" name="channelId" >
+                        <select id="gewayId" name="gewayId" >
                             <option value="">===请选择===</option>
-                            <c:forEach items="${tp}" var="dataList">
-                                <option value="${dataList.id}">${dataList.channelName}</option>
+                            <c:forEach items="${geway}" var="dataList">
+                                <option value="${dataList.id}">${dataList.gewayName}</option>
                             </c:forEach>
                         </select>
                     </div>
                 </li>
                 <li style="border-top: none;">
                     <div class="formTextDiv">
-                        <span class="require" ><font color="red">*</font>修改金额：</span>
+                        <span class="require" ><font color="red">*</font>调整金额：</span>
                     </div>
                     <div class="formCtrlDiv">
                         <input type="text" class="formInput" id="money" name="money"	maxlength="240" />
@@ -74,7 +65,7 @@
                     <div class="formCtrlDiv">
                         <select id="changeType" name="changeType">
                             <option value="0">===请选择===</option>
-                            <option value="1">核减金额</option>
+                            <option value="1">减金额</option>
                             <option value="2">加金额</option>
                         </select>
                     </div>
@@ -97,7 +88,7 @@
                         <span class="require" >数据说明：</span>
                     </div>
                     <div class="formCtrlDiv" id = "moduleTypeDiv">
-                        <input type="text" class="formInput" id="dataEplain" name="dataEplain"	maxlength="240" />
+                        <textarea class="formInput" id="dataExplain" name="dataExplain"></textarea>
                     </div>
                 </li>
 
@@ -112,10 +103,10 @@
                 </li>
 
                 <li>
-                    <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:200px;">
-                        <input type="submit" class="formBtn" value="添  加" style="background-color: #54D8FE;"/> <span>
-						</span> <input type="reset" class="formBtn" value="重  置" style="background-color: #54D8FE;" />
-                        <input type="button" onClick="javascript :history.back(-1);" class="formBtn" value=" 返 回 " style="background-color: #54D8FE;"/>
+                    <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:100px;">
+                        <input type="submit" class="buttonClass imginput" value="添  加" style="background-color: #54D8FE;"/> <span>
+						</span> <input type="reset" class="buttonClass imginput" value="重  置" style="background-color: #54D8FE;" />
+                        <input type="button" onClick="javascript :history.back(-1);" class="buttonClass imginput" value=" 返 回 " style="background-color: #54D8FE;"/>
                     </div>
                 </li>
             </ul>
@@ -157,14 +148,14 @@
             submitHandler : function() {
                 var formData = $("#addSupplierForm").serialize();
                 $.ajax({
-                    url : ctx+ "/channelchange/add.do",
+                    url : ctx+ "/admingewaychange/add.do",
                     type : 'post',
                     dataType : 'json',
                     data :formData,
                     success : function(data) {
                         if (data.success) {
                             alert("添加成功！！！");
-                            window.location.href = ctx + "/channelchange/list.do";
+                            window.location.href = ctx + "/admingewaychange/list.do";
                         } else {
                             art.alert(data.msg);
                         }

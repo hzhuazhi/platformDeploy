@@ -74,7 +74,7 @@
             <th width="200">订单号</th>
             <th width="200">名称/别名</th>
             <th width="200">渠道名称</th>
-            <th width="150">修改金额</th>
+            <th width="150">变更金额</th>
             <th width="150">金额类型</th>
             <th width="150">是否展现</th>
             <th width="150">数据说明</th>
