@@ -4,7 +4,13 @@ import com.xn.common.page.BasePage;
 
 import java.util.Date;
 
-public class ChannelChangeModel extends BasePage {
+/**
+ * @Description 通道金额变更纪录的实体属性Bean
+ * @Author yoko
+ * @Date 2021/1/15 10:59
+ * @Version 1.0
+ */
+public class GewayChangeModel extends BasePage {
     /**
      * 自增主键ID
      *
@@ -20,18 +26,18 @@ public class ChannelChangeModel extends BasePage {
     private String alias;
 
     /**
-     * 渠道的主键ID
+     * 通道的主键ID
      *
      * @mbggenerated
      */
-    private Long channelId;
+    private Long gewayId;
 
     /**
-     * 我方订单号：变更涉及到的订单号
+     * 订单号
      *
      * @mbggenerated
      */
-    private String myTradeNo;
+    private String orderNo;
 
     /**
      * 要变更的金额
@@ -40,11 +46,11 @@ public class ChannelChangeModel extends BasePage {
      */
     private String money;
     /**
-     * 渠道名称
+     * 通道名称
      *
      * @mbggenerated
      */
-    private String channelName;
+    private String gewayName;
 
     /**
      * 变更金额类型：0初始化，1核减金额，2加金额
@@ -200,20 +206,20 @@ public class ChannelChangeModel extends BasePage {
         this.alias = alias;
     }
 
-    public Long getChannelId() {
-        return channelId;
+    public Long getGewayId() {
+        return gewayId;
     }
 
-    public void setChannelId(Long channelId) {
-        this.channelId = channelId;
+    public void setGewayId(Long gewayId) {
+        this.gewayId = gewayId;
     }
 
-    public String getMyTradeNo() {
-        return myTradeNo;
+    public String getOrderNo() {
+        return orderNo;
     }
 
-    public void setMyTradeNo(String myTradeNo) {
-        this.myTradeNo = myTradeNo;
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 
     public String getMoney() {
@@ -224,7 +230,21 @@ public class ChannelChangeModel extends BasePage {
         this.money = money;
     }
 
+    public String getGewayName() {
+        return gewayName;
+    }
 
+    public void setGewayName(String gewayName) {
+        this.gewayName = gewayName;
+    }
+
+    public Integer getChangeType() {
+        return changeType;
+    }
+
+    public void setChangeType(Integer changeType) {
+        this.changeType = changeType;
+    }
 
     public String getPictureAds() {
         return pictureAds;
@@ -234,7 +254,13 @@ public class ChannelChangeModel extends BasePage {
         this.pictureAds = pictureAds;
     }
 
+    public Integer getIsShow() {
+        return isShow;
+    }
 
+    public void setIsShow(Integer isShow) {
+        this.isShow = isShow;
+    }
 
     public String getDataExplain() {
         return dataExplain;
@@ -260,6 +286,37 @@ public class ChannelChangeModel extends BasePage {
         this.curday = curday;
     }
 
+    public Integer getCurhour() {
+        return curhour;
+    }
+
+    public void setCurhour(Integer curhour) {
+        this.curhour = curhour;
+    }
+
+    public Integer getCurminute() {
+        return curminute;
+    }
+
+    public void setCurminute(Integer curminute) {
+        this.curminute = curminute;
+    }
+
+    public Integer getRunStatus() {
+        return runStatus;
+    }
+
+    public void setRunStatus(Integer runStatus) {
+        this.runStatus = runStatus;
+    }
+
+    public Integer getRunNum() {
+        return runNum;
+    }
+
+    public void setRunNum(Integer runNum) {
+        this.runNum = runNum;
+    }
 
     public long getCreateUserId() {
         return createUserId;
@@ -317,68 +374,12 @@ public class ChannelChangeModel extends BasePage {
         this.tsTime = tsTime;
     }
 
-    public Integer getChangeType() {
-        return changeType;
-    }
-
-    public void setChangeType(Integer changeType) {
-        this.changeType = changeType;
-    }
-
-    public Integer getIsShow() {
-        return isShow;
-    }
-
-    public void setIsShow(Integer isShow) {
-        this.isShow = isShow;
-    }
-
-    public Integer getCurhour() {
-        return curhour;
-    }
-
-    public void setCurhour(Integer curhour) {
-        this.curhour = curhour;
-    }
-
-    public Integer getCurminute() {
-        return curminute;
-    }
-
-    public void setCurminute(Integer curminute) {
-        this.curminute = curminute;
-    }
-
-    public Integer getRunStatus() {
-        return runStatus;
-    }
-
-    public void setRunStatus(Integer runStatus) {
-        this.runStatus = runStatus;
-    }
-
-    public Integer getRunNum() {
-        return runNum;
-    }
-
-    public void setRunNum(Integer runNum) {
-        this.runNum = runNum;
-    }
-
     public Integer getYn() {
         return yn;
     }
 
     public void setYn(Integer yn) {
         this.yn = yn;
-    }
-
-    public String getChannelName() {
-        return channelName;
-    }
-
-    public void setChannelName(String channelName) {
-        this.channelName = channelName;
     }
 
     public Integer getCurdayStart() {
