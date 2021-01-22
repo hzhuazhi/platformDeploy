@@ -62,6 +62,11 @@ public class AgentModel extends BasePage {
     private String royalty;
 
     /**
+     * 提现类型：1默认在支付平台操作，2发送下发数据到蛋糕平台
+     */
+    private int withdrawType;
+
+    /**
      * 是否启用：0初始化属于暂停状态，1表示暂停使用，2正常状态
      */
     private int isEnable;
@@ -219,5 +224,13 @@ public class AgentModel extends BasePage {
 
     public void setTodayProfit(String todayProfit) {
         this.todayProfit = todayProfit;
+    }
+
+    public int getWithdrawType() {
+        return withdrawType;
+    }
+
+    public void setWithdrawType(int withdrawType) {
+        this.withdrawType = withdrawType;
     }
 }

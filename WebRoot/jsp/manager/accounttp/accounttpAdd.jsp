@@ -145,6 +145,22 @@
                     </div>
                 </li>
 
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>提现类型</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="withdrawType"  name ="withdrawType">
+                            <option value="0" selected="selected">=请选择=</option>
+                            <option value="1">平台内</option>
+                            <option value="2">平台外</option>
+                        </select>
+                    </div>
+                </li>
+
+
+
                 <li style="border-top: none;">
                     <div class="formTextDiv">
                         <span class="require" ><font color="red">*</font>渠道类型</span>

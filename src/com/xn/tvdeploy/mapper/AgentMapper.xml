@@ -14,6 +14,7 @@
         <result property="totalMoney" column="total_money" />
         <result property="balance" column="balance" />
         <result property="royalty" column="royalty" />
+        <result property="withdrawType" column="withdraw_type" />
         <result property="isEnable" column="is_enable" />
         <result property="createTime" column="create_time" />
         <result property="updateTime" column="update_time" />
@@ -22,7 +23,8 @@
     </resultMap>
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
-        a.id,a.account_num,a.pass_wd,a.agent_name,a.contacts,a.phone_num,a.pay_type,a.total_money,a.balance,a.royalty,a.role_id,a.is_enable,
+        a.id,a.account_num,a.pass_wd,a.agent_name,a.contacts,a.phone_num,a.pay_type,a.total_money,a.balance,a.royalty,a.withdraw_type,
+        a.role_id,a.is_enable,
         a.create_time,a.update_time,a.yn,
         b.role_name
     </sql>
@@ -45,6 +47,9 @@
             </if>
             <if test="agentName != null and agentName != '' " >
                 and a.agent_name = #{agentName}
+            </if>
+            <if test="withdrawType != 0 and withdrawType >0 " >
+                and a.withdraw_type = #{withdrawType}
             </if>
             <if test="isEnable != 0 and isEnable >0 " >
                 and a.is_enable = #{isEnable}
@@ -139,6 +144,9 @@
             <if test="royalty != null and royalty != '' " >
                 royalty,
             </if>
+            <if test="withdrawType != 0 and withdrawType >0 " >
+                withdraw_type,
+            </if>
             <if test="isEnable != 0 and isEnable >0 " >
                 is_enable,
             </if>
@@ -169,6 +177,9 @@
             </if>
             <if test="royalty != null and royalty != '' " >
                 <![CDATA[  #{royalty}, ]]>
+            </if>
+            <if test="withdrawType != 0 and withdrawType >0 " >
+                <![CDATA[  #{withdrawType}, ]]>
             </if>
             <if test="isEnable != 0 and isEnable >0 " >
                 <![CDATA[  #{isEnable}, ]]>
@@ -205,6 +216,9 @@
             </if>
             <if test="royalty != null and royalty != '' " >
                 a.royalty = #{royalty},
+            </if>
+            <if test="withdrawType != 0 and withdrawType >0 " >
+                a.withdraw_type = #{withdrawType},
             </if>
             <if test="isEnable != 0  and isEnable >0 " >
                 a.is_enable = #{isEnable},

@@ -163,6 +163,27 @@
                         </div>
                     </li>
 
+
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
+                            <span class="require" ><font color="red">*</font>提现类型</span>
+                        </div>
+                        <div class="formCtrlDiv">
+                            <select id="withdrawType" name="withdrawType">
+                                <option value="">===请选择===</option>
+                                <c:if test="${dl.withdrawType == 1}">
+                                    <option value="1" selected="selected">平台内</option>
+                                    <option value="2">平台外</option>
+                                </c:if>
+                                <c:if test="${dl.withdrawType == 2}">
+                                    <option value="1">平台内</option>
+                                    <option value="2" selected="selected">平台外</option>
+                                </c:if>
+                            </select>
+                        </div>
+                    </li>
+
+
                     <li style="border-top: none;">
                         <div class="formTextDiv">
                             <span class="require" ><font color="red">*</font>渠道类型</span>

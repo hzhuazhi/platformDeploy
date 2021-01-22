@@ -106,7 +106,7 @@ public class AccountTpModel extends BasePage {
     private int isSynchro;
 
     /**
-     * 提现类型：1默认在支付平台操作，2发送下发数据到水果平台
+     * 提现类型：1默认在支付平台操作，2发送下发数据到蛋糕平台
      */
     private int withdrawType;
 

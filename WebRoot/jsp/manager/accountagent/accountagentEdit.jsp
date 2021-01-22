@@ -118,11 +118,32 @@
                             <input type="text" class="formInput" id="royalty" name="royalty" value="${dl.royalty}" 	maxlength="500" />
                         </div>
                     </li>
+
+
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
+                            <span class="require" ><font color="red">*</font>提现类型</span>
+                        </div>
+                        <div class="formCtrlDiv">
+                            <select id="withdrawType" name="withdrawType">
+                                <option value="">===请选择===</option>
+                                <c:if test="${dl.withdrawType == 1}">
+                                    <option value="1" selected="selected">平台内</option>
+                                    <option value="2">平台外</option>
+                                </c:if>
+                                <c:if test="${dl.withdrawType == 2}">
+                                    <option value="1">平台内</option>
+                                    <option value="2" selected="selected">平台外</option>
+                                </c:if>
+                            </select>
+                        </div>
+                    </li>
+
                     <li>
                         <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:200px;">
-                            <input type="submit" class="formBtn" value="修 改" /> <span>
-						</span> <input type="reset" class="formBtn" value="重  置" />
-                            <input type="button" onClick="javascript :history.back(-1);" class="formBtn" value=" 返 回 " />
+                            <input type="submit" style="background-color: #1094fa" class="formBtn" value="修 改" /> <span>
+						</span> <input type="reset" style="background-color: #1094fa" class="formBtn" value="重  置" />
+                            <input type="button" style="background-color: #1094fa" onClick="javascript :history.back(-1);" class="formBtn" value=" 返 回 " />
                         </div>
                     </li>
                 </ul>

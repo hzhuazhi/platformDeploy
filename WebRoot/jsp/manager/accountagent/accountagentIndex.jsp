@@ -41,6 +41,7 @@
             <th width="150">总额</th>
             <th width="150">余额</th>
             <th width="150">收益提成</th>
+            <th width="150">提现类型</th>
             <th width="380">操作</th>
         </tr>
         </thead>

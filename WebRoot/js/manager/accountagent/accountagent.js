@@ -21,7 +21,17 @@ var account = {
         {"data":"totalMoney",},
         {"data":"balance",},
         {"data":"royalty",},
-
+        {"data":"withdrawType",
+            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                var html="";
+                if(oData.withdrawType==1){
+                    html='<span>平台内</span>';
+                }else if(oData.withdrawType==2){
+                    html='<span><font color="red">平台外</font></span>';
+                }
+                $(nTd).html(html);
+            }
+        },
         {"data":"id",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html = '';
