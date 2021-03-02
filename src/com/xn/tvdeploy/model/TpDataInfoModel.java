@@ -177,6 +177,17 @@ public class TpDataInfoModel extends BasePage {
      */
     private int runStatus;
 
+
+    /**
+     *发送次数
+     */
+    private int sendNum;
+
+    /**
+     * 发送状态：0初始化，1锁定，2计算失败，3计算成功
+     */
+    private int sendStatus;
+
     /**
      * 创建时间
      */
@@ -203,6 +214,7 @@ public class TpDataInfoModel extends BasePage {
     private String sendOkStr;
     private String tradeStatusStr;
     private String runStatusStr;
+    private String sendStatusStr;
 
 
     /**
@@ -728,5 +740,29 @@ public class TpDataInfoModel extends BasePage {
 
     public void setChannelName(String channelName) {
         this.channelName = channelName;
+    }
+
+    public int getSendNum() {
+        return sendNum;
+    }
+
+    public void setSendNum(int sendNum) {
+        this.sendNum = sendNum;
+    }
+
+    public int getSendStatus() {
+        return sendStatus;
+    }
+
+    public void setSendStatus(int sendStatus) {
+        this.sendStatus = sendStatus;
+    }
+
+    public String getSendStatusStr() {
+        return sendStatusStr;
+    }
+
+    public void setSendStatusStr(String sendStatusStr) {
+        this.sendStatusStr = sendStatusStr;
     }
 }

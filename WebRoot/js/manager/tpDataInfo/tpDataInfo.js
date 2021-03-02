@@ -66,16 +66,16 @@ var account = {
                 $(nTd).html(html);
             }
         },
-        {"data":"runStatus",
+        {"data":"sendStatus",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html="";
-                if(oData.runStatus==0){
+                if(oData.sendStatus==0){
                     html='<span>初始化</span>';
-                }else if(oData.runStatus==1){
+                }else if(oData.sendStatus==1){
                     html='<span>锁定</span>';
-                }else if(oData.runStatus==2){
+                }else if(oData.sendStatus==2){
                     html='<span><font color="red">失败</font></span>';
-                }else if(oData.runStatus==3){
+                }else if(oData.sendStatus==3){
                     html='<span>成功</span>';
                 }
                 $(nTd).html(html);
@@ -88,7 +88,7 @@ var account = {
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html = '';
                 var isEnableHtml = '';
-                if (oData.runStatus == 2){
+                if (oData.sendStatus == 2){
                     isEnableHtml = '<a class = "dataTableBtn dataTableEnableBtn"  directkey="'+oData.dataCoreId+'"  directValue="2" href = "javascript:void(0);">重发 </a>';
                 }else{
                     isEnableHtml = '正常';
@@ -106,7 +106,7 @@ var account = {
         replenishType:0,
         sendOk:0,
         tradeStatus:-1,
-        runStatus:0,
+        sendStatus:0,
         curdayStart:0,
         curdayEnd:0
     },
@@ -126,7 +126,7 @@ var account = {
             account.condJsonData['replenishType'] = $("#replenishType").val();
             account.condJsonData['sendOk'] = $("#sendOk").val();
             account.condJsonData['tradeStatus'] = $("#tradeStatus").val();
-            account.condJsonData['runStatus'] = $("#runStatus").val();
+            account.condJsonData['sendStatus'] = $("#sendStatus").val();
             account.condJsonData['curdayStart'] = $("#curdayStart").val();
             account.condJsonData['curdayEnd'] = $("#curdayEnd").val();
             account.queryTotal();
@@ -147,8 +147,8 @@ var account = {
             $("#sendOk").val("-1");
             account.condJsonData['tradeStatus'] = "0";
             $("#tradeStatus").val("0");
-            account.condJsonData['runStatus'] = "0";
-            $("#runStatus").val("0");
+            account.condJsonData['sendStatus'] = "0";
+            $("#sendStatus").val("0");
             account.condJsonData['curdayStart'] = "";
             $("#curdayStart").val("");
             account.condJsonData['curdayEnd'] = "";
@@ -178,14 +178,14 @@ var account = {
     //     var myTradeNo = $("#myTradeNo").val();
     //     var outTradeNo = $("#outTradeNo").val();
     //     var tradeStatus = $("#tradeStatus").val();
-    //     var runStatus = $("#runStatus").val();
+    //     var sendStatus = $("#sendStatus").val();
     //     var curdayStart = $("#curdayStart").val();
     //     var curdayEnd = $("#curdayEnd").val();
     //     var data = {
     //         "myTradeNo":myTradeNo,
     //         "outTradeNo":outTradeNo,
     //         "tradeStatus":tradeStatus,
-    //         "runStatus":runStatus,
+    //         "sendStatus":sendStatus,
     //         "curdayStart":curdayStart,
     //         "curdayEnd":curdayEnd
     //     };
@@ -212,7 +212,7 @@ var account = {
         var replenishType = $("#replenishType").val();
         var sendOk = $("#sendOk").val();
         var tradeStatus = $("#tradeStatus").val();
-        var runStatus = $("#runStatus").val();
+        var sendStatus = $("#sendStatus").val();
         var curdayStart = $("#curdayStart").val();
         var curdayEnd = $("#curdayEnd").val();
         var data = {
@@ -222,7 +222,7 @@ var account = {
             "replenishType":replenishType,
             "sendOk":sendOk,
             "tradeStatus":tradeStatus,
-            "runStatus":runStatus,
+            "sendStatus":sendStatus,
             "curdayStart":curdayStart,
             "curdayEnd":curdayEnd
         };
@@ -250,14 +250,14 @@ var account = {
 //     var myTradeNo = $("#myTradeNo").val();
 //     var outTradeNo = $("#outTradeNo").val();
 //     var tradeStatus = $("#tradeStatus").val();
-//     var runStatus = $("#runStatus").val();
+//     var sendStatus = $("#sendStatus").val();
 //     var curdayStart = $("#curdayStart").val();
 //     var curdayEnd = $("#curdayEnd").val();
 //     var data = {
 //         "myTradeNo":myTradeNo,
 //         "outTradeNo":outTradeNo,
 //         "tradeStatus":tradeStatus,
-//         "runStatus":runStatus,
+//         "sendStatus":sendStatus,
 //         "curdayStart":curdayStart,
 //         "curdayEnd":curdayEnd
 //     };

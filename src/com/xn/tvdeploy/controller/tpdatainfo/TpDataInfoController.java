@@ -138,7 +138,7 @@ public class TpDataInfoController extends BaseController {
             String[] titleCode = new String[10];
             String filename = "订单信息";
             titles = new String[]{"平台订单", "商家订单", "订单金额", "手续费", "实际金额", "实际支付金额", "请求状态", "交易状态", "交易时间","回传参数","补单类型","同步状态"};
-            titleCode = new String[]{"myTradeNo", "outTradeNo", "totalAmount", "serviceCharge", "actualMoney", "payAmount", "sendOkStr", "tradeStatusStr", "tradeTime", "extraReturnParam", "replenishTypeStr","runStatusStr"};
+            titleCode = new String[]{"myTradeNo", "outTradeNo", "totalAmount", "serviceCharge", "actualMoney", "payAmount", "sendOkStr", "tradeStatusStr", "tradeTime", "extraReturnParam", "replenishTypeStr","sendStatusStr"};
             List<Map<String,Object>> paramList = new ArrayList<>();
             for(TpDataInfoModel paramO : dataList){
 
@@ -156,14 +156,14 @@ public class TpDataInfoController extends BaseController {
                 }else if (paramO.getTradeStatus() == 3){
                     paramO.setTradeStatusStr("其它");
                 }
-                if (paramO.getRunStatus() == 0){
-                    paramO.setRunStatusStr("初始化");
-                }else if (paramO.getRunStatus() == 1){
-                    paramO.setRunStatusStr("锁定");
-                }else if (paramO.getRunStatus() == 2){
-                    paramO.setRunStatusStr("失败");
-                }else if (paramO.getRunStatus() == 3){
-                    paramO.setRunStatusStr("成功");
+                if (paramO.getSendStatus() == 0){
+                    paramO.setSendStatusStr("初始化");
+                }else if (paramO.getSendStatus() == 1){
+                    paramO.setSendStatusStr("锁定");
+                }else if (paramO.getSendStatus() == 2){
+                    paramO.setSendStatusStr("失败");
+                }else if (paramO.getSendStatus() == 3){
+                    paramO.setSendStatusStr("成功");
                 }
                 if (paramO.getReplenishType() == 0){
                     paramO.setReplenishTypeStr("不是补单");

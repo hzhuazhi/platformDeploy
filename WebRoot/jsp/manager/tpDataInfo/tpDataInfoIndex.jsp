@@ -45,8 +45,8 @@
                     </select>
                 </div>
                 <div class = "condQueryLabelDiv">同步状态：</div>
-                <div class="formCtrlDiv" id = "runStatusDiv">
-                <select id="runStatus" name="runStatus" class='text-input medium-input'>
+                <div class="formCtrlDiv" id = "sendStatusDiv">
+                <select id="sendStatus" name="sendStatus" class='text-input medium-input'>
                 <option value="" selected="selected">=请选择=</option>
                 <option value="0">初始化</option>
                 <option value="1">锁定</option>

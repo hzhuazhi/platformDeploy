@@ -36,6 +36,7 @@
         <result property="deductRatio" column="deduct_ratio" />
         <result property="workType" column="work_type" />
         <result property="runStatus" column="run_status" />
+        <result property="sendStatus" column="send_status" />
         <result property="createTime" column="create_time" />
         <result property="updateTime" column="update_time" />
         <result property="dataCoreId" column="data_core_id" />
@@ -61,7 +62,7 @@
         a.send_ok,a.create_time as trade_time,a.`sign`,a.sub_time,a.product_name,a.product_code,
         a.curday,a.curhour,a.curminute,a.run_num,a.create_time,a.update_time,a.yn,
         b.id as data_core_id,ifnull(b.trade_status, 0) as trade_status,
-        b.deduct_ratio,b.work_type,ifnull(b.run_status, 0) as run_status,
+        b.deduct_ratio,b.work_type,ifnull(b.send_status, 0) as send_status,
         b.pay_amount,b.pay_actual_money,b.replenish_type,
         c.account_num,c.channel_name
     </sql>
@@ -99,8 +100,8 @@
             <if test="curdayStart != 0 and curdayStart >0 and curdayEnd != 0 and curdayEnd >0 " >
                 and a.curday >= #{curdayStart} and a.curday &lt;= #{curdayEnd}
             </if>
-            <if test="runStatus != 0 and runStatus >0 " >
-                and b.run_status = #{runStatus}
+            <if test="sendStatus != 0 and sendStatus >0 " >
+                and b.send_status = #{sendStatus}
             </if>
             <if test="tradeStatus != 0 and tradeStatus >0 " >
                 and b.trade_status = #{tradeStatus}
@@ -202,7 +203,7 @@
 
     <!-- 主要作用1.逻辑删除，2更新状态 -->
     <update id="manyOperation" parameterType="Object">
-        UPDATE tb_hz_data_core a set a.run_num = 0, a.run_status =0,
+        UPDATE tb_hz_data_core a set a.send_num = 0, a.send_status =0,
         a.update_time = now()
         where 1=1
         and a.id =#{id}
