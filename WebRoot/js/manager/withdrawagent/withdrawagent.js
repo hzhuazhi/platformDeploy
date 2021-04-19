@@ -110,18 +110,14 @@ function countServiceCharge(){
     var balance = $("#balance").val();
     var serviceCharge;
     if (money != null && money.length > 0){
-        if (money < 20000){
+        if (money <= 20000){
             serviceCharge = 2;
         }
         if (money > 20000){
             serviceCharge = 5;
         }
-        // $("#serviceCharge").attr("value", serviceCharge);
-        // $("#serviceCharge").val(serviceCharge);
 
-        var shtml="";
-        shtml += "<input type='text' class='formInput' id='serviceCharge' name='serviceCharge' maxlength='240' value='"+serviceCharge+"'/>";
-        $("#serviceChargeDiv").html(shtml);
+        $("#serviceCharge").attr("value", serviceCharge);
         var totalMoney = money*1+serviceCharge*1;
         if (balance < totalMoney){
             alert("提现余额不足!");

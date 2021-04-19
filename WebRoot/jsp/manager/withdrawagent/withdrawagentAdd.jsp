@@ -57,11 +57,8 @@
                     <div class="formTextDiv">
                         <span class="require" >手续费</span>
                     </div>
-                    <%--<div class="serviceChargeDiv">--%>
-                        <%--&lt;%&ndash;<input type="text" class="formInput" id="serviceCharge" name="serviceCharge" disabled maxlength="240"/>&ndash;%&gt;--%>
-                    <%--</div>--%>
-                    <div class="formTextDiv" id="serviceChargeDiv">
-                        <%--<input type="text" class="formInput" id="serviceCharge" name="serviceCharge" disabled maxlength="240"/>--%>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="serviceCharge" name="serviceCharge" maxlength="240" />
                     </div>
                 </li>
 

@@ -112,7 +112,7 @@ function countServiceCharge(){
     var balance = $("#balance").val();
     var serviceCharge;
     if (money != null && money.length > 0){
-        if (money < 20000){
+        if (money <= 20000){
             serviceCharge = 2;
         }
         if (money > 20000){
