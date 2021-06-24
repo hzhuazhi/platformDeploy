@@ -8,6 +8,9 @@
         <result property="gewayId" column="geway_id" />
         <result property="linkName" column="link_name" />
         <result property="serviceCharge" column="service_charge" />
+        <result property="gewayServiceCharge" column="geway_service_charge" />
+        <result property="serviceChargeType" column="service_charge_type" />
+        <result property="extraServiceCharge" column="extra_service_charge" />
         <result property="deductRatio" column="deduct_ratio" />
         <result property="profitType" column="profit_type" />
         <result property="gewayCodeType" column="geway_code_type" />
@@ -23,7 +26,8 @@
     </resultMap>
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
-        a.id,a.channel_id,a.geway_id,a.link_name,a.service_charge,a.deduct_ratio,a.profit_type,a.geway_code_type,a.day_limit,a.day_money,a.ratio,
+        a.id,a.channel_id,a.geway_id,a.link_name,a.service_charge,a.geway_service_charge,a.service_charge_type,a.extra_service_charge,
+        a.deduct_ratio,a.profit_type,a.geway_code_type,a.day_limit,a.day_money,a.ratio,
         a.remark,
         a.create_time,a.update_time,a.yn,
         b.channel_name,c.geway_name
@@ -41,6 +45,9 @@
             </if>
             <if test="gewayId != 0 and gewayId >0 " >
                 and a.geway_id = #{gewayId}
+            </if>
+            <if test="serviceChargeType != 0 and serviceChargeType >0 " >
+                and a.service_charge_type = #{serviceChargeType}
             </if>
             <if test="profitType != 0 and profitType >0 " >
                 and a.profit_type = #{profitType}
@@ -136,6 +143,15 @@
             <if test="serviceCharge != null and serviceCharge != '' " >
                 service_charge,
             </if>
+            <if test="gewayServiceCharge != null and gewayServiceCharge != '' " >
+                geway_service_charge,
+            </if>
+            <if test="serviceChargeType != 0 and serviceChargeType >0 " >
+                service_charge_type,
+            </if>
+            <if test="extraServiceCharge != null and extraServiceCharge != '' " >
+                extra_service_charge,
+            </if>
             deduct_ratio,
             <if test="profitType != 0 and profitType >0 " >
                 profit_type,
@@ -170,6 +186,15 @@
             </if>
             <if test="serviceCharge != null and serviceCharge != '' " >
                 <![CDATA[  #{serviceCharge}, ]]>
+            </if>
+            <if test="gewayServiceCharge != null and gewayServiceCharge != '' " >
+                <![CDATA[  #{gewayServiceCharge}, ]]>
+            </if>
+            <if test="serviceChargeType != 0 and serviceChargeType >0 " >
+                <![CDATA[  #{serviceChargeType}, ]]>
+            </if>
+            <if test="extraServiceCharge != null and extraServiceCharge != '' " >
+                <![CDATA[  #{extraServiceCharge}, ]]>
             </if>
             <![CDATA[  #{deductRatio}, ]]>
             <if test="profitType != 0 and profitType >0 " >
@@ -209,6 +234,11 @@
                 a.link_name = #{linkName},
             </if>
             a.service_charge = #{serviceCharge},
+            a.geway_service_charge = #{gewayServiceCharge},
+            <if test="serviceChargeType != 0 and serviceChargeType >0 " >
+                a.service_charge_type = #{serviceChargeType},
+            </if>
+            a.extra_service_charge = #{extraServiceCharge},
             a.deduct_ratio = #{deductRatio},
             a.profit_type = #{profitType},
             <if test="gewayCodeType != 0 and gewayCodeType >0 " >

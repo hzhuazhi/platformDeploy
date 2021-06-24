@@ -21,6 +21,15 @@
                 <div class = "condQueryLabelDiv">通道：</div>
                 <div class="formCtrlDiv" id = "gewayDiv">
                 </div>
+
+                <div class = "condQueryLabelDiv">手续费类型：</div>
+                <div class="formCtrlDiv" id = "moduleTypeDiv">
+                    <select id="serviceChargeType" name="serviceChargeType" class='text-input medium-input'>
+                        <option value="0" selected="selected">=请选择=</option>
+                        <option value="1">固定手续费</option>
+                        <option value="2">额外手续费</option>
+                    </select>
+                </div>
                 <div class="searchdiv">
                     <input type = "button" id = "btnQuery" class = "buttonClass imginput" value = "搜索" />
                 </div>
@@ -40,15 +49,17 @@
             <th width="200">关联名称</th>
             <th width="150">渠道名称</th>
             <th width="150">通道名称</th>
-            <th width="100">手续费</th>
-            <th width="150">扣量比例</th>
-            <th width="150">利益类型</th>
-            <th width="150">代码类型</th>
-            <th width="100">上限</th>
-            <th width="150">限量金额</th>
-            <th width="150">筛选比例</th>
+            <th width="150">手续费类型</th>
+            <th width="150">固定手续费</th>
+            <th width="150">额外手续费</th>
+            <th width="120">扣量比例</th>
+            <th width="120">利益类型</th>
+            <th width="120">代码类型</th>
+            <th width="80">上限</th>
+            <th width="120">限量金额</th>
+            <th width="120">筛选比例</th>
             <th width="150">备注</th>
-            <th width="250">操作</th>
+            <th width="150">操作</th>
         </tr>
         </thead>
         <tbody>

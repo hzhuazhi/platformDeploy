@@ -123,10 +123,15 @@ public class AgentDataController extends BaseController {
             String filename = "代理收益信息";
 //            titles = new String[]{"代理名称", "渠道名称", "平台订单", "订单金额", "实际支付金额", "手续费", "收益分成", "收益", "创建时间"};
 //            titleCode = new String[]{"agentName", "channelName", "myTradeNo", "totalAmount", "payAmount", "serviceCharge", "profitRatio", "profit", "createTime"};
-            titles = new String[]{"代理名称", "渠道名称", "平台订单", "订单金额", "实际支付金额", "收益分成", "收益", "创建时间"};
-            titleCode = new String[]{"agentName", "channelName", "myTradeNo", "totalAmount", "payAmount", "profitRatio", "profit", "createTime"};
+            titles = new String[]{"代理名称", "渠道名称", "平台订单", "订单金额", "实际支付金额", "分成类型", "收益分成", "收益", "创建时间"};
+            titleCode = new String[]{"agentName", "channelName", "myTradeNo", "totalAmount", "payAmount", "profitTypeStr", "profitRatio", "profit", "createTime"};
             List<Map<String,Object>> paramList = new ArrayList<>();
             for(AgentDataModel paramO : dataList){
+                if (paramO.getProfitType() == 1){
+                    paramO.setProfitTypeStr("固定分成");
+                }else if (paramO.getProfitType() == 2){
+                    paramO.setProfitTypeStr("额外分成");
+                }
                 Map<String,Object> map = BeanUtils.transBeanToMap(paramO);
                 paramList.add(map);
             }

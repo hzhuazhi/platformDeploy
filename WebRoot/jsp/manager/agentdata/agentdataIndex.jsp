@@ -25,6 +25,15 @@
                         <input type ="text" class ="inputCommonSty" id="channelName" name ="channelName">
                     </div>
 
+                    <div class = "condQueryLabelDiv">分成类型：</div>
+                    <div class="formCtrlDiv" id = "moduleTypeDiv">
+                        <select id="profitType" name="profitType" class='text-input medium-input'>
+                            <option value="0" selected="selected">=请选择=</option>
+                            <option value="1">固定分成</option>
+                            <option value="2">额外分成</option>
+                        </select>
+                    </div>
+
                 <div class = "condQueryLabelDiv">开始日期：</div>
                 <div class="formCtrlDiv">
                     <input type="text" class ="inputCommonSty" name="curdayStart" id="curdayStart" size="10" readonly="readonly" onClick="WdatePicker({dateFmt:'yyyyMMdd'})" value="${model.curdayStart}"/>
@@ -61,6 +70,7 @@
             <th width="100">订单金额</th>
             <th width="130">实际支付金额</th>
             <%--<th width="100">手续费</th>--%>
+            <th width="100">分成类型</th>
             <th width="100">收益分成</th>
             <th width="100">收益</th>
             <th width="150">创建时间</th>

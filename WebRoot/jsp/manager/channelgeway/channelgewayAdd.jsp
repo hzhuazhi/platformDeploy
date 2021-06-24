@@ -62,15 +62,39 @@
                     </div>
                 </li>
 
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>手续费类型：</span>
+                    </div>
+                    <div class="formCtrlDiv" id = "serviceChargeTypeDiv">
+                        <select id="serviceChargeType" name="serviceChargeType" class='text-input medium-input'>
+                            <option value="0" selected="selected">===请选择===</option>
+                            <option value="1">固定手续费</option>
+                            <option value="2">额外手续费</option>
+                        </select>
+                    </div>
+                </li>
 
                 <li style="border-top: none;">
                     <div class="formTextDiv">
-                        <span class="require" >手续费：</span>
+                        <span class="require" >固定手续费：</span>
                     </div>
                     <div class="formCtrlDiv">
                         <input type="text" class="formInput" id="serviceCharge" name="serviceCharge"	maxlength="240" />
                     </div>
                 </li>
+
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" >额外手续费：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="extraServiceCharge" name="extraServiceCharge"	maxlength="240" />
+                    </div>
+                </li>
+
+
                 <li style="border-top: none;">
                     <div class="formTextDiv">
                         <span class="require" >扣量比例：</span>

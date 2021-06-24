@@ -98,6 +98,11 @@ public class AgentDataModel extends BasePage {
      */
     private String profit;
 
+    /**
+     * 收益类型：1订单手续费的收益，2固定每单收取的收益：比如每单收取1元。。。（固定分成，额外分成）
+     */
+    private int profitType;
+
 
 
     /**
@@ -156,6 +161,8 @@ public class AgentDataModel extends BasePage {
     private String totalProfit;
 
     private String totalMoney;
+
+    private String profitTypeStr;
 
 
     public long getId() {
@@ -404,5 +411,21 @@ public class AgentDataModel extends BasePage {
 
     public void setTotalMoney(String totalMoney) {
         this.totalMoney = totalMoney;
+    }
+
+    public int getProfitType() {
+        return profitType;
+    }
+
+    public void setProfitType(int profitType) {
+        this.profitType = profitType;
+    }
+
+    public String getProfitTypeStr() {
+        return profitTypeStr;
+    }
+
+    public void setProfitTypeStr(String profitTypeStr) {
+        this.profitTypeStr = profitTypeStr;
     }
 }

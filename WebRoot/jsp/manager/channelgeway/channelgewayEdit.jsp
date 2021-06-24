@@ -78,14 +78,46 @@
                         </select>
                     </div>
                 </li>
+
+
                 <li style="border-top: none;">
                     <div class="formTextDiv">
-                        <span class="require" >手续费：</span>
+                        <span class="require" ><font color="red">*</font>手续费类型：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="serviceChargeType" name="serviceChargeType">
+                            <option value="">===请选择===</option>
+                            <c:if test="${dl.serviceChargeType == 1}">
+                                <option value="1" selected="selected">固定手续费</option>
+                                <option value="2">额外手续费</option>
+                            </c:if>
+                            <c:if test="${dl.serviceChargeType == 2}">
+                                <option value="1">固定手续费</option>
+                                <option value="2" selected="selected">额外手续费</option>
+                            </c:if>
+                        </select>
+                    </div>
+                </li>
+
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" >固定手续费：</span>
                     </div>
                     <div class="formCtrlDiv">
                         <input type="text" class="formInput" id="serviceCharge" name="serviceCharge" value="${dl.serviceCharge}" maxlength="240" />
                     </div>
                 </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" >额外手续费：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="extraServiceCharge" name="extraServiceCharge" value="${dl.extraServiceCharge}" maxlength="240" />
+                    </div>
+                </li>
+
                 <li style="border-top: none;">
                     <div class="formTextDiv">
                         <span class="require" >扣量比例：</span>

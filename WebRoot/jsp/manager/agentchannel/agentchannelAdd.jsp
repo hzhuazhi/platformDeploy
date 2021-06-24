@@ -65,10 +65,32 @@
 
                 <li style="border-top: none;">
                     <div class="formTextDiv">
-                        <span class="require" ><font color="red">*</font>收益分成：</span>
+                        <span class="require" ><font color="red">*</font>分成类型：</span>
+                    </div>
+                    <div class="formCtrlDiv" id = "serviceChargeTypeDiv">
+                        <select id="serviceChargeType" name="serviceChargeType" class='text-input medium-input'>
+                            <option value="0" selected="selected">===请选择===</option>
+                            <option value="1">固定分成</option>
+                            <option value="2">额外分成</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>固定分成：</span>
                     </div>
                     <div class="formCtrlDiv">
                         <input type="text" class="formInput" id="serviceCharge" name="serviceCharge"	maxlength="240" />
+                    </div>
+                </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" >额外分成：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="extraServiceCharge" name="extraServiceCharge"	maxlength="240" />
                     </div>
                 </li>
 

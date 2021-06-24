@@ -27,6 +27,15 @@
                     <input type ="text" class ="inputCommonSty" id="channelGewayLinkName" name ="channelGewayLinkName">
                 </div>
 
+                <div class = "condQueryLabelDiv">分成类型：</div>
+                <div class="formCtrlDiv" id = "moduleTypeDiv">
+                    <select id="serviceChargeType" name="serviceChargeType" class='text-input medium-input'>
+                        <option value="0" selected="selected">=请选择=</option>
+                        <option value="1">固定分成</option>
+                        <option value="2">额外分成</option>
+                    </select>
+                </div>
+
                 <div class="searchdiv">
                     <input type = "button" id = "btnQuery" class = "buttonClass imginput" value = "搜索" />
                 </div>
@@ -47,7 +56,9 @@
             <th width="150">代理名称</th>
             <th width="150">渠道名称</th>
             <th width="200">渠道与通道关联名称</th>
-            <th width="150">收益分成</th>
+            <th width="150">分成类型</th>
+            <th width="150">固定分成</th>
+            <th width="150">额外分成</th>
             <th width="150">备注</th>
             <th width="250">操作</th>
         </tr>

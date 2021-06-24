@@ -8,6 +8,8 @@
         <result property="channelGewayId" column="channel_geway_id" />
         <result property="linkName" column="link_name" />
         <result property="serviceCharge" column="service_charge" />
+        <result property="serviceChargeType" column="service_charge_type" />
+        <result property="extraServiceCharge" column="extra_service_charge" />
         <result property="deductRatio" column="deduct_ratio" />
         <result property="remark" column="remark" />
         <result property="createTime" column="create_time" />
@@ -20,7 +22,8 @@
     </resultMap>
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
-        a.id,a.agent_id,a.channel_geway_id,a.link_name,a.service_charge,a.deduct_ratio,a.remark,
+        a.id,a.agent_id,a.channel_geway_id,a.link_name,a.service_charge,a.service_charge_type,a.extra_service_charge,
+        a.deduct_ratio,a.remark,
         a.create_time,a.yn,
         b.channel_id,b.link_name as channel_geway_link_name,
         c.agent_name,
@@ -42,6 +45,9 @@
             </if>
             <if test="channelId != 0 and channelId >0 " >
                 and b.channel_id = #{channelId}
+            </if>
+            <if test="serviceChargeType != 0 and serviceChargeType >0 " >
+                and a.service_charge_type = #{serviceChargeType}
             </if>
             <if test="channelGewayLinkName != null and channelGewayLinkName != '' " >
                 and b.link_name = #{channelGewayLinkName}
@@ -144,6 +150,12 @@
             <if test="serviceCharge != null and serviceCharge != '' " >
                 service_charge,
             </if>
+            <if test="serviceChargeType != 0 and serviceChargeType >0 " >
+                service_charge_type,
+            </if>
+            <if test="extraServiceCharge != null and extraServiceCharge != '' " >
+                extra_service_charge,
+            </if>
             deduct_ratio,
             <if test="remark != null and remark != '' " >
                 remark,
@@ -163,6 +175,12 @@
             </if>
             <if test="serviceCharge != null and serviceCharge != '' " >
                 <![CDATA[  #{serviceCharge}, ]]>
+            </if>
+            <if test="serviceChargeType != 0 and serviceChargeType >0 " >
+                <![CDATA[  #{serviceChargeType}, ]]>
+            </if>
+            <if test="extraServiceCharge != null and extraServiceCharge != '' " >
+                <![CDATA[  #{extraServiceCharge}, ]]>
             </if>
             <![CDATA[  #{deductRatio}, ]]>
             <if test="remark != null and remark != '' " >
@@ -187,6 +205,10 @@
                 a.link_name = #{linkName},
             </if>
             a.service_charge = #{serviceCharge},
+            <if test="serviceChargeType != 0 and serviceChargeType >0 " >
+                a.service_charge_type = #{serviceChargeType},
+            </if>
+            a.extra_service_charge = #{extraServiceCharge},
             a.deduct_ratio = #{deductRatio},
             a.remark = #{remark},
             a.update_time = NOW(),

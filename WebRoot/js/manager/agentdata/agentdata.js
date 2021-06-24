@@ -21,6 +21,17 @@ var account = {
         {"data":"totalAmount",},
         {"data":"payAmount",},
         // {"data":"serviceCharge",},
+        {"data":"profitType",
+            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                var html="";
+                if(oData.profitType==1){
+                    html='<span>固定分成</span>';
+                }else if(oData.profitType==2){
+                    html='<span><font color="red">额外分成</font></span>';
+                }
+                $(nTd).html(html);
+            }
+        },
         {"data":"profitRatio",},
         {"data":"profit",},
         {"data":"createTime",}
@@ -28,6 +39,7 @@ var account = {
     // 查询条件，aoData是必要的。其他的就是对应的实体类字段名，因为条件查询是把数据封装在实体类中的。
     condJsonData : {
         agentId:0,
+        profitType:0,
         curdayStart:0,
         curdayEnd:0,
     },
@@ -44,6 +56,7 @@ var account = {
         $('#btnQuery').click(function() {
             account.condJsonData['agentId'] = $("#agentId").val();
             account.condJsonData['channelName'] = $("#channelName").val();
+            account.condJsonData['profitType'] = $("#profitType").val();
             account.condJsonData['curdayStart'] = $("#curdayStart").val();
             account.condJsonData['curdayEnd'] = $("#curdayEnd").val();
             account.queryTotal();
@@ -56,6 +69,8 @@ var account = {
             $("#agentId").val("0");
             account.condJsonData['channelName'] = "";
             $("#channelName").val("");
+            account.condJsonData['profitType'] = "0";
+            $("#profitType").val("0");
             account.condJsonData['curdayStart'] = "";
             $("#curdayStart").val("");
             account.condJsonData['curdayEnd'] = "";
@@ -115,11 +130,13 @@ var account = {
         var url = basePath + "agentdata/totalData.do";
         var agentId = $("#agentId").val();
         var channelName = $("#channelName").val();
+        var profitType = $("#profitType").val();
         var curdayStart = $("#curdayStart").val();
         var curdayEnd = $("#curdayEnd").val();
         var data = {
             "agentId":agentId,
             "channelName":channelName,
+            "profitType":profitType,
             "curdayStart":curdayStart,
             "curdayEnd":curdayEnd
         };

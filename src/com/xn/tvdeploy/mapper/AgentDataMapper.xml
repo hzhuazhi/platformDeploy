@@ -20,6 +20,7 @@
         <result property="moneyFitType" column="money_fit_type" />
         <result property="profitRatio" column="profit_ratio" />
         <result property="profit" column="profit" />
+        <result property="profitType" column="profit_type" />
         <result property="createTime" column="create_time" />
         <result property="updateTime" column="update_time" />
         <result property="yn" column="yn" />
@@ -33,7 +34,7 @@
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
         a.id,a.my_trade_no,a.trade_no,a.out_trade_no,a.total_amount,a.service_charge,a.actual_money,a.pay_amount,a.pay_actual_money,
-        a.channel_id,a.geway_id,a.agent_id,a.channel_geway_id,a.replenish_type,a.money_fit_type,a.profit_ratio,a.profit,
+        a.channel_id,a.geway_id,a.agent_id,a.channel_geway_id,a.replenish_type,a.money_fit_type,a.profit_ratio,a.profit,a.profit_type,
         a.curday,a.curhour,a.curminute,a.run_num,a.create_time,a.update_time,a.yn,
         b.agent_name,
         c.channel_name
@@ -57,6 +58,9 @@
             </if>
             <if test="outTradeNo != null and outTradeNo != '' " >
                 and a.out_trade_no = #{outTradeNo}
+            </if>
+            <if test="profitType != 0 and profitType >0 " >
+                and a.profit_type = #{profitType}
             </if>
             <if test="curday != 0 and curday >0 " >
                 and a.curday = #{curday}

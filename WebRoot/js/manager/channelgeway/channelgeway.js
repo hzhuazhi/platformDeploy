@@ -17,7 +17,19 @@ var account = {
         {"data":"linkName",},
         {"data":"channelName",},
         {"data":"gewayName",},
+        {"data":"serviceChargeType",
+            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                var html="";
+                if(oData.serviceChargeType==1){
+                    html='<span>固定手续费</span>';
+                }else if(oData.serviceChargeType==2){
+                    html='<span><font color="red">额外手续费</font></span>';
+                }
+                $(nTd).html(html);
+            }
+        },
         {"data":"serviceCharge",},
+        {"data":"extraServiceCharge",},
         {"data":"deductRatio",},
         {"data":"profitType",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
@@ -68,7 +80,8 @@ var account = {
     condJsonData : {
         linkName:null,
         channelId:0,
-        gewayId:0
+        gewayId:0,
+        serviceChargeType:0
 
     },
     //页面加载
@@ -90,6 +103,7 @@ var account = {
             account.condJsonData['linkName'] = $("#linkName").val();
             account.condJsonData['channelId'] = $("#channelId").val();
             account.condJsonData['gewayId'] = $("#gewayId").val();
+            account.condJsonData['serviceChargeType'] = $("#serviceChargeType").val();
             common.showDatas(account.condJsonData,account.list);
         });
 
@@ -101,6 +115,9 @@ var account = {
             $("#channelId").val("0");
             account.condJsonData['gewayId'] = "0";
             $("#gewayId").val("0");
+            account.condJsonData['serviceChargeType'] = "0";
+            $("#serviceChargeType").val("0");
+
             common.showDatas(account.condJsonData,account.list);
         });
 

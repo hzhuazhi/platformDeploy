@@ -82,10 +82,38 @@
 
                 <li style="border-top: none;">
                     <div class="formTextDiv">
-                        <span class="require" ><font color="red">*</font>收益分成：</span>
+                        <span class="require" ><font color="red">*</font>分成类型：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="serviceChargeType" name="serviceChargeType">
+                            <option value="">===请选择===</option>
+                            <c:if test="${dl.serviceChargeType == 1}">
+                                <option value="1" selected="selected">固定分成</option>
+                                <option value="2">额外分成</option>
+                            </c:if>
+                            <c:if test="${dl.serviceChargeType == 2}">
+                                <option value="1">固定分成</option>
+                                <option value="2" selected="selected">额外分成</option>
+                            </c:if>
+                        </select>
+                    </div>
+                </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>固定分成：</span>
                     </div>
                     <div class="formCtrlDiv">
                         <input type="text" class="formInput" id="serviceCharge" name="serviceCharge" value="${dl.serviceCharge}"	maxlength="240" />
+                    </div>
+                </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" >额外分成：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="extraServiceCharge" name="extraServiceCharge" value="${dl.extraServiceCharge}" maxlength="240" />
                     </div>
                 </li>
 

@@ -17,7 +17,19 @@ var account = {
         {"data":"agentName",},
         {"data":"channelName",},
         {"data":"channelGewayLinkName",},
+        {"data":"serviceChargeType",
+            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                var html="";
+                if(oData.serviceChargeType==1){
+                    html='<span>固定分成</span>';
+                }else if(oData.serviceChargeType==2){
+                    html='<span><font color="red">额外分成</font></span>';
+                }
+                $(nTd).html(html);
+            }
+        },
         {"data":"serviceCharge",},
+        {"data":"extraServiceCharge",},
         {"data":"remark",}
     ],
     // 查询条件，aoData是必要的。其他的就是对应的实体类字段名，因为条件查询是把数据封装在实体类中的。

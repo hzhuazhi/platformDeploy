@@ -36,6 +36,16 @@ public class AgentChannelModel extends BasePage {
     private String serviceCharge;
 
     /**
+     * 手续费类型：1固定值的手续费，2除了固定的手续费每单额外要收取手续费（额外手续费）
+     */
+    private int serviceChargeType;
+
+    /**
+     * 额外手续费值：每单还要收取额外的手续费；当字段service_charge_type等于2时，则要用到此字段
+     */
+    private String extraServiceCharge;
+
+    /**
      * 扣量比例
      */
     private int deductRatio;
@@ -190,5 +200,21 @@ public class AgentChannelModel extends BasePage {
 
     public void setChannelId(long channelId) {
         this.channelId = channelId;
+    }
+
+    public int getServiceChargeType() {
+        return serviceChargeType;
+    }
+
+    public void setServiceChargeType(int serviceChargeType) {
+        this.serviceChargeType = serviceChargeType;
+    }
+
+    public String getExtraServiceCharge() {
+        return extraServiceCharge;
+    }
+
+    public void setExtraServiceCharge(String extraServiceCharge) {
+        this.extraServiceCharge = extraServiceCharge;
     }
 }
