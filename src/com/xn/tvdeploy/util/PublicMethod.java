@@ -241,16 +241,20 @@ public class PublicMethod{
      * @param id - 主键ID
      * @param orderMoney - 订单金额
      * @param serviceCharge - 手续费
+     * @param extraServiceCharge - 额外手续费
      * @return com.hz.platform.master.core.model.channel.ChannelModel
      * @author yoko
      * @date 2020/10/31 19:40
      */
-    public static AccountTpModel assembleChannelBalance(long id, String orderMoney, String serviceCharge){
+    public static AccountTpModel assembleChannelBalance(long id, String orderMoney, String serviceCharge, String extraServiceCharge){
         AccountTpModel resBean = new AccountTpModel();
         resBean.setId(id);
         // 计算要扣的金额
         String resMoney = StringUtil.getMultiply(orderMoney, serviceCharge);
         String money = StringUtil.getBigDecimalAdd(resMoney, orderMoney);
+        if (!StringUtils.isBlank(extraServiceCharge)){
+            money = StringUtil.getBigDecimalAdd(money, extraServiceCharge);
+        }
         resBean.setSubtractBalance("1");
         resBean.setOrderMoney(money);
         return resBean;

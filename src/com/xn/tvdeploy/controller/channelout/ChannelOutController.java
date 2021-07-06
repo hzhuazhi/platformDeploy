@@ -321,6 +321,12 @@ public class ChannelOutController extends BaseController {
             boolean sendFlag = false;// 请求结果：false表示请求失败，true表示请求成功
             // 计算手续费
             String serviceCharge = channelGewayModel.getServiceCharge();
+            String extraServiceCharge = "";// 额外手续费
+            if (channelGewayModel.getServiceChargeType() == 2){
+                if (!StringUtils.isBlank(channelGewayModel.getExtraServiceCharge())){
+                    extraServiceCharge = channelGewayModel.getExtraServiceCharge();
+                }
+            }
             String payCode = gewaytradetypeModel.getOutTradeType();
             // 我方订单号
             String myTradeNo = "SDDF" + DateUtil.getNowPlusTimeMill();
@@ -391,7 +397,7 @@ public class ChannelOutController extends BaseController {
                 boolean flagLock = redisIdService.lock(lockKey);
                 if (flagLock){
                     // 组装扣减渠道余额
-                    AccountTpModel updateBalance = PublicMethod.assembleChannelBalance(channelModel.getId(), bean.getTotalAmount(), serviceCharge);
+                    AccountTpModel updateBalance = PublicMethod.assembleChannelBalance(channelModel.getId(), bean.getTotalAmount(), serviceCharge, extraServiceCharge);
                     // 组装添加渠道扣减余额的流水
                     ChannelBalanceDeductModel channelBalanceDeductModel = PublicMethod.assembleChannelBalanceDeduct(0, channelModel.getId(), myTradeNo, 2, updateBalance.getOrderMoney(),
                             0, null, null, 2);
