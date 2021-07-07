@@ -12,6 +12,7 @@
         <result column="total_amount" property="totalAmount" jdbcType="VARCHAR" />
         <result column="service_charge" property="serviceCharge" jdbcType="VARCHAR" />
         <result column="actual_money" property="actualMoney" jdbcType="VARCHAR" />
+        <result column="service_charge_money" property="serviceChargeMoney" jdbcType="VARCHAR" />
         <result column="order_status" property="orderStatus" jdbcType="BIT" />
         <result column="out_trade_no" property="outTradeNo" jdbcType="VARCHAR" />
         <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
@@ -57,7 +58,7 @@
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
         a.id, a.my_trade_no, a.channel_id, a.geway_id, a.channel, a.trade_type, a.total_amount, a.service_charge,
-        a.actual_money, a.order_status, a.out_trade_no, a.bank_name, a.bank_card, a.account_name, a.picture_ads,
+        a.actual_money, a.service_charge_money, a.order_status, a.out_trade_no, a.bank_name, a.bank_card, a.account_name, a.picture_ads,
         a.fail_info, a.notify_url, a.my_notify_url, a.interface_ver, a.return_url, a.extra_return_param,
         a.client_ip, a.sign, a.sub_time, a.product_name, a.product_code, a.channel_geway_id, a.profit_type,
         a.send_ok, a.check_status, a.check_info, a.curday, a.curhour, a.curminute, a.run_num, a.run_status,
@@ -188,6 +189,9 @@
             a.send_status=#{sendStatus},
             a.update_time=NOW()
          where  id=#{id}
+        <if test="channelId != 0 and channelId >0 " >
+            and a.channel_id = #{channelId}
+        </if>
     </update>
 
 
@@ -223,6 +227,9 @@
             </if>
             <if test="actualMoney != null and actualMoney != '' " >
                 actual_money,
+            </if>
+            <if test="serviceChargeMoney != null and serviceChargeMoney != '' " >
+                service_charge_money,
             </if>
             <if test="orderStatus != null and orderStatus != '' " >
                 order_status,
@@ -347,6 +354,9 @@
             </if>
             <if test="actualMoney != null and actualMoney != '' " >
                 <![CDATA[  #{actualMoney}, ]]>
+            </if>
+            <if test="serviceChargeMoney != null and serviceChargeMoney != '' " >
+                <![CDATA[  #{serviceChargeMoney}, ]]>
             </if>
             <if test="orderStatus != null and orderStatus != '' " >
                 <![CDATA[  #{orderStatus}, ]]>

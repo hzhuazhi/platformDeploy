@@ -403,7 +403,8 @@ public class ChannelOutController extends BaseController {
                             0, null, null, 2);
                     // 组装渠道请求的代付订单信息
                     ChannelOutModel channelOutModel = PublicMethod.assembleChannelOutData(bean, myTradeNo, channelModel, channelModel.getId(), gewayModel.getId(),
-                            channelGewayModel.getId(), channelGewayModel.getProfitType(), nowTime, my_notify_url, serviceCharge, updateBalance.getOrderMoney(), sendFlag);
+                            channelGewayModel.getId(), channelGewayModel.getProfitType(), nowTime, my_notify_url, serviceCharge, updateBalance.getOrderMoney(),
+                            updateBalance.getServiceChargeMoney(), sendFlag);
 
                     // 更新渠道余额
                     accountTpService.updateBalance(updateBalance);
@@ -420,7 +421,7 @@ public class ChannelOutController extends BaseController {
             }else {
                 // 请求蛋糕平台失败：纪录请求的纪录，并且请求状态是失败状态
                 ChannelOutModel channelOutModel = PublicMethod.assembleChannelOutData(bean, myTradeNo, channelModel, channelModel.getId(), gewayModel.getId(),
-                        channelGewayModel.getId(), channelGewayModel.getProfitType(), nowTime, my_notify_url, serviceCharge, null, sendFlag);
+                        channelGewayModel.getId(), channelGewayModel.getProfitType(), nowTime, my_notify_url, serviceCharge, null,null, sendFlag);
                 channelOutService.add(channelOutModel);
             }
 
@@ -441,6 +442,10 @@ public class ChannelOutController extends BaseController {
     public void manyOperation(HttpServletRequest request, HttpServletResponse response, ChannelOutModel bean) throws Exception {
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
+            if (account.getRoleId() != ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE){
+                //不是管理员，只能查询自己的数据
+                bean.setChannelId(account.getId());
+            }
             bean.setSendNum(0);
             bean.setSendStatus(0);
             channelOutService.manyOperation(bean);

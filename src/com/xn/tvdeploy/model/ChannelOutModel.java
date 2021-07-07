@@ -69,6 +69,11 @@ public class ChannelOutModel extends BasePage {
     private String actualMoney;
 
     /**
+     * 手续费具体金额
+     */
+    private String serviceChargeMoney;
+
+    /**
      * 订单状态：1初始化，2超时，3质疑，4成功
      *
      * @mbggenerated
@@ -794,5 +799,13 @@ public class ChannelOutModel extends BasePage {
 
     public void setBankCity(String bankCity) {
         this.bankCity = bankCity;
+    }
+
+    public String getServiceChargeMoney() {
+        return serviceChargeMoney;
+    }
+
+    public void setServiceChargeMoney(String serviceChargeMoney) {
+        this.serviceChargeMoney = serviceChargeMoney;
     }
 }

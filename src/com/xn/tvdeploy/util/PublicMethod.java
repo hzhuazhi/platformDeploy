@@ -257,6 +257,12 @@ public class PublicMethod{
         }
         resBean.setSubtractBalance("1");
         resBean.setOrderMoney(money);
+        String serviceChargeMoney = "";
+        serviceChargeMoney = StringUtil.getMultiply(orderMoney, serviceCharge);
+        if (!StringUtils.isBlank(extraServiceCharge)){
+            serviceChargeMoney = StringUtil.getBigDecimalAdd(serviceChargeMoney, extraServiceCharge);
+        }
+        resBean.setServiceChargeMoney(serviceChargeMoney);
         return resBean;
     }
 
@@ -329,13 +335,15 @@ public class PublicMethod{
      * @param profitType - 收益类型：1普通收益类型，2多人分配收益类型
      * @param nowTime - 现在时间
      * @param serviceCharge - 手续费
+     * @param serviceChargeMoney - 手续费具体金额
      * @param sendFlag - false表示请求失败，true表示请求成功
      * @return ChannelDataModel
      * @author yoko
      * @date 2020/3/24 21:41
      */
     public static ChannelOutModel assembleChannelOutData(ChannelOutModel requestData, String myTradeNo, AccountTpModel channelModel, long channelId, long gewayId,
-                                                         long channelGewayId, int profitType, String nowTime, String my_notify_url, String serviceCharge, String actualMoney, boolean sendFlag) throws Exception{
+                                                         long channelGewayId, int profitType, String nowTime, String my_notify_url, String serviceCharge, String actualMoney,
+                                                         String serviceChargeMoney, boolean sendFlag) throws Exception{
         ChannelOutModel resBean = new ChannelOutModel();
         resBean.setMyTradeNo(myTradeNo);
         resBean.setChannelId(channelId);
@@ -349,6 +357,7 @@ public class PublicMethod{
         if (!StringUtils.isBlank(actualMoney)){
             resBean.setActualMoney(actualMoney);
         }
+        resBean.setServiceChargeMoney(serviceChargeMoney);
         resBean.setOutTradeNo(requestData.getOutTradeNo());
         resBean.setBankName(requestData.getBankName());
         resBean.setBankCard(requestData.getBankCard());

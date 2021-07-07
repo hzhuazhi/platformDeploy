@@ -99,6 +99,7 @@
             <th width="150">订单金额</th>
             <th width="150">手续费</th>
             <th width="150">实际金额</th>
+            <th width="150">手续费金额</th>
             <th width="150">请求状态</th>
             <th width="150">交易状态</th>
             <th width="250">交易时间</th>

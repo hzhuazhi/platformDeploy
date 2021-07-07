@@ -20,6 +20,7 @@ var account = {
         {"data":"totalAmount",},
         {"data":"serviceCharge",},
         {"data":"actualMoney",},
+        {"data":"serviceChargeMoney",},
         {"data":"sendOk",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html = '';
@@ -49,26 +50,37 @@ var account = {
         {"data":"createTime",},
         {"data":"sendStatus",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                var html = '';
-                if(oData.sendStatus==1){
-                    html+="<span >成功</span>";
+                var html="";
+                if(oData.sendStatus==0){
+                    html='<span>初始化</span>';
+                }else if(oData.sendStatus==1){
+                    html='<span>锁定</span>';
                 }else if(oData.sendStatus==2){
-                    html+="<span style='color: #bb0000'>失败</span>";
+                    html='<span><font color="red">失败</font></span>';
                 }else if(oData.sendStatus==3){
-                    html+="<span style='color: #bb0000'>失败</span>";
-                }else if(oData.sendStatus==4){
-                    html+="<span style='color: #4aff1a'>成功</span>";
+                    html='<span>成功</span>';
                 }
                 $(nTd).html(html);
             }
         },
         {"data":"id",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                var html = '';
-                if(oData.sendStatus==2){
-                    html = '<a class = "dataTableBtn dataTableDeleteBtn " onclick="repeat('+oData.id+')"> 重发 </a>';
-                }
+                // var html = '';
+                // if(oData.sendStatus==2){
+                //     html = '<a class = "dataTableBtn dataTableDeleteBtn " onclick="repeat('+oData.id+')"> 重发 </a>';
+                // }
+                //
+                // $(nTd).html(html);
 
+
+                var html = '';
+                var isEnableHtml = '';
+                if (oData.sendStatus == 2){
+                    isEnableHtml = '<a class = "dataTableBtn dataTableEnableBtn"  directkey="'+oData.id+'"  directValue="2" href = "javascript:void(0);">重发 </a>';
+                }else{
+                    isEnableHtml = '正常';
+                }
+                html = isEnableHtml;
                 $(nTd).html(html);
             }
         }
@@ -139,6 +151,16 @@ var account = {
                 yn:'1'
             }
             common.updateStatus(data);
+        });
+
+
+        //重发
+        $(".dataTableEnableBtn").live("click",function(){
+            var id = $(this).attr('directkey');
+            var data = {
+                id:id
+            }
+            common.cf(data);
         });
 
     },

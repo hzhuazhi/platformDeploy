@@ -165,6 +165,11 @@ public class AccountTpModel extends BasePage {
      */
     private String resetWithdrawPassWd;
 
+    /**
+     * 手续费具体金额
+     */
+    private String serviceChargeMoney;
+
 
 
     public long getId() {
@@ -430,5 +435,13 @@ public class AccountTpModel extends BasePage {
 
     public void setChannelType(int channelType) {
         this.channelType = channelType;
+    }
+
+    public String getServiceChargeMoney() {
+        return serviceChargeMoney;
+    }
+
+    public void setServiceChargeMoney(String serviceChargeMoney) {
+        this.serviceChargeMoney = serviceChargeMoney;
     }
 }
