@@ -103,6 +103,11 @@ public class TpDataInfoModel extends BasePage {
     private long gewayId;
 
     /**
+     * 通道名称
+     */
+    private String gewayName;
+
+    /**
      * 渠道号/商铺号
      */
     private String channel;
@@ -764,5 +769,13 @@ public class TpDataInfoModel extends BasePage {
 
     public void setSendStatusStr(String sendStatusStr) {
         this.sendStatusStr = sendStatusStr;
+    }
+
+    public String getGewayName() {
+        return gewayName;
+    }
+
+    public void setGewayName(String gewayName) {
+        this.gewayName = gewayName;
     }
 }

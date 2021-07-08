@@ -183,4 +183,23 @@ public class ChannelgewayController extends BaseController {
             sendFailureMessage(response, "登录超时,请重新登录在操作!");
         }
     }
+
+
+    /**
+     *
+     * 根据渠道获取渠道关联的通道
+     */
+    @RequestMapping("/queryChannelgewayByChannel")
+    public void totalData(HttpServletRequest request, HttpServletResponse response, ChannelgewayModel model) throws Exception {
+        List<ChannelgewayModel> dataList = new ArrayList<ChannelgewayModel>();
+        Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
+        if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
+            if (model.getChannelId() == 0){
+                HtmlUtil.writerJson(response, dataList);
+            }
+            model.setChannelId(model.getChannelId());
+            dataList = channelgewayService.getChannelgewayInfo(model);
+        }
+        HtmlUtil.writerJson(response, dataList);
+    }
 }

@@ -121,6 +121,11 @@ public class ChannelgewayModel extends BasePage {
      */
     private int endRatio;
 
+    /**
+     * 我方支付码：通道码
+     */
+    private String myTradeType;
+
     public long getId() {
         return id;
     }
@@ -295,5 +300,13 @@ public class ChannelgewayModel extends BasePage {
 
     public void setGewayServiceCharge(String gewayServiceCharge) {
         this.gewayServiceCharge = gewayServiceCharge;
+    }
+
+    public String getMyTradeType() {
+        return myTradeType;
+    }
+
+    public void setMyTradeType(String myTradeType) {
+        this.myTradeType = myTradeType;
     }
 }

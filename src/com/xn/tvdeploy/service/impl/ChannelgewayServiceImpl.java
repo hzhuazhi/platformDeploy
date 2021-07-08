@@ -3,10 +3,13 @@ package com.xn.tvdeploy.service.impl;
 import com.xn.common.dao.BaseDao;
 import com.xn.common.service.impl.BaseServiceImpl;
 import com.xn.tvdeploy.dao.ChannelgewayDao;
+import com.xn.tvdeploy.model.ChannelgewayModel;
 import com.xn.tvdeploy.service.ChannelgewayService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Description 渠道与通道的关联关系的Service层的实现层
@@ -25,5 +28,10 @@ public class ChannelgewayServiceImpl <T> extends BaseServiceImpl<T> implements C
     public BaseDao<T> getDao() {
         // TODO Auto-generated method stub
         return channelgewayDao;
+    }
+
+    @Override
+    public List<ChannelgewayModel> getChannelgewayInfo(ChannelgewayModel model) {
+        return channelgewayDao.getChannelgewayInfo(model);
     }
 }

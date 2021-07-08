@@ -25,6 +25,11 @@ public class ManualModel extends BasePage {
      */
     private long channelId;
 
+    /**
+     * 通道码
+     */
+    private String tradeType;
+
     public int getPayType() {
         return payType;
     }
@@ -47,5 +52,13 @@ public class ManualModel extends BasePage {
 
     public void setChannelId(long channelId) {
         this.channelId = channelId;
+    }
+
+    public String getTradeType() {
+        return tradeType;
+    }
+
+    public void setTradeType(String tradeType) {
+        this.tradeType = tradeType;
     }
 }

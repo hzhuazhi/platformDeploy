@@ -43,13 +43,24 @@
                             <span class="require" ><font color="red">*</font>渠道</span>
                         </div>
                         <div class="formCtrlDiv">
-                            <select id="channelId" name="channelId">
+                            <select id="channelId" name="channelId" onchange="queryChannelGewayByChannel()">
                                 <c:forEach items="${tpList}" var="dataList">
                                     <option value="${dataList.id}">${dataList.channelName}</option>
                                 </c:forEach>
                             </select>
                         </div>
                     </li>
+
+
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
+                            <span class="require" ><font color="red">*</font>通道</span>
+                        </div>
+                        <div class="formCtrlDiv" id = "gewayDiv">
+                        </div>
+                    </li>
+
+
 
                 <li style="border-top: none;">
                     <div class="formTextDiv">
@@ -124,6 +135,10 @@
             }
         });
     });
+
 </script>
+
+<script type='text/javascript' charset="utf-8" src='${ctxData}js/common/common2.js'></script>
+<script type='text/javascript' charset="utf-8" src='${ctxData}js/manager/manual/manual.js'></script>
 </body>
 </html>

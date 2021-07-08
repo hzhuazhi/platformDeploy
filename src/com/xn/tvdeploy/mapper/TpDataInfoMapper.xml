@@ -23,6 +23,7 @@
 
         <result property="channelId" column="channel_id" />
         <result property="gewayId" column="geway_id" />
+        <result property="gewayName" column="geway_name" />
         <result property="channel" column="channel" />
         <result property="tradeType" column="trade_type" />
 
@@ -57,7 +58,7 @@
     </resultMap>
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
-        a.id,a.my_trade_no,a.channel_id,a.geway_id,a.channel,a.trade_type,a.total_amount,a.service_charge,a.actual_money,
+        a.id,a.my_trade_no,a.channel_id,a.geway_id,a.geway_name,a.channel,a.trade_type,a.total_amount,a.service_charge,a.actual_money,
         a.out_trade_no,a.notify_url,a.my_notify_url,a.interface_ver,a.return_url,a.extra_return_param,a.client_ip,
         a.send_ok,a.create_time as trade_time,a.`sign`,a.sub_time,a.product_name,a.product_code,
         a.curday,a.curhour,a.curminute,a.run_num,a.create_time,a.update_time,a.yn,
@@ -69,7 +70,7 @@
 
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List_Channel_Data">
-        a.id,a.my_trade_no,a.channel_id,a.geway_id,a.channel,a.trade_type,a.total_amount,a.service_charge,a.actual_money,
+        a.id,a.my_trade_no,a.channel_id,a.geway_id,a.geway_name,a.channel,a.trade_type,a.total_amount,a.service_charge,a.actual_money,
         a.out_trade_no,a.notify_url,a.my_notify_url,a.interface_ver,a.return_url,a.extra_return_param,a.client_ip,a.`sign`,
         a.sub_time,a.product_name,a.product_code,a.send_ok,
         a.curday,a.curhour,a.curminute,a.run_num,a.create_time,a.update_time,a.yn
@@ -84,6 +85,12 @@
             </if>
             <if test="channelId != 0 and channelId >0 " >
                 and a.channel_id = #{channelId}
+            </if>
+            <if test="gewayId != 0 and gewayId >0 " >
+                and a.geway_id = #{gewayId}
+            </if>
+            <if test="gewayName != null and gewayName != '' " >
+                and a.geway_name = #{gewayName}
             </if>
             <if test="myTradeNo != null and myTradeNo != '' " >
                 and a.my_trade_no = #{myTradeNo}
@@ -255,6 +262,9 @@
             <if test="gewayId != 0 and gewayId >0 " >
                 geway_id,
             </if>
+            <if test="gewayName != null and gewayName != '' " >
+                geway_name,
+            </if>
             <if test="channel != null and channel != '' " >
                 channel,
             </if>
@@ -333,6 +343,9 @@
             </if>
             <if test="gewayId != 0 and gewayId >0 " >
                 <![CDATA[  #{gewayId}, ]]>
+            </if>
+            <if test="gewayName != null and gewayName != '' " >
+                <![CDATA[  #{gewayName}, ]]>
             </if>
             <if test="channel != null and channel != '' " >
                 <![CDATA[  #{channel}, ]]>

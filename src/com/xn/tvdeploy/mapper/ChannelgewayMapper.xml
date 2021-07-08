@@ -23,6 +23,7 @@
         <result property="yn" column="yn" />
         <result property="channelName" column="channel_name" />
         <result property="gewayName" column="geway_name" />
+        <result property="myTradeType" column="my_trade_type" />
     </resultMap>
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
@@ -281,5 +282,17 @@
         and a.id =#{id}
         and a.yn=0
     </update>
+
+
+    <!-- 获取渠道与通道关联关系的数据 -->
+    <select id="getChannelgewayInfo" resultMap="dataMap"  parameterType="Object">
+        select
+        <include refid="Base_Column_List" />,d.my_trade_type
+        from tb_hz_channel_geway a
+        left join tb_hz_channel b on a.channel_id = b.id left join tb_hz_geway c on a.geway_id = c.id
+        left join tb_hz_geway_trade_type d on c.id = d.geway_id
+        <include refid="Example_Where_Clause"/>
+        order by a.create_time desc
+    </select>
 
 </mapper>

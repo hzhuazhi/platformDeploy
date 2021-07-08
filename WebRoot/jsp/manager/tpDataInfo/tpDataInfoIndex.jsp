@@ -25,6 +25,11 @@
                     <input type ="text" class ="inputCommonSty" id="channelName" name ="channelName">
                 </div>
 
+                <div class = "condQueryLabelDiv">通道：</div>
+                <div class="formCtrlDiv">
+                    <input type ="text" class ="inputCommonSty" id="gewayName" name ="gewayName">
+                </div>
+
                 <div class = "condQueryLabelDiv">补单类型：</div>
                 <div class="formCtrlDiv" >
                     <select id="replenishType" name="replenishType" class='text-input medium-input'>
@@ -88,17 +93,18 @@
             <th width="150">平台订单</th>
             <th width="150">商家订单</th>
             <th width="120">渠道</th>
+            <th width="150">通道</th>
             <th width="100">订单金额</th>
             <th width="100">手续费</th>
             <th width="150">实际金额</th>
-            <th width="150">实际支付金额</th>
-            <th width="150">请求状态</th>
-            <th width="150">交易状态</th>
-            <th width="300">交易时间</th>
+            <th width="180">实际支付金额</th>
+            <th width="120">请求状态</th>
+            <th width="120">交易状态</th>
+            <th width="200">交易时间</th>
             <%--<th width="150">回传参数</th>--%>
-            <th width="150">补单类型</th>
-            <th width="150">同步状态</th>
-            <th width="150">操作</th>
+            <th width="120">补单类型</th>
+            <th width="120">同步状态</th>
+            <th width="120">操作</th>
         </tr>
         </thead>
         <tbody>
