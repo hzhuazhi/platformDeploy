@@ -21,6 +21,8 @@ var account = {
         {"data":"serviceCharge",},
         {"data":"actualMoney",},
         {"data":"serviceChargeMoney",},
+        {"data":"accountName",},
+        {"data":"bankCard",},
         {"data":"sendOk",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html = '';
@@ -48,6 +50,7 @@ var account = {
             }
         },
         {"data":"createTime",},
+        {"data":"notifyTime",},
         {"data":"sendStatus",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html="";
@@ -112,6 +115,10 @@ var account = {
             account.condJsonData['beginTime'] = $("#beginTime").val();
             account.condJsonData['endTime'] = $("#endTime").val();
             account.condJsonData['sendOk'] = $("#sendOk").val();
+
+            account.condJsonData['accountName'] = $("#accountName").val();
+            account.condJsonData['bankCard'] = $("#bankCard").val();
+
             account.condJsonData['orderStatus'] = $("#orderStatus").val();
             account.condJsonData['sendStatus'] = $("#sendStatus").val();
             account.queryTotal();
@@ -128,6 +135,8 @@ var account = {
             account.condJsonData['beginTime'] = "";
             account.condJsonData['endTime'] = "";
             account.condJsonData['sendOk'] = "";
+            account.condJsonData['accountName'] = "";
+            account.condJsonData['bankCard'] = "";
             account.condJsonData['orderStatus'] = "";
             account.condJsonData['sendStatus'] = "";
             $("#myTradeNo").val("");
@@ -137,6 +146,8 @@ var account = {
             $("#beginTime").val("0");
             $("#endTime").val("0");
             $("#sendOk").val("0");
+            $("#accountName").val("");
+            $("#bankCard").val("");
             $("#orderStatus").val("0");
             $("#sendStatus").val("0");
             this.queryTotal();
@@ -174,6 +185,10 @@ var account = {
         var beginTime= $("#beginTime").val();
         var endTime= $("#endTime").val();
         var sendOk= $("#sendOk").val();
+
+        var accountName= $("#accountName").val();
+        var bankCard= $("#bankCard").val();
+
         var orderStatus= $("#orderStatus").val();
         var sendStatus= $("#sendStatus").val();
 
@@ -186,6 +201,8 @@ var account = {
             "totalAmount":totalAmount,
             "beginTime":beginTime,
             "sendOk":sendOk,
+            "accountName":accountName,
+            "bankCard":bankCard,
             "orderStatus":orderStatus,
             "sendStatus":sendStatus,
             "endTime":endTime

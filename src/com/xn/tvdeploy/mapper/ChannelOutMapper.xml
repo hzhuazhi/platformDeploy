@@ -52,6 +52,8 @@
         <result column="success_service_charge_money" property="successServiceChargeMoney"  />
         <result column="success_rate" property="successRate"  />
         <result column="channel_name" property="channelName"  />
+        <result column="notify_time" property="notifyTime"  />
+
 
 
     </resultMap>
@@ -62,7 +64,8 @@
         a.fail_info, a.notify_url, a.my_notify_url, a.interface_ver, a.return_url, a.extra_return_param,
         a.client_ip, a.sign, a.sub_time, a.product_name, a.product_code, a.channel_geway_id, a.profit_type,
         a.send_ok, a.check_status, a.check_info, a.curday, a.curhour, a.curminute, a.run_num, a.run_status,
-        a.send_num, a.send_status, a.create_time, a.update_time, a.ts_time, a.yn,b.channel_name
+        a.send_num, a.send_status, a.create_time, a.update_time, a.ts_time, a.yn,b.channel_name,
+        c.create_time as notify_time
     </sql>
 
     <!-- 查询条件 -->
@@ -80,6 +83,12 @@
             </if>
             <if test="outTradeNo != null and outTradeNo != '' " >
                 and a.out_trade_no = #{outTradeNo}
+            </if>
+            <if test="accountName != null and accountName != '' " >
+                and a.account_name = #{accountName}
+            </if>
+            <if test="bankCard != null and bankCard != '' " >
+                and a.bank_card = #{bankCard}
             </if>
             <if test="channelName != null and channelName != '' " >
                 and b.channel_name = #{channelName}
@@ -122,6 +131,7 @@
         select count(1)
         from tb_hz_channel_out a left join tb_hz_channel  b
         on   a.channel_id =b.id
+        left join tb_hz_data_core_out c on a.my_trade_no = c.my_trade_no
         <include refid="Example_Where_Clause"/>
     </select>
 
@@ -131,6 +141,7 @@
         <include refid="Base_Column_List" />
         from tb_hz_channel_out a left join tb_hz_channel  b
         on   a.channel_id =b.id
+        left join tb_hz_data_core_out c on a.my_trade_no = c.my_trade_no
         <include refid="Example_Where_Clause"/>
         order by a.create_time desc
         limit #{startIndex},#{pageSize}

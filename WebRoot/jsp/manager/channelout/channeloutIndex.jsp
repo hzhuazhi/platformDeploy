@@ -41,6 +41,17 @@
             </div>
             <div class = "condQueryCtrl" style="width: 100%">
 
+                <div class = "condQueryLabelDiv">收款人姓名：</div>
+                <div class="formCtrlDiv" >
+                    <input type ="text" class ="inputCommonSty" id="accountName" name ="accountName">
+                </div>
+
+                <div class = "condQueryLabelDiv">收款人卡号：</div>
+                <div class="formCtrlDiv" >
+                    <input type ="text" class ="inputCommonSty" id="bankCard" name ="bankCard">
+                </div>
+
+
                 <div class = "condQueryLabelDiv">请求状态：</div>
                 <div class="formCtrlDiv" >
                     <select id="sendOk" name="sendOk">
@@ -94,18 +105,21 @@
         <thead>
         <tr>
             <th width="200">平台订单</th>
-            <th width="200">商家订单号</th>
+            <th width="180">商家订单号</th>
             <th width="150">渠道</th>
-            <th width="150">订单金额</th>
-            <th width="150">手续费</th>
-            <th width="150">实际金额</th>
+            <th width="120">订单金额</th>
+            <th width="110">手续费</th>
+            <th width="120">实际金额</th>
             <th width="150">手续费金额</th>
-            <th width="150">请求状态</th>
-            <th width="150">交易状态</th>
-            <th width="250">交易时间</th>
-            <%--<th width="250">补单类型</th>--%>
-            <th width="250">同步状态</th>
-            <th width="250">操作</th>
+            <th width="160">收款人姓名</th>
+            <th width="180">收款人卡号</th>
+            <th width="120">请求状态</th>
+            <th width="120">交易状态</th>
+            <th width="180">交易时间</th>
+            <th width="180">回执时间</th>
+        <%--<th width="250">补单类型</th>--%>
+            <th width="120">同步状态</th>
+            <th width="120">操作</th>
 
         </tr>
         </thead>

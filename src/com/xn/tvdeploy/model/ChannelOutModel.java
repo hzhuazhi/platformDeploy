@@ -376,6 +376,14 @@ public class ChannelOutModel extends BasePage {
     private String successRate;
 
 
+    /**
+     * 数据回执时间、数据同步时间
+     *
+     * @mbggenerated
+     */
+    private Date notifyTime;
+
+
     public Long getId() {
         return id;
     }
@@ -807,5 +815,13 @@ public class ChannelOutModel extends BasePage {
 
     public void setServiceChargeMoney(String serviceChargeMoney) {
         this.serviceChargeMoney = serviceChargeMoney;
+    }
+
+    public Date getNotifyTime() {
+        return notifyTime;
+    }
+
+    public void setNotifyTime(Date notifyTime) {
+        this.notifyTime = notifyTime;
     }
 }

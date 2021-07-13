@@ -318,6 +318,10 @@ public class ChannelOutController extends BaseController {
 
 
 
+
+
+
+
             boolean sendFlag = false;// 请求结果：false表示请求失败，true表示请求成功
             // 计算手续费
             String serviceCharge = channelGewayModel.getServiceCharge();
@@ -327,6 +331,25 @@ public class ChannelOutController extends BaseController {
                     extraServiceCharge = channelGewayModel.getExtraServiceCharge();
                 }
             }
+
+
+            // check 订单+手续费是否小于余额
+            String totalMoney = "";
+            String resMoney = StringUtil.getMultiply(bean.getTotalAmount(), serviceCharge);
+            String money = StringUtil.getBigDecimalAdd(resMoney, bean.getTotalAmount());
+            if (!StringUtils.isBlank(extraServiceCharge)){
+                totalMoney = StringUtil.getBigDecimalAdd(money, extraServiceCharge);
+            }
+
+            double d_balance = Double.parseDouble(channelModel.getBalance());
+            double d_orderMoney = Double.parseDouble(totalMoney);
+            if (d_balance < d_orderMoney){
+                sendFailureMessage(response,"您的余额不足小于订单金额!" + "余额：" + d_balance + " 订单加手续费需要：" + totalMoney);
+                return;
+            }
+
+
+
             String payCode = gewaytradetypeModel.getOutTradeType();
             // 我方订单号
             String myTradeNo = "SDDF" + DateUtil.getNowPlusTimeMill();
@@ -398,6 +421,7 @@ public class ChannelOutController extends BaseController {
                 if (flagLock){
                     // 组装扣减渠道余额
                     AccountTpModel updateBalance = PublicMethod.assembleChannelBalance(channelModel.getId(), bean.getTotalAmount(), serviceCharge, extraServiceCharge);
+
                     // 组装添加渠道扣减余额的流水
                     ChannelBalanceDeductModel channelBalanceDeductModel = PublicMethod.assembleChannelBalanceDeduct(0, channelModel.getId(), myTradeNo, 2, updateBalance.getOrderMoney(),
                             0, null, null, 2);
