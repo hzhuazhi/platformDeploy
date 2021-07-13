@@ -96,6 +96,16 @@ public class GewayModel extends BasePage {
     private int gewayType;
 
     /**
+     * 支持金额类型：1固定的，2单一范围，3多个范围
+     */
+    private int moneyType;
+
+    /**
+     * 支持金额:money_type=1则50多个则以英文逗号风格，money_type=2则100-1000；money_type=3则100-1000,200-2000多个以英文逗号分割
+     */
+    private String moneyRange;
+
+    /**
      * 所属角色ID
      */
     private long roleId;
@@ -334,5 +344,21 @@ public class GewayModel extends BasePage {
 
     public void setResetPassWd(String resetPassWd) {
         this.resetPassWd = resetPassWd;
+    }
+
+    public int getMoneyType() {
+        return moneyType;
+    }
+
+    public void setMoneyType(int moneyType) {
+        this.moneyType = moneyType;
+    }
+
+    public String getMoneyRange() {
+        return moneyRange;
+    }
+
+    public void setMoneyRange(String moneyRange) {
+        this.moneyRange = moneyRange;
     }
 }

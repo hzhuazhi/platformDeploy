@@ -186,6 +186,42 @@
                         </div>
                     </li>
 
+
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
+                            <span class="require" ><font color="red">*</font>金额类型</span>
+                        </div>
+                        <div class="formCtrlDiv">
+                            <select id="moneyType"  name ="moneyType">
+                                <c:if test="${dl.moneyType == 1}">
+                                    <option value="1" selected="selected">固定的</option>
+                                    <option value="2">单一范围</option>
+                                    <option value="3">多个范围</option>
+                                </c:if>
+                                <c:if test="${dl.moneyType == 2}">
+                                    <option value="1" >固定的</option>
+                                    <option value="2" selected="selected">单一范围</option>
+                                    <option value="3">多个范围</option>
+                                </c:if>
+                                <c:if test="${dl.moneyType == 3}">
+                                    <option value="1" >固定的</option>
+                                    <option value="2" >单一范围</option>
+                                    <option value="3" selected="selected">多个范围</option>
+                                </c:if>
+                            </select>
+                        </div>
+                    </li>
+
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
+                            <span class="require"><font color="red">*</font>支持金额</span>
+                        </div>
+                        <div class="formCtrlDiv">
+                            <input type="text" class="formInput" id="moneyRange" name="moneyRange" value="${dl.moneyRange}" maxlength="240" />
+                        </div>
+                    </li>
+
+
                     <li>
                         <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:100px;">
                             <input type="submit" class="buttonClass imginput" value="修 改" /> <span>

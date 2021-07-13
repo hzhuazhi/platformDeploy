@@ -43,4 +43,10 @@ public interface CacheKey {
      */
     String LOCK_AGENT_PROFIT = "-7";
 
+
+    /**
+     * 策略数据
+     */
+    String STRATEGY = "-18";
+
 }

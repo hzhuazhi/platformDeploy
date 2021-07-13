@@ -30,6 +30,22 @@ var account = {
                 $(nTd).html(html);
             }
         },
+        {"data":"moneyType",
+            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                var html="";
+                if(oData.moneyType==1){
+                    html='<span>固定的</span>';
+                }else if(oData.moneyType==2){
+                    html='<span>单一范围</span>';
+                }else if(oData.moneyType==3){
+                    html='<span>多个范围</span>';
+                }
+                $(nTd).html(html);
+            }
+        },
+        {"data":"moneyRange",},
+
+
         {"data":"id",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html = '';

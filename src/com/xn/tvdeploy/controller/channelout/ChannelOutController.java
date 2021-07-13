@@ -313,6 +313,14 @@ public class ChannelOutController extends BaseController {
             }
 
 
+            // check校验请求的订单金额是否属于通道金额范围内
+            boolean flag_money = PublicMethod.checkGewayMoneyRange(gewayModel.getMoneyType(), gewayModel.getMoneyRange(), bean.getTotalAmount());
+            if (!flag_money){
+                sendFailureMessage(response,"请按照规定输入金额!");
+                return;
+            }
+
+
 
 
 

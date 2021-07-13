@@ -468,6 +468,42 @@ public class PublicMethod{
     }
 
 
+    /**
+     * @Description: check校验请求的订单金额是否属于通道金额范围内
+     * @param moneyType - 支持金额类型：1固定的，2单一范围，3多个范围
+     * @param moneyRange - 支持金额:money_type=1则50多个则以英文逗号风格，money_type=2则100-1000；money_type=3则100-1000,200-2000多个以英文逗号分割
+     * @return void
+     * @Author: yoko
+     * @Date 2021/7/13 10:11
+     */
+    public static boolean checkGewayMoneyRange(int moneyType, String moneyRange, String total_amount){
+        if (!StringUtils.isBlank(moneyRange)){
+            if (moneyType == 1){
+                String [] strArr = moneyRange.split(",");
+                for (String str : strArr){
+                    String resStr = StringUtil.getBigDecimalSubtractStr(total_amount, str);
+                    if (resStr.equals("0")){
+                        return true;
+                    }
+                }
+            }else if (moneyType >= 2){
+                String [] strArr = moneyRange.split(",");
+                for (String str : strArr){
+                    String [] rule = str.split("-");
+                    double start = Double.parseDouble(rule[0]);
+                    double end = Double.parseDouble(rule[1]);
+                    double money = Double.parseDouble(total_amount);
+                    if (money >= start && money <= end){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
+
 
 
     public static void main(String[] args) throws Exception {

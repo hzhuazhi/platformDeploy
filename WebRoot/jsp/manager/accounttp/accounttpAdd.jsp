@@ -145,6 +145,15 @@
                     </div>
                 </li>
 
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require">白名单IP</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="whiteListIp" name="whiteListIp"	maxlength="240" />
+                    </div>
+                </li>
+
 
                 <li style="border-top: none;">
                     <div class="formTextDiv">

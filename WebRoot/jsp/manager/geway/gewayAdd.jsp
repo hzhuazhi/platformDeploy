@@ -150,6 +150,30 @@
                     </div>
                 </li>
 
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>金额类型</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="moneyType"  name ="moneyType">
+                            <option value="0" selected="selected">=请选择=</option>
+                            <option value="1">固定的</option>
+                            <option value="2">单一范围</option>
+                            <option value="3">多个范围</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require"><font color="red">*</font>支持金额</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <input type="text" class="formInput" id="moneyRange" name="moneyRange"	maxlength="240" />
+                    </div>
+                </li>
+
                 <li>
                     <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:200px;">
                         <input type="submit" class="formBtn" value="添  加" style="background-color: #54D8FE;"/> <span>

@@ -20,6 +20,8 @@
         <result property="identify" column="identify" />
         <result property="notifyUrl" column="notify_url" />
         <result property="gewayType" column="geway_type" />
+        <result property="moneyType" column="money_type" />
+        <result property="moneyRange" column="money_range" />
         <result property="roleId" column="role_id" />
         <result property="isEnable" column="is_enable" />
         <result property="createTime" column="create_time" />
@@ -31,7 +33,8 @@
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
         a.id,a.account_num,a.pass_wd,a.geway_name,a.interface_ads,a.company_name,a.contacts,a.phone_num,a.pay_type,a.pay_id,
-        a.total_money,a.least_money,a.balance,a.secret_key,a.identify,a.notify_url,a.geway_type,a.role_id,a.is_enable,
+        a.total_money,a.least_money,a.balance,a.secret_key,a.identify,a.notify_url,a.geway_type,a.money_type,a.money_range,
+        a.role_id,a.is_enable,
         a.create_time,a.update_time,a.yn,
         b.role_name
     </sql>
@@ -186,6 +189,12 @@
             <if test="gewayType != 0 and gewayType >0 " >
                 geway_type,
             </if>
+            <if test="moneyType != 0 and moneyType >0 " >
+                money_type,
+            </if>
+            <if test="moneyRange != null and moneyRange != '' " >
+                money_range,
+            </if>
             <if test="roleId != 0 and roleId >0 " >
                 role_id,
             </if>
@@ -244,6 +253,12 @@
             <if test="gewayType != 0 and gewayType >0 " >
                 <![CDATA[  #{gewayType}, ]]>
             </if>
+            <if test="moneyType != 0 and moneyType >0 " >
+                <![CDATA[  #{moneyType}, ]]>
+            </if>
+            <if test="moneyRange != null and moneyRange != '' " >
+                <![CDATA[  #{moneyRange}, ]]>
+            </if>
             <if test="roleId != 0 and roleId >0 " >
                 <![CDATA[  #{roleId}, ]]>
             </if>
@@ -295,6 +310,10 @@
             <if test="gewayType != 0 and gewayType >0 " >
                 a.geway_type = #{gewayType},
             </if>
+            <if test="moneyType != 0 and moneyType >0 " >
+                a.money_type = #{moneyType},
+            </if>
+            a.money_range = #{moneyRange},
             <if test="roleId != 0 and roleId >0 " >
                 a.role_id = #{roleId},
             </if>

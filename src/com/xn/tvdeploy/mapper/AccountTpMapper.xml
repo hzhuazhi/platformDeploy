@@ -22,6 +22,7 @@
         <result property="lowerUrl" column="lower_url" />
         <result property="lockMoney" column="lock_money" />
         <result property="lowerSuc" column="lower_suc" />
+        <result property="whiteListIp" column="white_list_ip" />
         <result property="isSynchro" column="is_synchro" />
         <result property="withdrawType" column="withdraw_type" />
         <result property="channelType" column="channel_type" />
@@ -34,7 +35,7 @@
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
         a.id,a.account_num,a.pass_wd,a.withdraw_pass_wd,a.channel_name,a.channel,a.company_name,a.contacts,a.phone_num,a.pay_type,a.total_money,a.balance,a.secret_key,a.is_google,a.google_key,
-        a.lower_url,a.lower_suc,a.is_synchro,a.withdraw_type,a.channel_type,a.role_id,a.is_enable,a.lock_money,
+        a.lower_url,a.lower_suc,a.white_list_ip,a.is_synchro,a.withdraw_type,a.channel_type,a.role_id,a.is_enable,a.lock_money,
         a.create_time,a.update_time,a.yn,
         b.role_name
     </sql>
@@ -175,6 +176,9 @@
             <if test="lowerSuc != null and lowerSuc != '' " >
                 lower_suc,
             </if>
+            <if test="whiteListIp != null and whiteListIp != '' " >
+                white_list_ip,
+            </if>
             <if test="isSynchro != 0 and isSynchro >0 " >
                 is_synchro,
             </if>
@@ -235,6 +239,9 @@
             </if>
             <if test="lowerSuc != null and lowerSuc != '' " >
                 <![CDATA[  #{lowerSuc}, ]]>
+            </if>
+            <if test="whiteListIp != null and whiteListIp != '' " >
+                <![CDATA[  #{whiteListIp}, ]]>
             </if>
             <if test="isSynchro != 0 and isSynchro >0 " >
                 <![CDATA[  #{isSynchro}, ]]>
@@ -299,6 +306,7 @@
             <if test="lowerSuc != null and lowerSuc != '' " >
                 a.lower_suc = #{lowerSuc},
             </if>
+            a.white_list_ip = #{whiteListIp},
             <if test="isSynchro != 0  and isSynchro >0 " >
                 a.is_synchro = #{isSynchro},
             </if>
