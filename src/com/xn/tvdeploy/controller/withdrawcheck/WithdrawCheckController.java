@@ -65,12 +65,13 @@ public class WithdrawCheckController extends BaseController {
         List<WithdrawModel> dataList = new ArrayList<WithdrawModel>();
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
-            if (account.getRoleId() != ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE){
+            if (account.getRoleId() == ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE || account.getRoleId() == 5){
+                model.setRoleId(ManagerConstant.PUBLIC_CONSTANT.ROLE_TP);
+                model.setRunStatus(3);
+                dataList = withdrawService.queryByList(model);
+            }else {
                 sendFailureMessage(response,"不是管理员,无法查看!");
             }
-            model.setRoleId(ManagerConstant.PUBLIC_CONSTANT.ROLE_TP);
-            model.setRunStatus(3);
-            dataList = withdrawService.queryByList(model);
         }
         HtmlUtil.writerJson(response, model.getPage(), dataList);
     }
@@ -85,11 +86,13 @@ public class WithdrawCheckController extends BaseController {
         List<WithdrawModel> dataList = new ArrayList<WithdrawModel>();
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
-            if (account.getRoleId() != ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE){
+            if (account.getRoleId() == ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE || account.getRoleId() == 5){
+                model.setRoleId(ManagerConstant.PUBLIC_CONSTANT.ROLE_TP);
+                dataList = withdrawService.queryAllList(model);
+            }else {
                 sendFailureMessage(response,"不是管理员,无法查看!");
             }
-            model.setRoleId(ManagerConstant.PUBLIC_CONSTANT.ROLE_TP);
-            dataList = withdrawService.queryAllList(model);
+
         }
         HtmlUtil.writerJson(response, dataList);
     }
@@ -116,9 +119,7 @@ public class WithdrawCheckController extends BaseController {
     public void update(HttpServletRequest request, HttpServletResponse response,WithdrawModel bean) throws Exception {
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
-            if (account.getRoleId() != ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE){
-                sendSuccessMessage(response, "保存失败~");
-            }else{
+            if (account.getRoleId() == ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE || account.getRoleId() == 5){
                 WithdrawModel model = new WithdrawModel();
                 model.setId(bean.getId());
                 model.setWithdrawStatus(bean.getWithdrawStatus());
@@ -127,7 +128,10 @@ public class WithdrawCheckController extends BaseController {
                 }
                 withdrawService.update(model);
                 sendSuccessMessage(response, "保存成功~");
+            }else{
+                sendSuccessMessage(response, "保存失败~");
             }
+
 
         }else {
             sendFailureMessage(response, "登录超时,请重新登录在操作!");

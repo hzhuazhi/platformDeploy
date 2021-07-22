@@ -31,6 +31,11 @@ public class ManagerConstant {
          */
         public static final int ROLE_GEWAY = 4;
 
+        /**
+         * 审核人
+         */
+        public static final int ROLE_CHECK = 5;
+
 
         /**
          *值是否等于0的判断条件

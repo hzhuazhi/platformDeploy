@@ -214,6 +214,7 @@ var account = {
         var myTradeNo = $("#myTradeNo").val();
         var outTradeNo = $("#outTradeNo").val();
         var channelName = $("#channelName").val();
+        var gewayName = $("#gewayName").val();
         var replenishType = $("#replenishType").val();
         var sendOk = $("#sendOk").val();
         var tradeStatus = $("#tradeStatus").val();
@@ -224,6 +225,7 @@ var account = {
             "myTradeNo":myTradeNo,
             "outTradeNo":outTradeNo,
             "channelName":channelName,
+            "gewayName":gewayName,
             "replenishType":replenishType,
             "sendOk":sendOk,
             "tradeStatus":tradeStatus,

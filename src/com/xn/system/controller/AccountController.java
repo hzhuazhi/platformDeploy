@@ -107,7 +107,7 @@ public class AccountController extends BaseController{
 		if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
 			//check是否有重复的账号
 
-			if (bean.getRoleId() == ManagerConstant.PUBLIC_CONSTANT.ROLE_SYS){
+			if (bean.getRoleId() == ManagerConstant.PUBLIC_CONSTANT.ROLE_SYS || bean.getRoleId() == ManagerConstant.PUBLIC_CONSTANT.ROLE_CHECK){
 				//管理员账号
 				Account queryBean = new Account();
 				queryBean.setAccountNum(bean.getAccountNum());
