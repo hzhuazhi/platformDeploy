@@ -2,6 +2,8 @@ package com.xn.tvdeploy.model;
 
 import com.xn.common.page.BasePage;
 
+import java.util.List;
+
 /**
  * @author df
  * @Description:渠道账号的实体属性Bean
@@ -174,6 +176,11 @@ public class AccountTpModel extends BasePage {
      * 手续费具体金额
      */
     private String serviceChargeMoney;
+
+    /**
+     * ID集合-SQL
+     */
+    private List<Long> notIdList;
 
 
 
@@ -456,5 +463,13 @@ public class AccountTpModel extends BasePage {
 
     public void setWhiteListIp(String whiteListIp) {
         this.whiteListIp = whiteListIp;
+    }
+
+    public List<Long> getNotIdList() {
+        return notIdList;
+    }
+
+    public void setNotIdList(List<Long> notIdList) {
+        this.notIdList = notIdList;
     }
 }

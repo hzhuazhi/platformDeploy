@@ -8,9 +8,11 @@ import com.xn.system.entity.Account;
 import com.xn.tvdeploy.controller.bank.BankController;
 import com.xn.tvdeploy.model.AccountTpModel;
 import com.xn.tvdeploy.model.BankModel;
+import com.xn.tvdeploy.model.CheckChannelModel;
 import com.xn.tvdeploy.model.WithdrawModel;
 import com.xn.tvdeploy.service.AccountTpService;
 import com.xn.tvdeploy.service.BankService;
+import com.xn.tvdeploy.service.CheckChannelService;
 import com.xn.tvdeploy.service.WithdrawService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -24,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Description 提现审核-渠道
@@ -45,6 +48,9 @@ public class WithdrawCheckController extends BaseController {
 
     @Autowired
     private BankService<BankModel> bankService;
+
+    @Autowired
+    private CheckChannelService checkChannelService;
 
 
     /**
@@ -68,6 +74,16 @@ public class WithdrawCheckController extends BaseController {
             if (account.getRoleId() == ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE || account.getRoleId() == 5){
                 model.setRoleId(ManagerConstant.PUBLIC_CONSTANT.ROLE_TP);
                 model.setRunStatus(3);
+                if (account.getRoleId() == 5){
+                    // 审核人员只能查看到自己的渠道
+                    CheckChannelModel checkChannelQuery = new CheckChannelModel();
+                    checkChannelQuery.setCheckAccountId(account.getId());
+                    List<CheckChannelModel> checkChannelList = checkChannelService.queryByList(checkChannelQuery);
+                    if (checkChannelList != null && checkChannelList.size() > 0){
+                        List<Long> linkIdList = checkChannelList.stream().map(CheckChannelModel::getChannelId).collect(Collectors.toList());
+                        model.setLinkIdList(linkIdList);
+                    }
+                }
                 dataList = withdrawService.queryByList(model);
             }else {
                 sendFailureMessage(response,"不是管理员,无法查看!");

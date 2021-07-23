@@ -71,6 +71,12 @@
             <if test="isEnable != 0 and isEnable >0 " >
                 and a.is_enable = #{isEnable}
             </if>
+            <if test="notIdList != null and notIdList.size()>0">
+                and a.id not in
+                <foreach item="item" index="index" collection="notIdList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
             and a.yn =  0
         </trim>
     </sql>

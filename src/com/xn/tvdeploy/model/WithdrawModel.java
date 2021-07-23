@@ -2,6 +2,8 @@ package com.xn.tvdeploy.model;
 
 import com.xn.common.page.BasePage;
 
+import java.util.List;
+
 /**
  * @Description 提现的实体属性Bean
  * @Author yoko
@@ -133,6 +135,11 @@ public class WithdrawModel extends BasePage {
      * 谷歌验证码
      */
     private String googleCode;
+
+    /**
+     * ID集合
+     */
+    private List<Long> linkIdList;
 
     public long getId() {
         return id;
@@ -326,5 +333,14 @@ public class WithdrawModel extends BasePage {
 
     public void setPictureAds(String pictureAds) {
         this.pictureAds = pictureAds;
+    }
+
+
+    public List<Long> getLinkIdList() {
+        return linkIdList;
+    }
+
+    public void setLinkIdList(List<Long> linkIdList) {
+        this.linkIdList = linkIdList;
     }
 }

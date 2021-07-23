@@ -66,6 +66,12 @@
             <if test="runStatus != 0 and runStatus >0 " >
                 and a.run_status = #{runStatus}
             </if>
+            <if test="linkIdList != null and linkIdList.size()>0">
+                and a.link_id in
+                <foreach item="item" index="index" collection="linkIdList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
             and a.yn = 0
         </trim>
     </sql>

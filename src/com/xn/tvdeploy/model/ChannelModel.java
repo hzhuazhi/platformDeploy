@@ -88,6 +88,11 @@ public class ChannelModel extends BasePage {
      */
     private List<Long> idList;
 
+    /**
+     * ID集合-SQL
+     */
+    private List<Long> notIdList;
+
     public long getId() {
         return id;
     }
@@ -214,5 +219,13 @@ public class ChannelModel extends BasePage {
 
     public void setIdList(List<Long> idList) {
         this.idList = idList;
+    }
+
+    public List<Long> getNotIdList() {
+        return notIdList;
+    }
+
+    public void setNotIdList(List<Long> notIdList) {
+        this.notIdList = notIdList;
     }
 }
