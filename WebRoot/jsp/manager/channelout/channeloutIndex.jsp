@@ -85,9 +85,11 @@
                 <div class="searchdiv">
                     <input type = "button" id = "butReset" class = "buttonClass imginput" value = "重置" />
                 </div>
-                <div class = "searchdiv">
-                    <input type="button" class = "buttonClass imginput addbtn" value="新增代付订单" style="margin-left: 30px;" >
-                </div>
+
+                <%--<div class = "searchdiv">--%>
+                    <%--<input type="button" class = "buttonClass imginput addbtn" value="新增代付订单" style="margin-left: 30px;" >--%>
+                <%--</div>--%>
+
             </div>
         </form>
     </div>

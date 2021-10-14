@@ -306,7 +306,7 @@ public class PublicMethod{
         if (!StringUtils.isBlank(delayTime)){
             resBean.setDelayTime(delayTime);
         }else {
-            String delayTimeStr = DateUtil.addDateMinute(30);
+            String delayTimeStr = DateUtil.addDateMinute(720);
             resBean.setDelayTime(delayTimeStr);
         }
         if (!StringUtils.isBlank(lockTime)){
