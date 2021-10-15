@@ -393,6 +393,9 @@ public class ManualChannelOutController extends BaseController {
                     resMap = JSON.parseObject(fineData, Map.class);
                     if (resMap.get("resultCode").equals("0")) {
                         sendFlag = true;
+                    }else {
+                        sendFailureMessage(response,"拉单失败,请重试,错误信息:" + fineData);
+                        return;
                     }
                 }
                 log.info("--------------fineData:" + fineData);
