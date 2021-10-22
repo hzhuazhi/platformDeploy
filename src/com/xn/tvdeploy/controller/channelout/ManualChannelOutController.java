@@ -399,6 +399,38 @@ public class ManualChannelOutController extends BaseController {
                     }
                 }
                 log.info("--------------fineData:" + fineData);
+            }else if (gewayModel.getContacts().equals("CKJF")){
+                // 蛋糕金服
+                Map<String ,Object> sendDataMap = new HashMap<>();
+                sendDataMap.put("money", bean.getTotalAmount());
+                sendDataMap.put("payType", payCode);
+                sendDataMap.put("outTradeNo", myTradeNo);
+                sendDataMap.put("secretKey", channelModel.getSecretKey());
+                sendDataMap.put("notifyUrl", my_notify_url);
+                sendDataMap.put("inBankCard", bean.getBankCard());
+                sendDataMap.put("inBankName", bean.getBankName());
+                sendDataMap.put("inAccountName", bean.getAccountName());
+                sendDataMap.put("inBankSubbranch", bean.getBankSubbranch());
+                sendDataMap.put("inBankProvince", "");
+                sendDataMap.put("inBankCity", "");
+                String parameter = JSON.toJSONString(sendDataMap);
+                parameter = StringUtil.mergeCodeBase64(parameter);
+                Map<String, String> sendMap = new HashMap<>();
+                sendMap.put("jsonData", parameter);
+                String sendData = JSON.toJSONString(sendMap);
+                String fineData = HttpSendUtils.sendPostAppJson(gewayModel.getInterfaceAds(), sendData);
+                Map<String, Object> resMap = new HashMap<>();
+                Map<String, Object> dataMap = new HashMap<>();
+                if (!StringUtils.isBlank(fineData)) {
+                    resMap = JSON.parseObject(fineData, Map.class);
+                    if (resMap.get("resultCode").equals("0")) {
+                        sendFlag = true;
+                    }else {
+                        sendFailureMessage(response,"拉单失败,请重试,错误信息:" + fineData);
+                        return;
+                    }
+                }
+                log.info("--------------fineData:" + fineData);
             }
             // start
             bean.setOutTradeNo(DateUtil.getNowPlusTimeMill());
