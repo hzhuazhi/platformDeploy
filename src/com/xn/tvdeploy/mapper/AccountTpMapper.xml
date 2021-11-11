@@ -24,6 +24,7 @@
         <result property="lowerSuc" column="lower_suc" />
         <result property="whiteListIp" column="white_list_ip" />
         <result property="isSynchro" column="is_synchro" />
+        <result property="sendDataType" column="send_data_type" />
         <result property="withdrawType" column="withdraw_type" />
         <result property="channelType" column="channel_type" />
         <result property="isEnable" column="is_enable" />
@@ -35,7 +36,7 @@
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
         a.id,a.account_num,a.pass_wd,a.withdraw_pass_wd,a.channel_name,a.channel,a.company_name,a.contacts,a.phone_num,a.pay_type,a.total_money,a.balance,a.secret_key,a.is_google,a.google_key,
-        a.lower_url,a.lower_suc,a.white_list_ip,a.is_synchro,a.withdraw_type,a.channel_type,a.role_id,a.is_enable,a.lock_money,
+        a.lower_url,a.lower_suc,a.white_list_ip,a.is_synchro,a.send_data_type,a.withdraw_type,a.channel_type,a.role_id,a.is_enable,a.lock_money,
         a.create_time,a.update_time,a.yn,
         b.role_name
     </sql>
@@ -188,6 +189,9 @@
             <if test="isSynchro != 0 and isSynchro >0 " >
                 is_synchro,
             </if>
+            <if test="sendDataType != 0 and sendDataType >0 " >
+                send_data_type,
+            </if>
             <if test="isEnable != 0 and isEnable >0 " >
                 is_enable,
             </if>
@@ -252,6 +256,9 @@
             <if test="isSynchro != 0 and isSynchro >0 " >
                 <![CDATA[  #{isSynchro}, ]]>
             </if>
+            <if test="sendDataType != 0 and sendDataType >0 " >
+                <![CDATA[  #{sendDataType}, ]]>
+            </if>
             <if test="isEnable != 0 and isEnable >0 " >
                 <![CDATA[  #{isEnable}, ]]>
             </if>
@@ -306,6 +313,9 @@
             <if test="payType != 0  and payType >0 " >
                 a.pay_type = #{payType},
             </if>
+            <if test="secretKey != null and secretKey != '' " >
+                a.secret_key = #{secretKey},
+            </if>
             <if test="lowerUrl != null and lowerUrl != '' " >
                 a.lower_url = #{lowerUrl},
             </if>
@@ -315,6 +325,9 @@
             a.white_list_ip = #{whiteListIp},
             <if test="isSynchro != 0  and isSynchro >0 " >
                 a.is_synchro = #{isSynchro},
+            </if>
+            <if test="sendDataType != 0 and sendDataType >0 " >
+                a.send_data_type = #{sendDataType},
             </if>
             <if test="isEnable != 0  and isEnable >0 " >
                 a.is_enable = #{isEnable},

@@ -104,6 +104,15 @@
 
                     <li style="border-top: none;">
                         <div class="formTextDiv">
+                            <span class="require"><font color="red">*</font>秘钥</span>
+                        </div>
+                        <div class="formCtrlDiv">
+                            <input type="text" class="formInput" id="secretKey" name="secretKey" value="${dl.secretKey}" maxlength="240" />
+                        </div>
+                    </li>
+
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
                             <span class="require" ><font color="red">*</font>开通google密钥</span>
                         </div>
                         <div class="formCtrlDiv">
@@ -233,6 +242,33 @@
                                 <c:if test="${dl.isSynchro == 2}">
                                     <option value="1" >需要同步</option>
                                     <option value="2" selected="selected">无需同步</option>
+                                </c:if>
+                            </select>
+                        </div>
+                    </li>
+
+
+                    <li style="border-top: none;">
+                        <div class="formTextDiv">
+                            <span class="require" ><font color="red">*</font>数据发送类型</span>
+                        </div>
+                        <div class="formCtrlDiv">
+                            <select id="sendDataType" name="sendDataType">
+                                <option value="">===请选择===</option>
+                                <c:if test="${dl.sendDataType == 1}">
+                                    <option value="1" selected="selected">get</option>
+                                    <option value="2" >post/form</option>
+                                    <option value="3" >post/json</option>
+                                </c:if>
+                                <c:if test="${dl.sendDataType == 2}">
+                                    <option value="1" >get</option>
+                                    <option value="2" selected="selected">post/form</option>
+                                    <option value="3" >post/json</option>
+                                </c:if>
+                                <c:if test="${dl.sendDataType == 3}">
+                                    <option value="1" >get</option>
+                                    <option value="2" >post/form</option>
+                                    <option value="3" selected="selected">post/json</option>
                                 </c:if>
                             </select>
                         </div>

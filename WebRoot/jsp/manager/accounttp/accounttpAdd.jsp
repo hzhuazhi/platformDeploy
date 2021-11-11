@@ -196,6 +196,19 @@
                     </div>
                 </li>
 
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>数据发送类型</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <select id="sendDataType" name="sendDataType">
+                            <option value="1" selected>get</option>
+                            <option value="2" >post/form</option>
+                            <option value="3" >post/json</option>
+                        </select>
+                    </div>
+                </li>
+
 
                 <li>
                     <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:200px;">

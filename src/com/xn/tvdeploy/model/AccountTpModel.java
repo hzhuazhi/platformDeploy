@@ -113,6 +113,11 @@ public class AccountTpModel extends BasePage {
     private int isSynchro;
 
     /**
+     * 数据发送类型:1get，2post/form，3post/json
+     */
+    private Integer sendDataType;
+
+    /**
      * 提现类型：1默认在支付平台操作，2发送下发数据到蛋糕平台
      */
     private int withdrawType;
@@ -471,5 +476,13 @@ public class AccountTpModel extends BasePage {
 
     public void setNotIdList(List<Long> notIdList) {
         this.notIdList = notIdList;
+    }
+
+    public Integer getSendDataType() {
+        return sendDataType;
+    }
+
+    public void setSendDataType(Integer sendDataType) {
+        this.sendDataType = sendDataType;
     }
 }
