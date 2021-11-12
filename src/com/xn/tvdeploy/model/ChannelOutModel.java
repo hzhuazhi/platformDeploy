@@ -384,6 +384,44 @@ public class ChannelOutModel extends BasePage {
     private Date notifyTime;
 
 
+    /**
+     * 订单总金额
+     */
+    private String totalMoney;
+
+    /**
+     * 订单总手续费
+     */
+    private String totalServiceChargeMoney;
+
+    /**
+     * 订单总条数
+     */
+    private String totalNum;
+
+    /**
+     * 成功订单总金额
+     */
+    private String totalSucMoney;
+
+    /**
+     * 成功订单总手续费
+     */
+    private String totalSucServiceChargeMoney;
+
+    /**
+     * 成功订单总条数
+     */
+    private String totalSucNum;
+
+    /**
+     * 成功率
+     */
+    private String totalNumRatio;
+
+
+
+
     public Long getId() {
         return id;
     }
@@ -823,5 +861,61 @@ public class ChannelOutModel extends BasePage {
 
     public void setNotifyTime(Date notifyTime) {
         this.notifyTime = notifyTime;
+    }
+
+    public String getTotalMoney() {
+        return totalMoney;
+    }
+
+    public void setTotalMoney(String totalMoney) {
+        this.totalMoney = totalMoney;
+    }
+
+    public String getTotalServiceChargeMoney() {
+        return totalServiceChargeMoney;
+    }
+
+    public void setTotalServiceChargeMoney(String totalServiceChargeMoney) {
+        this.totalServiceChargeMoney = totalServiceChargeMoney;
+    }
+
+    public String getTotalNum() {
+        return totalNum;
+    }
+
+    public void setTotalNum(String totalNum) {
+        this.totalNum = totalNum;
+    }
+
+    public String getTotalSucMoney() {
+        return totalSucMoney;
+    }
+
+    public void setTotalSucMoney(String totalSucMoney) {
+        this.totalSucMoney = totalSucMoney;
+    }
+
+    public String getTotalSucServiceChargeMoney() {
+        return totalSucServiceChargeMoney;
+    }
+
+    public void setTotalSucServiceChargeMoney(String totalSucServiceChargeMoney) {
+        this.totalSucServiceChargeMoney = totalSucServiceChargeMoney;
+    }
+
+    public String getTotalSucNum() {
+        return totalSucNum;
+    }
+
+    public void setTotalSucNum(String totalSucNum) {
+        this.totalSucNum = totalSucNum;
+    }
+
+    public String getTotalNumRatio() {
+        return totalNumRatio;
+    }
+
+    public void setTotalNumRatio(String totalNumRatio) {
+        this.totalNumRatio = totalNumRatio;
     }
 }

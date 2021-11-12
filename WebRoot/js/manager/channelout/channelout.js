@@ -210,10 +210,15 @@ var account = {
         common.ajax(url,data,function(data){
             var data=data;
 
-            $("#countTotalMoney").html(data.countTotalMoney);
-            $("#successCountMoney").html(data.successCountMoney);
-            $("#successRate").html(data.successRate);
-            $("#successServiceChargeMoney").html(data.successServiceChargeMoney);
+            $("#totalMoney").html(data.totalMoney);
+            $("#totalServiceChargeMoney").html(data.totalServiceChargeMoney);
+            $("#totalNum").html(data.totalNum);
+            $("#totalSucMoney").html(data.totalSucMoney);
+            $("#totalSucServiceChargeMoney").html(data.totalSucServiceChargeMoney);
+            $("#totalSucNum").html(data.totalSucNum);
+            $("#totalNumRatio").html(data.totalNumRatio);
+
+
         });
     },
 

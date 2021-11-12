@@ -96,11 +96,13 @@
 
     <div id="divCount">
         <strong> 汇总：</strong>
-        &nbsp;  <strong> 总金额：</strong><strong style="color:#bb0000 " id="countTotalMoney"></strong>
-        &nbsp;  <strong> 订单成功金额：</strong><strong style="color:#bb0000 " id="successCountMoney"></strong>
-        &nbsp;  <strong> 成功率：</strong><strong style="color:#bb0000 " id="successRate"></strong>
-        &nbsp;  <strong> 成功手续费：</strong><strong style="color:#bb0000 " id="successServiceChargeMoney"></strong>
-        <%--&nbsp;  <strong> 订单成功金额：</strong><strong style="color:#bb0000 " id="successCountMoney"></strong>--%>
+        &nbsp;  <strong> 订单总金额：</strong><strong style="color:#bb0000 " id="totalMoney"></strong>
+        &nbsp;  <strong> 订单总手续费：</strong><strong style="color:#bb0000 " id="totalServiceChargeMoney"></strong>
+        &nbsp;  <strong> 订单总条数：</strong><strong style="color:#bb0000 " id="totalNum"></strong>
+        &nbsp;  <strong> 成功订单总金额：</strong><strong style="color:#bb0000 " id="totalSucMoney"></strong>
+        &nbsp;  <strong> 成功订单总手续费：</strong><strong style="color:#bb0000 " id="totalSucServiceChargeMoney"></strong>
+        &nbsp;  <strong> 成功订单总条数：</strong><strong style="color:#bb0000 " id="totalSucNum"></strong>
+        &nbsp;  <strong> 成功率：</strong><strong style="color:#bb0000 " id="totalNumRatio"></strong>
     </div>
 
     <table class="datatable tables">

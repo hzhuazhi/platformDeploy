@@ -109,10 +109,10 @@ public class ChannelOutController extends BaseController {
                 model.setChannelId(account.getId());
             }
             channelOutModel = channelOutService.getTotalData(model);
-            if(channelOutModel!=null){
-                String   successRate= PublicMethod.accuracy(Double.parseDouble(channelOutModel.getSuccessCountMoney()),Double.parseDouble(channelOutModel.getCountTotalMoney()),2);
-                channelOutModel.setSuccessRate(successRate);
-            }
+//            if(channelOutModel!=null){
+//                String   successRate= PublicMethod.accuracy(Double.parseDouble(channelOutModel.getSuccessCountMoney()),Double.parseDouble(channelOutModel.getCountTotalMoney()),2);
+//                channelOutModel.setSuccessRate(successRate);
+//            }
         }
         HtmlUtil.writerJson(response, channelOutModel);
     }
