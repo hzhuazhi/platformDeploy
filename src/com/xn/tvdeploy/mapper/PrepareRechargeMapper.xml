@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xn.tvdeploy.dao.PrepareRechargeDao">
+    <!-- 属性映射 -->
+    <resultMap type="com.xn.tvdeploy.model.PrepareRechargeModel" id="dataMap">
+        <id column="id" property="id" />
+        <result column="alias" property="alias" />
+        <result column="channel_id" property="channelId"  />
+        <result column="my_trade_no" property="myTradeNo" />
+        <result column="money" property="money" />
+        <result column="change_type" property="changeType"  />
+        <result column="picture_ads" property="pictureAds" />
+        <result column="is_show" property="isShow"  />
+        <result column="data_explain" property="dataExplain" />
+        <result column="remark" property="remark" />
+        <result column="work_type" property="workType" />
+        <result column="curday" property="curday"  />
+        <result column="curhour" property="curhour"  />
+        <result column="curminute" property="curminute"  />
+        <result column="run_status" property="runStatus"  />
+        <result column="run_num" property="runNum"  />
+        <result column="create_user_id" property="createUserId"  />
+        <result column="create_role_id" property="createRoleId"  />
+        <result column="update_user_id" property="updateUserId"  />
+        <result column="update_role_id" property="updateRoleId"  />
+        <result column="create_time" property="createTime"  />
+        <result column="update_time" property="updateTime"  />
+        <result column="ts_time" property="tsTime"  />
+        <result column="yn" property="yn"  />
+        <result column="channel_name" property="channelName" />
+    </resultMap>
+    <!-- 定义数据库基本列,只适用代替单表的*-->
+    <sql id="Base_Column_List">
+        a.id, a.alias, a.channel_id, a.my_trade_no, a.money, a.change_type, a.picture_ads, a.is_show, a.data_explain,
+    a.remark, a.work_type, a.curday, a.curhour, a.curminute, a.run_status, a.run_num, a.create_user_id, a.create_role_id,
+    a.update_user_id, a.update_role_id, a.create_time, a.update_time, a.ts_time, a.yn,b.channel_name
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id="Example_Where_Clause">
+        where 1=1
+        <trim  suffixOverrides="," >
+            <if test="id != 0 and id >0 " >
+                and a.id = #{id}
+            </if>
+            <if test="myTradeNo != null and myTradeNo != '' " >
+                and a.my_trade_no = #{myTradeNo}
+            </if>
+            <if test="channelId != 0 and channelId >0 " >
+                and a.channel_id = #{channelId}
+            </if>
+            <if test="channelName != null and channelName != '' " >
+                and b.channel_name = #{channelName}
+            </if>
+            <if test="money != null and money != ''" >
+                and a.money = #{money}
+            </if>
+            <if test="changeType != 0 and changeType >0 " >
+                and a.change_type = #{changeType}
+            </if>
+            <if test="isShow != 0 and isShow >0 " >
+                and a.is_show = #{isShow}
+            </if>
+            <if test="workType != 0 and workType >0 " >
+                and a.work_type = #{workType}
+            </if>
+            <if test="curdayStart != 0 and curdayStart >0 and curdayEnd != 0 and curdayEnd >0 " >
+                and a.curday >= #{curdayStart} and a.curday &lt;= #{curdayEnd}
+            </if>
+            and a.yn = 0
+        </trim>
+    </sql>
+
+    <!-- 查询条件_id -->
+    <sql id="Example_Where_Clause_id">
+        where 1=1
+        <trim  suffixOverrides="," >
+            <if test="id != 0 and id >0 " >
+                and a.id = #{id}
+            </if>
+            and a.yn = 0
+        </trim>
+    </sql>
+
+    <!-- 查询总数-->
+    <select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+        select count(1)
+        from tb_hz_prepare_recharge a  left  join    tb_hz_channel b
+        on a.channel_id=b.id
+        <include refid="Example_Where_Clause"/>
+    </select>
+
+    <!-- 查询分页列表 -->
+    <select id="queryByList" resultMap="dataMap"  parameterType="Object">
+        select
+        <include refid="Base_Column_List" />
+        from tb_hz_prepare_recharge a
+        left  join    tb_hz_channel b
+        on a.channel_id=b.id
+        <include refid="Example_Where_Clause"/>
+        order by a.create_time desc
+        limit #{startIndex},#{pageSize}
+    </select>
+
+    <!-- 查询列表-无分页-有条件/有条件 -->
+    <select id="queryAllList" resultMap="dataMap"  parameterType="Object">
+        select
+        <include refid="Base_Column_List" />
+        from tb_hz_prepare_recharge a
+        left  join    tb_hz_channel b
+        on a.channel_id=b.id
+        <include refid="Example_Where_Clause"/>
+        order by a.create_time desc
+    </select>
+
+    <!-- 根据id查询记录 -->
+    <select id="queryById"  resultMap="dataMap" parameterType="Object">
+        select
+        <include refid="Base_Column_List" />
+        from tb_hz_prepare_recharge a
+        left  join    tb_hz_channel b
+        on a.channel_id=b.id
+        <include refid="Example_Where_Clause_id"/>
+    </select>
+
+    <!-- 根据条件查询记录 -->
+    <select id="queryByCondition"  resultMap="dataMap" parameterType="Object">
+        select
+        <include refid="Base_Column_List" />
+        from tb_hz_prepare_recharge a
+        left  join    tb_hz_channel b
+        on a.channel_id=b.id
+        <include refid="Example_Where_Clause"/>
+        limit 1
+    </select>
+
+    <!-- 添加记录 -->
+    <insert id="add" parameterType="Object" >
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+        insert into tb_hz_prepare_recharge
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != 0 and id >0" >
+                id,
+            </if>
+            <if test="alias != null and alias != ''" >
+                alias,
+            </if>
+            <if test="channelId != 0 and channelId >0" >
+                channel_id,
+            </if>
+            <if test="myTradeNo != null and myTradeNo != ''" >
+                my_trade_no,
+            </if>
+            <if test="money != null and money != ''" >
+                money,
+            </if>
+            <if test="changeType != 0 and changeType >0" >
+                change_type,
+            </if>
+            <if test="pictureAds != null and pictureAds != ''" >
+                picture_ads,
+            </if>
+            <if test="isShow != 0 and isShow >0" >
+                is_show,
+            </if>
+            <if test="dataExplain != null and dataExplain != ''"  >
+                data_explain,
+            </if>
+            <if test="remark != null and remark != ''" >
+                remark,
+            </if>
+            <if test="workType != 0 and workType >0" >
+                work_type,
+            </if>
+            <if test="curday != 0 and curday >0" >
+                curday,
+            </if>
+            <if test="curhour != 0 and curhour >0" >
+                curhour,
+            </if>
+            <if test="curminute != 0 and curminute >0" >
+                curminute,
+            </if>
+            <if test="runStatus != 0 and runStatus >0" >
+                run_status,
+            </if>
+            <if test="runNum != 0 and runNum >0" >
+                run_num,
+            </if>
+            <if test="createUserId != 0 and createUserId >0" >
+                create_user_id,
+            </if>
+            <if test="createRoleId != 0 and createRoleId >0" >
+                create_role_id,
+            </if>
+            <if test="updateUserId != 0 and updateUserId >0" >
+                update_user_id,
+            </if>
+            <if test="updateRoleId != 0 and updateRoleId >0" >
+                update_role_id,
+            </if>
+            create_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != 0 and id >0" >
+                <![CDATA[  #{id}, ]]>
+            </if>
+            <if test="alias != null and alias != ''" >
+                <![CDATA[  #{alias}, ]]>
+            </if>
+            <if test="channelId != 0 and channelId >0" >
+                <![CDATA[  #{channelId}, ]]>
+            </if>
+            <if test="myTradeNo != null and myTradeNo != ''" >
+                <![CDATA[  #{myTradeNo}, ]]>
+            </if>
+            <if test="money != null and money != ''" >
+                <![CDATA[  #{money}, ]]>
+            </if>
+            <if test="changeType != 0 and changeType >0" >
+                <![CDATA[  #{changeType}, ]]>
+            </if>
+            <if test="pictureAds != null and pictureAds != ''" >
+                <![CDATA[  #{pictureAds}, ]]>
+            </if>
+            <if test="isShow != 0 and isShow >0" >
+                <![CDATA[  #{isShow}, ]]>
+            </if>
+            <if test="dataExplain != null and dataExplain != ''"  >
+                <![CDATA[  #{dataExplain}, ]]>
+            </if>
+            <if test="remark != null and remark != ''" >
+                <![CDATA[  #{remark}, ]]>
+            </if>
+            <if test="workType != 0 and workType >0" >
+                <![CDATA[  #{workType}, ]]>
+            </if>
+            <if test="curday != 0 and curday >0" >
+                <![CDATA[  #{curday}, ]]>
+            </if>
+            <if test="curhour != 0 and curhour >0" >
+                <![CDATA[  #{curhour}, ]]>
+            </if>
+            <if test="curminute != 0 and curminute >0" >
+                <![CDATA[  #{curminute}, ]]>
+            </if>
+            <if test="runStatus != 0 and runStatus >0" >
+                <![CDATA[  #{runStatus}, ]]>
+            </if>
+            <if test="runNum != 0 and runNum >0" >
+                <![CDATA[  #{runNum}, ]]>
+            </if>
+            <if test="createUserId != 0 and createUserId >0" >
+                <![CDATA[  #{createUserId}, ]]>
+            </if>
+            <if test="createRoleId != 0 and createRoleId >0" >
+                <![CDATA[  #{createRoleId}, ]]>
+            </if>
+            <if test="updateUserId != 0 and updateUserId >0" >
+                <![CDATA[  #{updateUserId}, ]]>
+            </if>
+            <if test="updateRoleId != 0 and updateRoleId >0" >
+                <![CDATA[  #{updateRoleId}, ]]>
+            </if>
+            <![CDATA[  NOW(), ]]>
+        </trim>
+    </insert>
+
+
+    <!-- 更新记录 -->
+    <update id="update" parameterType="Object">
+        UPDATE tb_hz_prepare_recharge a
+        <trim prefix="set" suffixOverrides=",">
+            <if test="alias != null and alias != ''" >
+                a.alias = #{alias},
+            </if>
+            <if test="channelId != 0 and channelId >0" >
+                a.channel_id = #{channelId},
+            </if>
+            <if test="myTradeNo != null and myTradeNo != ''" >
+                a.my_trade_no = #{myTradeNo},
+            </if>
+            <if test="money != null and money != ''" >
+                a.money = #{money},
+            </if>
+            <if test="changeType != 0 and changeType >0" >
+                a.change_type = #{changeType},
+            </if>
+            <if test="pictureAds != null and pictureAds != ''" >
+                a.picture_ads = #{pictureAds},
+            </if>
+            <if test="isShow != 0 and isShow >0" >
+                a.is_show = #{isShow},
+            </if>
+            <if test="dataExplain != null and dataExplain != ''"  >
+                a.data_explain = #{dataExplain},
+            </if>
+            <if test="remark != null and remark != ''" >
+                a.remark = #{remark},
+            </if>
+            <if test="workType != 0 and workType >0" >
+                a.work_type = #{workType},
+            </if>
+            <if test="curday != 0 and curday >0" >
+                a.curday = #{curday},
+            </if>
+            <if test="curhour != 0 and curhour >0" >
+                a.curhour = #{curhour},
+            </if>
+            <if test="curminute != 0 and curminute >0" >
+                a.curminute = #{curminute},
+            </if>
+            <if test="runStatus != 0 and runStatus >0" >
+                a.run_status = #{runStatus},
+            </if>
+            <if test="runNum != 0 and runNum >0" >
+                a.run_num = #{runNum},
+            </if>
+            <if test="createUserId != 0 and createUserId >0" >
+                a.create_user_id = #{createUserId},
+            </if>
+            <if test="createRoleId != 0 and createRoleId >0" >
+                a.create_role_id = #{createRoleId},
+            </if>
+            <if test="updateUserId != 0 and updateUserId >0" >
+                a.update_user_id = #{updateUserId},
+            </if>
+            <if test="updateRoleId != 0 and updateRoleId >0" >
+                a.update_role_id = #{updateRoleId},
+            </if>
+            a.update_time = NOW(),
+        </trim>
+        where 1=1
+        and a.id = #{id}
+    </update>
+
+
+    <!-- 主要作用1.逻辑删除，2更新状态 -->
+    <update id="manyOperation" parameterType="Object">
+        update tb_hz_prepare_recharge a
+        <trim prefix="set" suffixOverrides=",">
+            <if test="isEnable != 0 and isEnable >0 " >
+                a.is_enable = #{isEnable},
+            </if>
+            <if test="workType != 0 and workType >0 " >
+                a.work_type = #{workType},
+            </if>
+            a.yn=#{yn},
+            a.update_time=NOW()
+        </trim>
+        where 1=1
+        and a.id = #{id}
+    </update>
+
+    <!--逻辑删除数据 -->
+    <update id="delete" parameterType="java.lang.Long">
+        UPDATE tb_hz_prepare_recharge a set a.yn = 1,
+        a.update_time = now()
+        where 1=1
+        and a.id =#{id}
+        and a.yn=0
+    </update>
+
+</mapper>
