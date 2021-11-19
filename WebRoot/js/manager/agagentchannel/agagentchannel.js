@@ -15,8 +15,6 @@ var account = {
     //列表显示参数
     list:[
         {"data":"agentName",},
-        {"data":"channelName",},
-        {"data":"channelGewayLinkName",},
         {"data":"serviceChargeType",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html="";

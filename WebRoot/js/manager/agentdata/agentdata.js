@@ -10,13 +10,12 @@ var account = {
         // update_url : ctx+ "/tpDataInfo/update.do",
         // queryId_url: ctx+ "/tpDataInfo/getId.do",
         // delete_url: ctx+ "/tpDataInfo/delete.do",
-        manyOperation_url: ctx+ "/agentdata/manyOperation.do",
-        exportData_url : ctx +  "/agentdata/exportData.do"
+        manyOperation_url: ctx+ "/agentdata/manyOperation.do"
+
     },
     //列表显示参数
     list:[
         {"data":"agentName",},
-        {"data":"channelName",},
         {"data":"myTradeNo",},
         {"data":"totalAmount",},
         {"data":"payAmount",},
@@ -55,7 +54,6 @@ var account = {
         // 条件查询按钮事件
         $('#btnQuery').click(function() {
             account.condJsonData['agentId'] = $("#agentId").val();
-            account.condJsonData['channelName'] = $("#channelName").val();
             account.condJsonData['profitType'] = $("#profitType").val();
             account.condJsonData['curdayStart'] = $("#curdayStart").val();
             account.condJsonData['curdayEnd'] = $("#curdayEnd").val();
@@ -67,14 +65,12 @@ var account = {
         $("#butReset").click(function(){
             account.condJsonData['agentId'] = "0";
             $("#agentId").val("0");
-            account.condJsonData['channelName'] = "";
-            $("#channelName").val("");
             account.condJsonData['profitType'] = "0";
             $("#profitType").val("0");
-            account.condJsonData['curdayStart'] = "";
-            $("#curdayStart").val("");
-            account.condJsonData['curdayEnd'] = "";
-            $("#curdayEnd").val("");
+            account.condJsonData['curdayStart'] = "0";
+            $("#curdayStart").val("0");
+            account.condJsonData['curdayEnd'] = "0";
+            $("#curdayEnd").val("0");
             common.showDatas(account.condJsonData,account.list);
         });
 
@@ -87,10 +83,10 @@ var account = {
             common.cf(data);
         });
 
-        // 数据按照Excel格式导出
-        $("#butExcelExport").click(function () {
-            common.dataExportExcel($("#condForm"));
-        });
+        // // 数据按照Excel格式导出
+        // $("#butExcelExport").click(function () {
+        //     common.dataExportExcel($("#condForm"));
+        // });
     },
 
     // //汇总数据填充
@@ -129,13 +125,13 @@ var account = {
     queryTotal:function(){
         var url = basePath + "agentdata/totalData.do";
         var agentId = $("#agentId").val();
-        var channelName = $("#channelName").val();
+        // var channelName = $("#channelName").val();
         var profitType = $("#profitType").val();
         var curdayStart = $("#curdayStart").val();
         var curdayEnd = $("#curdayEnd").val();
         var data = {
             "agentId":agentId,
-            "channelName":channelName,
+            // "channelName":channelName,
             "profitType":profitType,
             "curdayStart":curdayStart,
             "curdayEnd":curdayEnd

@@ -14,7 +14,6 @@ var account = {
         {"data":"totalMoney",},
         {"data":"balance",},
         {"data":"lockMoney",},
-        {"data":"secretKey",},
         // {"data":"googleKey",
         //     "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
         //         var html="";

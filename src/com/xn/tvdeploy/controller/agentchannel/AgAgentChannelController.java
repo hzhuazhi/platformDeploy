@@ -2,11 +2,13 @@ package com.xn.tvdeploy.controller.agentchannel;
 
 import com.xn.common.constant.ManagerConstant;
 import com.xn.common.controller.BaseController;
+import com.xn.common.util.BeanUtils;
 import com.xn.common.util.HtmlUtil;
 import com.xn.system.entity.Account;
 import com.xn.tvdeploy.controller.accounttp.TpController;
 import com.xn.tvdeploy.model.AgentChannelModel;
 import com.xn.tvdeploy.model.AgentChannelModel;
+import com.xn.tvdeploy.model.client.ResponseAgentChannelModel;
 import com.xn.tvdeploy.service.AccountTpService;
 import com.xn.tvdeploy.service.AgentChannelService;
 import org.apache.log4j.Logger;
@@ -51,7 +53,7 @@ public class AgAgentChannelController extends BaseController {
      */
     @RequestMapping("/dataList")
     public void dataList(HttpServletRequest request, HttpServletResponse response, AgentChannelModel model) throws Exception {
-        List<AgentChannelModel> dataList = new ArrayList<AgentChannelModel>();
+        List<ResponseAgentChannelModel> dataList = new ArrayList<ResponseAgentChannelModel>();
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
             if (account.getRoleId() != ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE){
@@ -59,7 +61,9 @@ public class AgAgentChannelController extends BaseController {
                 log.info("");
                 //不是管理员，只能查询自己的数据
             }
-            dataList = agentChannelService.queryByList(model);
+            List<AgentChannelModel> resList = new ArrayList<AgentChannelModel>();
+            resList = agentChannelService.queryByList(model);
+            dataList = BeanUtils.copyList(resList,ResponseAgentChannelModel.class);
         }
         HtmlUtil.writerJson(response, model.getPage(), dataList);
     }

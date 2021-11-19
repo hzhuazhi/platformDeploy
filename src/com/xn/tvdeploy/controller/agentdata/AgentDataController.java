@@ -10,6 +10,7 @@ import com.xn.system.entity.Account;
 import com.xn.tvdeploy.model.AgentChannelModel;
 import com.xn.tvdeploy.model.AgentDataModel;
 import com.xn.tvdeploy.model.AgentModel;
+import com.xn.tvdeploy.model.client.ResponseAgentDataModel;
 import com.xn.tvdeploy.service.AgentChannelService;
 import com.xn.tvdeploy.service.AgentDataService;
 import com.xn.tvdeploy.service.AgentService;
@@ -62,7 +63,7 @@ public class AgentDataController extends BaseController {
      */
     @RequestMapping("/dataList")
     public void dataList(HttpServletRequest request, HttpServletResponse response, AgentDataModel model) throws Exception {
-        List<AgentDataModel> dataList = new ArrayList<AgentDataModel>();
+        List<ResponseAgentDataModel> dataList = new ArrayList<ResponseAgentDataModel>();
         Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
         if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
             if (account.getRoleId() != ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE){
@@ -79,7 +80,9 @@ public class AgentDataController extends BaseController {
                 model.setCurdayEnd(DateUtil.getDayNumber(new Date()));
             }
 //            bean.addAttribute("total", agentDataService.getTotalData(model));
-            dataList = agentDataService.queryByList(model);
+            List<AgentDataModel> resList = new ArrayList<AgentDataModel>();
+            resList = agentDataService.queryByList(model);
+            dataList = BeanUtils.copyList(resList,ResponseAgentDataModel.class);
         }
         HtmlUtil.writerJson(response, model.getPage(), dataList);
     }
@@ -115,18 +118,23 @@ public class AgentDataController extends BaseController {
                 model.setCurdayStart(DateUtil.getDayNumber(new Date()));
                 model.setCurdayEnd(DateUtil.getDayNumber(new Date()));
             }
-            List<AgentDataModel> dataList = new ArrayList<AgentDataModel>();
-            dataList = agentDataService.queryAllList(model);
+            List<ResponseAgentDataModel> dataList = new ArrayList<ResponseAgentDataModel>();
+            List<AgentDataModel> resList = new ArrayList<AgentDataModel>();
+            resList = agentDataService.queryAllList(model);
+            dataList = BeanUtils.copyList(resList,ResponseAgentDataModel.class);
             // 导出数据
             String[] titles = new String[9];
             String[] titleCode = new String[9];
             String filename = "代理收益信息";
 //            titles = new String[]{"代理名称", "渠道名称", "平台订单", "订单金额", "实际支付金额", "手续费", "收益分成", "收益", "创建时间"};
 //            titleCode = new String[]{"agentName", "channelName", "myTradeNo", "totalAmount", "payAmount", "serviceCharge", "profitRatio", "profit", "createTime"};
-            titles = new String[]{"代理名称", "渠道名称", "平台订单", "订单金额", "实际支付金额", "分成类型", "收益分成", "收益", "创建时间"};
-            titleCode = new String[]{"agentName", "channelName", "myTradeNo", "totalAmount", "payAmount", "profitTypeStr", "profitRatio", "profit", "createTime"};
+//            titles = new String[]{"代理名称", "渠道名称", "平台订单", "订单金额", "实际支付金额", "分成类型", "收益分成", "收益", "创建时间"};
+//            titleCode = new String[]{"agentName", "channelName", "myTradeNo", "totalAmount", "payAmount", "profitTypeStr", "profitRatio", "profit", "createTime"};
+
+            titles = new String[]{"代理名称", "平台订单", "订单金额", "实际支付金额", "分成类型", "收益分成", "收益", "创建时间"};
+            titleCode = new String[]{"agentName", "myTradeNo", "totalAmount", "payAmount", "profitTypeStr", "profitRatio", "profit", "createTime"};
             List<Map<String,Object>> paramList = new ArrayList<>();
-            for(AgentDataModel paramO : dataList){
+            for(ResponseAgentDataModel paramO : dataList){
                 if (paramO.getProfitType() == 1){
                     paramO.setProfitTypeStr("固定分成");
                 }else if (paramO.getProfitType() == 2){

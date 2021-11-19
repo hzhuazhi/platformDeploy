@@ -11,19 +11,12 @@
     <div class = "condQueryDiv">
         <form id = "condForm">
             <div class = "condQueryCtrl">
-                <%--<div class = "condQueryLabelDiv">平台订单：</div>--%>
-                <%--<div class="formCtrlDiv">--%>
-                <%--<input type ="text" class ="inputCommonSty" id="myTradeNo" name ="myTradeNo">--%>
-                <%--</div>--%>
 
 
                     <div class = "condQueryLabelDiv">代理：</div>
                     <div class="formCtrlDiv" id = "agentDiv">
                     </div>
-                    <div class = "condQueryLabelDiv">渠道：</div>
-                    <div class="formCtrlDiv">
-                        <input type ="text" class ="inputCommonSty" id="channelName" name ="channelName">
-                    </div>
+
 
                     <div class = "condQueryLabelDiv">分成类型：</div>
                     <div class="formCtrlDiv" id = "moduleTypeDiv">
@@ -48,9 +41,7 @@
                 <div class="searchdiv">
                     <input type = "button" id = "butReset" class = "buttonClass imginput" value = "重置" />
                 </div>
-                <div class="searchdiv">
-                    <input type = "button" id = "butExcelExport" class = "buttonClass imginput" value = "Excel导出" />
-                </div>
+
             </div>
         </form>
     </div>
@@ -65,7 +56,6 @@
         <%--汇总：${total.totalMoney}---${total.totalServiceCharge}---${total.totalActualMoney}--%>
         <tr>
             <th width="110">代理名称</th>
-            <th width="110">渠道名称</th>
             <th width="150">平台订单</th>
             <th width="100">订单金额</th>
             <th width="130">实际支付金额</th>
