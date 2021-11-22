@@ -49,6 +49,18 @@
                     </div>
                 </li>
 
+                <li style="border-top: none;">
+                    <div class="formTextDiv">
+                        <span class="require" ><font color="red">*</font>拉单详情：</span>
+                    </div>
+                    <div class="formCtrlDiv">
+                        <textarea id="info" rows="5" cols="100">
+
+                        </textarea>
+                        <%--< type="text" class="formInput" id="money" name="money"	maxlength="240" />--%>
+                    </div>
+                </li>
+
 
                 <li>
                     <div class="" style="margin-bottom: 20px; margin-top: 20px;margin-left:200px;">
@@ -93,8 +105,11 @@
                     data :formData,
                     success : function(data) {
                         if (data.success) {
-                            alert("添加成功！！！");
-                            window.open(data.data);
+                            // alert("添加成功！！！");
+                            var  txt="";
+                            txt=data.data+"\n\n\n"+ $("#money").val();
+                            $("#info").val(txt);
+                            // window.open(data.data);
                         } else {
                             art.alert(data.msg);
                         }
