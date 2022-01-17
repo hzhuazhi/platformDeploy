@@ -25,7 +25,8 @@
             <th width="150">分成类型</th>
             <th width="150">固定分成</th>
             <th width="150">额外分成</th>
-            <th width="150">备注</th>
+            <th width="120">备注</th>
+            <th width="180">创建时间</th>
         </tr>
         </thead>
         <tbody>
