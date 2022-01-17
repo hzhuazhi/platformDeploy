@@ -184,6 +184,16 @@ public class ChannelChangeModel extends BasePage {
      */
     private Integer curdayEnd;
 
+    /**
+     * 汇总加金额
+     */
+    private String totalAddMoney;
+
+    /**
+     * 汇总减金额
+     */
+    private String totalReduceMoney;
+
     public Long getId() {
         return id;
     }
@@ -395,5 +405,21 @@ public class ChannelChangeModel extends BasePage {
 
     public void setCurdayEnd(Integer curdayEnd) {
         this.curdayEnd = curdayEnd;
+    }
+
+    public String getTotalAddMoney() {
+        return totalAddMoney;
+    }
+
+    public void setTotalAddMoney(String totalAddMoney) {
+        this.totalAddMoney = totalAddMoney;
+    }
+
+    public String getTotalReduceMoney() {
+        return totalReduceMoney;
+    }
+
+    public void setTotalReduceMoney(String totalReduceMoney) {
+        this.totalReduceMoney = totalReduceMoney;
     }
 }

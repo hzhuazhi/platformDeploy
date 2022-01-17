@@ -4,6 +4,7 @@ import com.xn.common.dao.BaseDao;
 import com.xn.common.service.impl.BaseServiceImpl;
 import com.xn.tvdeploy.dao.BankDao;
 import com.xn.tvdeploy.dao.ChannelChangeDao;
+import com.xn.tvdeploy.model.ChannelChangeModel;
 import com.xn.tvdeploy.service.BankService;
 import com.xn.tvdeploy.service.ChannelChangeService;
 import org.apache.log4j.Logger;
@@ -27,5 +28,10 @@ public class ChannelChangeServiceImpl<T> extends BaseServiceImpl<T> implements C
     public ChannelChangeDao<T> getDao() {
         // TODO Auto-generated method stub
         return channelChangeDao;
+    }
+
+    @Override
+    public ChannelChangeModel getTotalData(ChannelChangeModel model) {
+        return channelChangeDao.getTotalData(model);
     }
 }

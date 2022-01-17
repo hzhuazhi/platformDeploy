@@ -28,7 +28,7 @@ var account = {
         {"data":"id",
             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                 var html = '';
-                html +='<a class = "dataTableBtn dataTableDeleteBtn " href="'+ctx+'/withdraw/jumpAdd.do"> 提现 </a>'
+
                 html +='<a class = "dataTableBtn dataTableDeleteBtn " href="'+ctx+'/tp/jumpUpdate.do"> 重置密码 </a>'
                 $(nTd).html(html);
             }

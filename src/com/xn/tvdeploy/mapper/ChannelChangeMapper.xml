@@ -27,6 +27,10 @@
         <result column="ts_time" property="tsTime" jdbcType="TIMESTAMP" />
         <result column="yn" property="yn" jdbcType="BIT" />
         <result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+
+        <result column="total_add_money" property="totalAddMoney" jdbcType="VARCHAR" />
+        <result column="total_reduce_money" property="totalReduceMoney" jdbcType="VARCHAR" />
+
     </resultMap>
     <!-- 定义数据库基本列,只适用代替单表的*-->
     <sql id="Base_Column_List">
@@ -348,5 +352,72 @@
         and a.id =#{id}
         and a.yn=0
     </update>
+
+
+
+    <!-- 获取total信息 -->
+    <select id="getTotalData"  resultMap="dataMap" parameterType="Object">
+        select a1.total_add_money,a2.total_reduce_money
+        from (
+        select
+        '1' as id,
+        ifnull(sum(convert(a.money,decimal(19,4))), '0.0000') as total_add_money
+        from tb_hz_channel_change a
+        where 1=1
+        <if test="myTradeNo != null and myTradeNo != '' " >
+            and a.my_trade_no = #{myTradeNo}
+        </if>
+        <if test="channelId != 0 and channelId >0 " >
+            and a.channel_id = #{channelId}
+        </if>
+        <if test="channelName != null and channelName != '' " >
+            and b.channel_name = #{channelName}
+        </if>
+        <if test="money != null and money != ''" >
+            and a.money = #{money}
+        </if>
+        <if test="isShow != 0 and isShow >0 " >
+            and a.is_show = #{isShow}
+        </if>
+        <if test="curdayStart != null and curdayStart != '' " >
+            and a.curday &gt;= #{curdayStart}
+        </if>
+        <if test="curdayEnd != null and curdayEnd != '' " >
+            and a.curday &lt;= #{curdayEnd}
+        </if>
+        and a.change_type = 2
+        ) a1
+        left join
+        (
+        select
+        '1' as id,
+        ifnull(sum(convert(a.money,decimal(19,4))), '0.0000') as total_reduce_money
+        from tb_hz_channel_change a
+        where 1=1
+        <if test="myTradeNo != null and myTradeNo != '' " >
+            and a.my_trade_no = #{myTradeNo}
+        </if>
+        <if test="channelId != 0 and channelId >0 " >
+            and a.channel_id = #{channelId}
+        </if>
+        <if test="channelName != null and channelName != '' " >
+            and b.channel_name = #{channelName}
+        </if>
+        <if test="money != null and money != ''" >
+            and a.money = #{money}
+        </if>
+        <if test="isShow != 0 and isShow >0 " >
+            and a.is_show = #{isShow}
+        </if>
+        <if test="curdayStart != null and curdayStart != '' " >
+            and a.curday &gt;= #{curdayStart}
+        </if>
+        <if test="curdayEnd != null and curdayEnd != '' " >
+            and a.curday &lt;= #{curdayEnd}
+        </if>
+        and a.change_type = 1
+        ) a2
+        on a1.id = a2.id
+    </select>
 
 </mapper>

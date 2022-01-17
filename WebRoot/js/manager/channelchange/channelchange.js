@@ -45,28 +45,27 @@ var account = {
             }
         },
         {"data":"dataExplain",},
-        {"data":"createTime",},
-        {"data":"id",
-            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                var html = '';
-                if(oData.sendStatus==2){
-                    html = '<a class = "dataTableBtn dataTableDeleteBtn " onclick="repeat('+oData.id+')"> 重发 </a>';
-                }
-
-                $(nTd).html(html);
-            }
-        }
+        {"data":"createTime",}
     ],
     // 查询条件，aoData是必要的。其他的就是对应的实体类字段名，因为条件查询是把数据封装在实体类中的。
     condJsonData : {
+        myTradeNo:null,
+        channelId:0,
+        money:null,
         curdayStart:0,
-        curdayEnd:0
+        curdayEnd:0,
+        changeType:0,
+        isShow:0
     },
     //页面加载
     indexInit : function (){
         //url同步
         common.updateUrl(this.url);
+
         // 查询条件 - 下拉框数据获取
+        this.queryTpAll();
+        this.queryTotal();
+
         //添加
         $(".addbtn").live("click",function(){
             window.location.href = ctx + "/channelchange/jumpAdd.do";
@@ -78,12 +77,13 @@ var account = {
         // 条件查询按钮事件
         $('#btnQuery').click(function() {
             account.condJsonData['myTradeNo'] = $("#myTradeNo").val();
-            account.condJsonData['channelName'] = $("#channelName").val();
+            account.condJsonData['channelId'] = $("#channelId").val();
             account.condJsonData['money'] = $("#money").val();
             account.condJsonData['curdayStart'] = $("#curdayStart").val();
             account.condJsonData['curdayEnd'] = $("#curdayEnd").val();
             account.condJsonData['changeType'] = $("#changeType").val();
             account.condJsonData['isShow'] = $("#isShow").val();
+            account.queryTotal();
             common.showDatas(account.condJsonData,account.list);
 
         });
@@ -91,16 +91,17 @@ var account = {
         // 重置
         $("#butReset").click(function(){
             account.condJsonData['myTradeNo'] = "";
-            account.condJsonData['channelName'] = "";
+            account.condJsonData['channelId'] = "0";
             account.condJsonData['money'] = "";
+            account.condJsonData['curdayStart'] = "";
             account.condJsonData['curdayEnd'] = "";
-            account.condJsonData['changeType'] = "";
-            account.condJsonData['isShow'] = "";
+            account.condJsonData['changeType'] = "0";
+            account.condJsonData['isShow'] = "0";
             $("#myTradeNo").val("");
-            $("#channelName").val("");
+            $("#channelId").val("0");
             $("#money").val("");
-            $("#curdayStart").val("0");
-            $("#curdayEnd").val("0");
+            $("#curdayStart").val("");
+            $("#curdayEnd").val("");
             $("#changeType").val("0");
             $("#isShow").val("0");
             common.showDatas(account.condJsonData,account.list);
@@ -122,7 +123,7 @@ var account = {
     //下拉框数据填充
     //查询所有渠道-无分页-下拉框选项:
     queryTpAll:function(){
-        var url = ctx + "/channelchange/dataAllList.do";
+        var url = ctx + "/accounttp/dataAllList.do";
         var data = {
         };
         common.ajax(url,data,function(data){
@@ -135,6 +136,40 @@ var account = {
             }
             shtml +="</select>";
             $("#channelDiv").html(shtml);
+        });
+    },
+
+
+    //汇总数据填充
+    //查询所有订单汇总数据
+    queryTotal:function(){
+        var url = basePath + "channelchange/totalData.do";
+        var myTradeNo = $("#myTradeNo").val();
+        var channelId = $("#channelId").val();
+        var money = $("#money").val();
+        var curdayStart = $("#curdayStart").val();
+        var curdayEnd = $("#curdayEnd").val();
+        var changeType = $("#changeType").val();
+        var isShow = $("#isShow").val();
+
+        var data = {
+            "myTradeNo":myTradeNo,
+            "channelId":channelId,
+            "money":money,
+            "curdayStart":curdayStart,
+            "curdayEnd":curdayEnd,
+            "changeType":changeType,
+            "isShow":isShow
+        };
+        common.ajax(url,data,function(data){
+            var data=data;
+            var shtml="";
+            shtml += "汇总：         ";
+            shtml += "      加金额：";
+            shtml += "<font color='red'>" + data.totalAddMoney + "</font>";
+            shtml += "      减金额：";
+            shtml += "<font color='red'>" + data.totalReduceMoney + "</font>";
+            $("#totalDiv").html(shtml);
         });
     },
 

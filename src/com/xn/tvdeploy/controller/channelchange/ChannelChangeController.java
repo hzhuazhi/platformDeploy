@@ -204,4 +204,29 @@ public class ChannelChangeController extends BaseController {
             sendFailureMessage(response, "登录超时,请重新登录在操作!");
         }
     }
+
+
+
+    /**
+     *
+     * 获取汇总数据
+     */
+    @RequestMapping("/totalData")
+    public void totalData(HttpServletRequest request, HttpServletResponse response, ChannelChangeModel model) throws Exception {
+        ChannelChangeModel data = new ChannelChangeModel();
+        if (null==model.getCurdayStart()||model.getCurdayStart() ==0 || model.getCurdayEnd() == 0){
+            model.setCurdayStart(DateUtil.getDayNumber(new Date()));
+            model.setCurdayEnd(DateUtil.getDayNumber(new Date()));
+        }
+        Account account = (Account) WebUtils.getSessionAttribute(request, ManagerConstant.PUBLIC_CONSTANT.ACCOUNT);
+        if(account !=null && account.getId() > ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ZERO){
+            if (account.getRoleId() != ManagerConstant.PUBLIC_CONSTANT.SIZE_VALUE_ONE){
+                //不是管理员，只能查询自己的数据
+                model.setChannelId(account.getId());
+            }
+            data = channelChangeService.getTotalData(model);
+        }
+        HtmlUtil.writerJson(response, data);
+    }
+
 }

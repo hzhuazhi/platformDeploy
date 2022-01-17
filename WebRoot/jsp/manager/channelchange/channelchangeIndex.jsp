@@ -15,10 +15,15 @@
                 <div class="formCtrlDiv">
                     <input type ="text" class ="inputCommonSty" id="myTradeNo" name ="myTradeNo">
                 </div>
+                <%--<div class = "condQueryLabelDiv">渠道：</div>--%>
+                <%--<div class="formCtrlDiv" >--%>
+                    <%--<input type ="text" class ="inputCommonSty" id="channelName" name ="channelName">--%>
+                <%--</div>--%>
+
                 <div class = "condQueryLabelDiv">渠道：</div>
-                <div class="formCtrlDiv" >
-                    <input type ="text" class ="inputCommonSty" id="channelName" name ="channelName">
+                <div class="formCtrlDiv" id = "channelDiv">
                 </div>
+
                 <div class = "condQueryLabelDiv">订单金额：</div>
                 <div class="formCtrlDiv" >
                     <input type ="text" class ="inputCommonSty" id="money" name ="money">
@@ -70,16 +75,21 @@
 
     <table class="datatable tables">
         <thead>
+
+        <div class="formCtrlDiv" id = "totalDiv">
+
+        </div>
+
         <tr>
             <th width="200">订单号</th>
             <th width="200">名称/别名</th>
-            <th width="200">渠道名称</th>
-            <th width="150">变更金额</th>
-            <th width="150">金额类型</th>
-            <th width="150">是否展现</th>
+            <th width="170">渠道名称</th>
+            <th width="140">变更金额</th>
+            <th width="140">金额类型</th>
+            <th width="140">是否展现</th>
             <th width="150">数据说明</th>
-            <th width="150">创建时间</th>
-            <th width="250">操作</th>
+            <th width="190">创建时间</th>
+            <%--<th width="250">操作</th>--%>
         </tr>
         </thead>
         <tbody>
